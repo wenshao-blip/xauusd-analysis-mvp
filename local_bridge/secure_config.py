@@ -10,7 +10,10 @@ SECRET_KEYS = ("smtp_password", "feishu_webhook")
 def load() -> dict:
     values = json.loads(CONFIG_PATH.read_text("utf-8")) if CONFIG_PATH.exists() else {}
     for key in SECRET_KEYS:
-        secret = keyring.get_password(SERVICE, key)
+        try:
+            secret = keyring.get_password(SERVICE, key)
+        except Exception:
+            secret = None
         if secret:
             values[key] = secret
     return values
