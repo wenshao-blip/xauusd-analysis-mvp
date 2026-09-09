@@ -37,6 +37,8 @@ next-env.d.ts
 /outputs/
 /work/
 /local_bridge/*.db
+/local_bridge/aurum_config.bin
+/local_bridge/aurum_config.json
 __pycache__/
 *.pyc
 *.log
