@@ -5,6 +5,9 @@ const onPages = process.env.GITHUB_ACTIONS === 'true';
 const basePath = onPages && repository && !repository.endsWith('.github.io') ? `/${repository}` : '';
 // Vinext must export the page at the artifact root for GitHub Pages. Only
 // static asset URLs need the repository prefix.
-const nextConfig: NextConfig = { output: 'export', assetPrefix: basePath };
+const nextConfig: NextConfig = {
+  output: 'export',
+  assetPrefix: onPages && basePath ? `${basePath}/assets` : basePath,
+};
 
 export default nextConfig;
