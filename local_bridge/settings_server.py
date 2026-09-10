@@ -9,6 +9,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 from notifications import send_all, send_email, send_feishu
+from report_formatter import build_report
 from secure_config import load, save
 
 HOST, PORT = "127.0.0.1", 8766
@@ -20,18 +21,7 @@ def apply_env(config):
         if config.get(key): os.environ[name]=config[key]
 
 def latest_report():
-    item=json.loads(DASHBOARD.read_text("utf-8"))["current"]
-    context=json.loads(item["indicators_json"]); day=context.get("_market",{}); candle_labels=[s["label"] for values in context.get("_candles",{}).values() for s in values]
-    execution="\n".join("• "+x for x in json.loads(item["execution_json"]))
-    abandon="\n".join("• "+x for x in json.loads(item["abandon_json"]))
-    decision={"trade":"值得交易","flat":"空仓等待"}.get(item["decision"],item["decision"])
-    direction={"up":"偏多","down":"偏空","range":"震荡"}.get(item["direction"],item["direction"])
-    body=(f"XAUUSD 黄金分析报告\n\n判断：{decision}\n方向倾向：{direction}\n"
-          f"昨日收盘：{day.get('previous_close','—')}\n今日开盘：{day.get('today_open','—')}\n当前价格：{item['price']}\n今日最高：{day.get('today_high','—')}\n今日最低：{day.get('today_low','—')}\n今日波动：{day.get('day_range','—')}\n今日涨跌：{day.get('change','—')}（{day.get('change_pct',0):+.2%}）\n今日振幅：{day.get('amplitude_pct',0):.2%}\n"
-          f"上涨概率：{item['p_up']:.0%}\n震荡概率：{item['p_range']:.0%}\n下跌概率：{item['p_down']:.0%}\nK线确认：{'、'.join(candle_labels) if candle_labels else '暂无有效形态'}\n"
-          f"目标价区间：{item['target_low']}–{item['target_high']}\n有效期：{item['created_at']} 至 {item['valid_until']}\n\n"
-          f"执行条件：\n{execution}\n\n放弃条件：\n{abandon}\n\n报告编号：{item['id']}")
-    return "Aurum Signal 黄金分析报告",body
+    return build_report(json.loads(DASHBOARD.read_text("utf-8"))["current"])
 
 def page(message=""):
     c=load()
