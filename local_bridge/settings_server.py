@@ -1,20 +1,35 @@
 """Local-only browser settings page; never listens outside this computer."""
 import html
+import json
 import os
 import threading
 import urllib.parse
 import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
 
-from notifications import send_email, send_feishu
+from notifications import send_all, send_email, send_feishu
 from secure_config import load, save
 
 HOST, PORT = "127.0.0.1", 8766
+DASHBOARD = Path(__file__).resolve().parents[1] / "public" / "data" / "dashboard.json"
 
 def apply_env(config):
     mapping={"smtp_host":"AURUM_SMTP_HOST","smtp_port":"AURUM_SMTP_PORT","smtp_user":"AURUM_SMTP_USER","smtp_password":"AURUM_SMTP_PASSWORD","email_to":"AURUM_EMAIL_TO","feishu_webhook":"AURUM_FEISHU_WEBHOOK"}
     for key,name in mapping.items():
         if config.get(key): os.environ[name]=config[key]
+
+def latest_report():
+    item=json.loads(DASHBOARD.read_text("utf-8"))["current"]
+    execution="\n".join("• "+x for x in json.loads(item["execution_json"]))
+    abandon="\n".join("• "+x for x in json.loads(item["abandon_json"]))
+    decision={"trade":"值得交易","flat":"空仓等待"}.get(item["decision"],item["decision"])
+    direction={"up":"偏多","down":"偏空","range":"震荡"}.get(item["direction"],item["direction"])
+    body=(f"XAUUSD 黄金分析报告\n\n判断：{decision}\n方向倾向：{direction}\n"
+          f"生成价格：{item['price']}\n上涨概率：{item['p_up']:.0%}\n震荡概率：{item['p_range']:.0%}\n下跌概率：{item['p_down']:.0%}\n"
+          f"目标价区间：{item['target_low']}–{item['target_high']}\n有效期：{item['created_at']} 至 {item['valid_until']}\n\n"
+          f"执行条件：\n{execution}\n\n放弃条件：\n{abandon}\n\n报告编号：{item['id']}")
+    return "Aurum Signal 黄金分析报告",body
 
 def page(message=""):
     c=load()
@@ -29,7 +44,7 @@ def page(message=""):
 <label>新的 QQ 邮箱授权码</label><input type="password" name="smtp_password" placeholder="已保存时可留空">
 <label>收件邮箱</label><input name="email_to" value="{value('email_to','156934912@qq.com')}">
 <label>飞书 Webhook（可暂不填）</label><input type="password" name="feishu_webhook" placeholder="已保存时可留空">
-<button name="action" value="save">保存</button><button name="action" value="email">保存并测试邮件</button><button name="action" value="feishu">保存并测试飞书</button></form></main></html>'''
+<button name="action" value="save">保存</button><button name="action" value="email">保存并测试邮件</button><button name="action" value="feishu">保存并测试飞书</button><button name="action" value="report">发送上一次完整报告</button></form></main></html>'''
 
 class Handler(BaseHTTPRequestHandler):
     def respond(self, content, status=200):
@@ -42,7 +57,10 @@ class Handler(BaseHTTPRequestHandler):
         try:
             save(cfg); apply_env(cfg); action=form.get("action",["save"])[-1]
             if action=="email": result=send_email("Aurum Signal 邮件测试","邮件推送配置成功。"); message="测试邮件已发送，请检查收件箱。" if result.get("ok") else "邮件测试失败："+str(result)
-            elif action=="feishu": result=send_feishu("黄金：Aurum Signal 飞书测试"); message="飞书测试消息已发送。" if result.get("ok") else "飞书测试失败："+str(result)
+            elif action=="feishu": result=send_feishu("黄金：Aurum Signal 飞书测试","飞书推送配置成功。"); message="飞书测试消息已发送。" if result.get("ok") else "飞书测试失败："+str(result)
+            elif action=="report":
+                subject,body=latest_report(); result=send_all(subject,body)
+                message="上一次完整报告已通过邮件和飞书发送。" if all(x.get("ok") for x in result.values()) else "报告发送失败："+str(result)
             else: message="配置已安全保存。"
         except Exception as exc: message="操作失败："+str(exc)
         self.respond(page(message))
