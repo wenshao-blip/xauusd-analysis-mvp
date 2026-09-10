@@ -1,4 +1,4 @@
-import { readFile, readdir, rename, writeFile } from 'node:fs/promises';
+import { readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const root = join(process.cwd(), 'dist', 'client');
@@ -18,4 +18,5 @@ async function rewrite(directory) {
 }
 
 await rewrite(root);
+await rm(target, { recursive: true, force: true });
 await rename(source, target);
