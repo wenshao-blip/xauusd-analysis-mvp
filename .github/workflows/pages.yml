@@ -29,6 +29,12 @@ jobs:
       - run: pnpm build
         env:
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+      - name: Place GitHub Pages assets
+        shell: bash
+        run: |
+          rm -rf dist/client/assets
+          mv "dist/client/${{ github.event.repository.name }}/assets" dist/client/assets
+          rm -rf "dist/client/${{ github.event.repository.name }}"
       - uses: actions/configure-pages@v5
         with:
           enablement: true
