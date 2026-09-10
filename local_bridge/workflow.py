@@ -14,10 +14,10 @@ ROOT=Path(__file__).resolve().parents[1]; DB=ROOT/'local_bridge'/'aurum.db'; WEB
 def iso(dt):return dt.isoformat(timespec='seconds')
 def next_scheduled_time(now):
     local=now.astimezone(ZoneInfo('Asia/Shanghai'))
-    for hour in (4,10,16):
+    for hour in (10,16,21):
         candidate=local.replace(hour=hour,minute=0,second=0,microsecond=0)
         if candidate>local:return candidate.astimezone(timezone.utc)
-    return (local+timedelta(days=1)).replace(hour=4,minute=0,second=0,microsecond=0).astimezone(timezone.utc)
+    return (local+timedelta(days=1)).replace(hour=10,minute=0,second=0,microsecond=0).astimezone(timezone.utc)
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--symbol',default='XAUUSD');ap.add_argument('--hours',type=int);ap.add_argument('--manual',action='store_true');ap.add_argument('--no-push',action='store_true');a=ap.parse_args()
     now=datetime.now(timezone.utc); valid=now+timedelta(hours=a.hours) if a.hours else (now+timedelta(hours=6) if a.manual else next_scheduled_time(now)); hours=max(1,int((valid-now).total_seconds()/3600+.999)); raw=mt5_snapshot(a.symbol); raw['indicators']=multi_timeframe(raw['candles']); news=news_collect(); db=connect(DB)
