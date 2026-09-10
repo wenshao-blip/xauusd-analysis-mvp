@@ -29,7 +29,12 @@ jobs:
       - run: pnpm build
         env:
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
-      - run: node scripts/prepare-pages.mjs
+      - name: Prepare GitHub Pages assets
+        shell: bash
+        run: |
+          rm -rf dist/client/assets
+          mv dist/client/_next dist/client/assets
+          find dist/client -type f \( -name '*.html' -o -name '*.js' -o -name '*.json' -o -name '*.rsc' -o -name '*.css' \) -print0 | xargs -0 sed -i 's#/_next/#/assets/#g'
       - uses: actions/configure-pages@v5
         with:
           enablement: true
