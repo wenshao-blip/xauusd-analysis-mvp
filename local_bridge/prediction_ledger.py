@@ -52,18 +52,30 @@ def settle_due(db,now:str,close:float,high:float,low:float,flat_band=.0015):
         db.execute("UPDATE predictions SET status='settled',settled_at=?,actual_close=?,actual_high=?,actual_low=?,actual_direction=?,direction_hit=?,range_hit=?,range_touched=?,brier=? WHERE id=?",(now,close,high,low,actual,hit,range_hit,touched,brier,r['id']))
     db.commit(); return len(rows)
 
+def _wilson(hits,n,z=1.96):
+    if not n:return (None,None)
+    p=hits/n; den=1+z*z/n; mid=(p+z*z/(2*n))/den; margin=z*math.sqrt((p*(1-p)+z*z/(4*n))/n)/den
+    return (max(0,mid-margin),min(1,mid+margin))
+
 def summary(db,window=20):
-    rows=db.execute("SELECT * FROM predictions WHERE status='settled' AND run_type='scheduled' ORDER BY settled_at DESC LIMIT ?",(window,)).fetchall(); n=len(rows)
+    # Only equal-length, two-hour forecasts count toward formal evaluation.
+    rows=db.execute("SELECT * FROM predictions WHERE status='settled' AND run_type='scheduled_2h' ORDER BY settled_at DESC LIMIT ?",(window,)).fetchall(); n=len(rows)
     def avg(key): return sum(r[key] for r in rows if r[key] is not None)/n if n else None
     bins=[]
-    if n>=20:
+    if n>=50:
         for lo in (.4,.5,.6,.7,.8,.9):
             samples=[]
             for r in rows:
                 confidence=max(r['p_up'],r['p_range'],r['p_down'])
                 if lo<=confidence<lo+.1:samples.append(r)
             if samples: bins.append({'from':lo,'to':lo+.1,'samples':len(samples),'claimed':sum(max(r['p_up'],r['p_range'],r['p_down']) for r in samples)/len(samples),'observed':sum(r['direction_hit'] for r in samples)/len(samples)})
-    return {'samples':n,'direction_hit_rate':avg('direction_hit'),'target_range_hit_rate':avg('range_hit'),'target_touched_rate':avg('range_touched'),'brier':avg('brier'),'calibration_ready':n>=20,'calibration':bins}
+    hits=sum(r['direction_hit'] for r in rows if r['direction_hit'] is not None)
+    ci_low,ci_high=_wilson(hits,n)
+    brier=avg('brier')
+    # A score is withheld until there are enough same-duration observations.
+    probability_quality=None if n<100 or brier is None else round(max(0,min(100,100*(1-brier/(2/9)))),1)
+    stage='样本积累中' if n<50 else ('初步校准' if n<100 else '正式校准')
+    return {'samples':n,'direction_hit_rate':avg('direction_hit'),'direction_ci_low':ci_low,'direction_ci_high':ci_high,'target_range_hit_rate':avg('range_hit'),'target_touched_rate':avg('range_touched'),'brier':brier,'calibration_ready':n>=100,'calibration_stage':stage,'probability_quality':probability_quality,'calibration':bins}
 
 def export_json(db,path:Path):
     current=db.execute("SELECT * FROM predictions ORDER BY created_at DESC LIMIT 1").fetchone(); history=db.execute("SELECT * FROM predictions ORDER BY created_at DESC LIMIT 30").fetchall(); data={'current':dict(current) if current else None,'history':[dict(x) for x in history],'rolling20':summary(db,20),'rolling60':summary(db,60),'generated_at':datetime.now(timezone.utc).isoformat()}; path.parent.mkdir(parents=True,exist_ok=True); path.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')

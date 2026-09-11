@@ -6,7 +6,7 @@ class LedgerTest(unittest.TestCase):
     def test_freeze_settle_and_score(self):
         with tempfile.TemporaryDirectory() as folder:
             db=connect(Path(folder)/'ledger.db')
-            p=Prediction('p1','2026-09-10T04:00:00+08:00','2026-09-10T10:00:00+08:00','2026-09-10T03:59:59+08:00',4400,'trade','up',.6,.25,.15,4410,4420,['confirm'],['stale'],{},[])
+            p=Prediction('p1','2026-09-10T04:00:00+08:00','2026-09-10T10:00:00+08:00','2026-09-10T03:59:59+08:00',4400,'trade','up',.6,.25,.15,4410,4420,['confirm'],['stale'],{},[],run_type='scheduled_2h')
             save(db,p)
             self.assertEqual(settle_due(db,'2026-09-10T10:00:01+08:00',4415,4422,4398),1)
             result=summary(db)
