@@ -17,10 +17,25 @@ def iso(dt):return dt.isoformat(timespec='seconds')
 def bj(dt):return dt.astimezone(ZoneInfo('Asia/Shanghai')).strftime('%Y-%m-%d %H:%M')
 def next_scheduled_time(now):
     local=now.astimezone(ZoneInfo('Asia/Shanghai'))
-    for hour in (10,16,21):
+    # Two-hour analysis cadence, with an additional 21:00 full-session checkpoint.
+    for hour in tuple(sorted(set(range(0,24,2)) | {21})):
         candidate=local.replace(hour=hour,minute=0,second=0,microsecond=0)
         if candidate>local:return candidate.astimezone(timezone.utc)
-    return (local+timedelta(days=1)).replace(hour=10,minute=0,second=0,microsecond=0).astimezone(timezone.utc)
+    return (local+timedelta(days=1)).replace(hour=0,minute=0,second=0,microsecond=0).astimezone(timezone.utc)
+
+def full_report_time(now):
+    local=now.astimezone(ZoneInfo('Asia/Shanghai'))
+    return local.hour in (10,16,21)
+
+def materially_changed(previous, result):
+    """Only alert between fixed reports when the decision meaningfully changes."""
+    if not previous:
+        return True
+    if previous['decision'] != result['decision'] or previous['direction'] != result['direction']:
+        return True
+    old_probs=(previous['p_up'],previous['p_range'],previous['p_down'])
+    new_probs=(result['p_up'],result['p_range'],result['p_down'])
+    return max(abs(a-b) for a,b in zip(old_probs,new_probs)) >= .12
 
 def publish_dashboard(prediction_id):
     """Publish only the public dashboard snapshot; credentials remain local."""
@@ -47,11 +62,15 @@ def main():
     now=datetime.now(timezone.utc); valid=now+timedelta(hours=a.hours) if a.hours else (now+timedelta(hours=6) if a.manual else next_scheduled_time(now)); hours=max(1,int((valid-now).total_seconds()/3600+.999)); raw=mt5_snapshot(a.symbol); raw['indicators']=multi_timeframe(raw['candles']); price=(raw['bid']+raw['ask'])/2; raw['indicators']['_market']=daily_summary(raw['candles']['D1'],price); raw['indicators']['_candles']=multi_candle_signals(raw['candles']); news=news_collect(); db=connect(DB)
     # 上个区间用当前时刻前最后一段M5行情结算；正式版可替换为Tick路径。
     m5=raw['candles']['M5']; settle_due(db,iso(now),float(m5[-1]['close']),max(float(x['high']) for x in m5[-max(2,hours*12):]),min(float(x['low']) for x in m5[-max(2,hours*12):]))
+    previous=db.execute("SELECT * FROM predictions WHERE run_type='scheduled' ORDER BY created_at DESC LIMIT 1").fetchone()
     result=analyze(raw,news,iso(valid),'manual' if a.manual else 'scheduled'); pid=f"{now:%Y%m%dT%H%M%SZ}-{uuid.uuid4().hex[:6]}"
     p=Prediction(pid,iso(now),result['valid_until'],iso(now),round((raw['bid']+raw['ask'])/2,5),result['decision'],result['direction'],result['p_up'],result['p_range'],result['p_down'],result['target_low'],result['target_high'],result['execution'],result['abandon'],raw['indicators'],news['articles'],result['model_version'],result['run_type'])
     save(db,p);export_json(db,WEB);db.close(); day=raw['indicators']['_market']; candle_labels=[s['label'] for tf in ('H1','M30','M15','M5') for s in raw['indicators']['_candles'][tf]]; candle_text='、'.join(candle_labels) if candle_labels else '无明确确认形态'; body=f"XAUUSD 黄金分析报告\n判断：{'值得交易' if p.decision=='trade' else '空仓等待'} / {p.direction}\n昨日收盘 {day['previous_close']}｜今日开盘 {day['today_open']}\n当前 {p.price}｜最高 {day['today_high']}｜最低 {day['today_low']}\n今日波动 {day['day_range']}｜涨跌 {day['change']:+.2f} ({day['change_pct']:+.2%})｜振幅 {day['amplitude_pct']:.2%}\n上涨 {p.p_up:.0%}｜震荡 {p.p_range:.0%}｜下跌 {p.p_down:.0%}\nK线确认：{candle_text}\n目标区间 {p.target_low}–{p.target_high}\n执行条件："+'；'.join(p.execution)+"\n放弃条件："+'；'.join(p.abandon)+f"\n有效至 {p.valid_until}"
     subject,body=build_report(json.loads(WEB.read_text('utf-8'))['current'])
-    pushed={} if a.no_push else send_all(subject,body)
+    should_notify = a.manual or full_report_time(now) or materially_changed(previous, result)
+    pushed={} if a.no_push or not should_notify else send_all(subject,body)
+    if not a.no_push and not should_notify:
+        pushed={'skipped': '本轮观点无实质变化，仅更新网页与结算记录'}
     published={} if a.no_publish else publish_dashboard(pid)
     print(json.dumps({'prediction_id':pid,'prediction':result,'news_errors':news['errors'],'push':pushed,'publish':published},ensure_ascii=False,indent=2))
 if __name__=='__main__':main()
