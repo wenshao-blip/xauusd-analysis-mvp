@@ -18,4 +18,5 @@ def analyze(market,news,valid_until,run_type='scheduled'):
     stale=not news.get('complete',False); conflicting=abs(edge)<.08; opposed=(direction=='up' and candle_edge<0) or (direction=='down' and candle_edge>0); decision='flat' if stale or conflicting or opposed else 'trade'
     m15=ind['M15']; level=round(m15['ma20'],2); execution=[f"M15收盘保持在MA20 {level} {'上方' if direction=='up' else '下方'}",f"M5出现{'看涨' if direction=='up' else '看跌'}吞没、影线拒绝或突破收盘确认",f"MACD柱与DI方向保持{'向上' if direction=='up' else '向下'}一致"]
     abandon=[f"M15收盘反向穿越MA20 {level}",'高影响事件前后30分钟','点差异常扩大','价格已经进入目标区间，剩余空间不足','预测有效期即将结束']
-    return {'valid_until':valid_until,'decision':decision,'direction':direction,'p_up':round(p_up,4),'p_range':round(p_range,4),'p_down':round(p_down,4),'target_low':round(low,2),'target_high':round(high,2),'execution':execution,'abandon':abandon,'run_type':run_type,'model_version':'technical-candle-v2'}
+    return {'valid_until':valid_until,'decision':decision,'direction':direction,'p_up':round(p_up,4),'p_range':round(p_range,4),'p_down':round(p_down,4),'target_low':round(low,2),'target_high':round(high,2),'execution':execution,'abandon':abandon,'run_type':run_type,'model_version':'technical-structure-v3'}
+

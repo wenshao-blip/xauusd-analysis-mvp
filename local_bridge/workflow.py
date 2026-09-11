@@ -6,7 +6,7 @@ from zoneinfo import ZoneInfo
 from baseline_analyzer import analyze
 from indicators import multi_timeframe
 from mt5_reader import snapshot as mt5_snapshot
-from market_context import daily_summary,multi_candle_signals
+from market_context import daily_summary,multi_candle_signals,multi_structure_levels
 from news_sources import collect as news_collect
 from notifications import send_all
 from prediction_ledger import Prediction,connect,export_json,save,settle_due
@@ -58,7 +58,7 @@ def publish_dashboard(prediction_id):
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--symbol',default='XAUUSD');ap.add_argument('--hours',type=int);ap.add_argument('--manual',action='store_true');ap.add_argument('--supplemental',action='store_true');ap.add_argument('--no-push',action='store_true');ap.add_argument('--no-publish',action='store_true');a=ap.parse_args()
-    now=datetime.now(timezone.utc); valid=now+timedelta(hours=a.hours) if a.hours else (now+timedelta(hours=6) if a.manual else next_regular_time(now)); hours=max(1,int((valid-now).total_seconds()/3600+.999)); raw=mt5_snapshot(a.symbol); raw['indicators']=multi_timeframe(raw['candles']); price=(raw['bid']+raw['ask'])/2; raw['indicators']['_market']=daily_summary(raw['candles']['D1'],price); raw['indicators']['_candles']=multi_candle_signals(raw['candles']); news=news_collect(); db=connect(DB)
+    now=datetime.now(timezone.utc); valid=now+timedelta(hours=a.hours) if a.hours else (now+timedelta(hours=6) if a.manual else next_regular_time(now)); hours=max(1,int((valid-now).total_seconds()/3600+.999)); raw=mt5_snapshot(a.symbol); raw['indicators']=multi_timeframe(raw['candles']); price=(raw['bid']+raw['ask'])/2; raw['indicators']['_market']=daily_summary(raw['candles']['D1'],price); raw['indicators']['_candles']=multi_candle_signals(raw['candles']); raw['indicators']['_structure']=multi_structure_levels(raw['candles']); news=news_collect(); db=connect(DB)
     # 上个区间用当前时刻前最后一段M5行情结算；正式版可替换为Tick路径。
     m5=raw['candles']['M5']; settle_due(db,iso(now),float(m5[-1]['close']),max(float(x['high']) for x in m5[-max(2,hours*12):]),min(float(x['low']) for x in m5[-max(2,hours*12):]))
     previous=db.execute("SELECT * FROM predictions WHERE run_type='scheduled_2h' ORDER BY created_at DESC LIMIT 1").fetchone()
@@ -74,3 +74,4 @@ def main():
     published={} if a.no_publish else publish_dashboard(pid)
     print(json.dumps({'prediction_id':pid,'prediction':result,'news_errors':news['errors'],'push':pushed,'publish':published},ensure_ascii=False,indent=2))
 if __name__=='__main__':main()
+

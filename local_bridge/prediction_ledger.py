@@ -57,9 +57,11 @@ def _wilson(hits,n,z=1.96):
     p=hits/n; den=1+z*z/n; mid=(p+z*z/(2*n))/den; margin=z*math.sqrt((p*(1-p)+z*z/(4*n))/n)/den
     return (max(0,mid-margin),min(1,mid+margin))
 
+ACTIVE_MODEL_VERSION='technical-structure-v3'
+
 def summary(db,window=20):
-    # Only equal-length, two-hour forecasts count toward formal evaluation.
-    rows=db.execute("SELECT * FROM predictions WHERE status='settled' AND run_type='scheduled_2h' ORDER BY settled_at DESC LIMIT ?",(window,)).fetchall(); n=len(rows)
+    # Equal-duration forecasts under the current rule set are the only formal sample.
+    rows=db.execute("SELECT * FROM predictions WHERE status='settled' AND run_type='scheduled_2h' AND model_version=? ORDER BY settled_at DESC LIMIT ?",(ACTIVE_MODEL_VERSION,window)).fetchall(); n=len(rows)
     def avg(key): return sum(r[key] for r in rows if r[key] is not None)/n if n else None
     bins=[]
     if n>=50:
@@ -75,7 +77,7 @@ def summary(db,window=20):
     # A score is withheld until there are enough same-duration observations.
     probability_quality=None if n<100 or brier is None else round(max(0,min(100,100*(1-brier/(2/9)))),1)
     stage='样本积累中' if n<50 else ('初步校准' if n<100 else '正式校准')
-    return {'samples':n,'direction_hit_rate':avg('direction_hit'),'direction_ci_low':ci_low,'direction_ci_high':ci_high,'target_range_hit_rate':avg('range_hit'),'target_touched_rate':avg('range_touched'),'brier':brier,'calibration_ready':n>=100,'calibration_stage':stage,'probability_quality':probability_quality,'calibration':bins}
+    return {'samples':n,'model_version':ACTIVE_MODEL_VERSION,'direction_hit_rate':avg('direction_hit'),'direction_ci_low':ci_low,'direction_ci_high':ci_high,'target_range_hit_rate':avg('range_hit'),'target_touched_rate':avg('range_touched'),'brier':brier,'calibration_ready':n>=100,'calibration_stage':stage,'probability_quality':probability_quality,'calibration':bins}
 
 def export_json(db,path:Path):
     current=db.execute("SELECT * FROM predictions ORDER BY created_at DESC LIMIT 1").fetchone(); history=db.execute("SELECT * FROM predictions ORDER BY created_at DESC LIMIT 30").fetchall(); data={'current':dict(current) if current else None,'history':[dict(x) for x in history],'rolling20':summary(db,20),'rolling60':summary(db,60),'generated_at':datetime.now(timezone.utc).isoformat()}; path.parent.mkdir(parents=True,exist_ok=True); path.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')

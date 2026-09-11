@@ -15,6 +15,11 @@ def _zones(item, context):
     price = float(item["price"])
     day = context.get("_market", {})
     levels = []
+    # Confirmed swing highs/lows are the primary structure source.  Moving
+    # averages and day prices below are only confluence, never a claim about
+    # where a "main force" is positioned.
+    structure = context.get("_structure", {})
+    levels += [float(x["price"]) for x in structure.get("supports", []) + structure.get("resistances", [])]
     for tf in ("M15", "M30", "H1"):
         values = context.get(tf, {})
         levels += [float(values[key]) for key in ("ma20", "ma60", "ma200") if values.get(key) is not None]
@@ -24,15 +29,19 @@ def _zones(item, context):
     # A zone is deliberately narrower than a target leg.  It marks a price area,
     # while TP1/TP2 are based on actual M15 volatility and the next structure.
     atr = max(0.8, float(context.get("M15", {}).get("atr") or 0))
-    width = max(0.8, atr * 0.25)
+    width = max(0.8, atr * 0.35)
     zone = lambda level: (round(level - width, 2), round(level + width, 2))
-    return zone(support), zone(resistance), width, atr
+    lower_structure = [float(x["price"]) for x in structure.get("supports", []) if float(x["price"]) < support - width * .3]
+    upper_structure = [float(x["price"]) for x in structure.get("resistances", []) if float(x["price"]) > resistance + width * .3]
+    structural_low = max(lower_structure, default=support - atr * .9)
+    structural_high = min(upper_structure, default=resistance + atr * .9)
+    return zone(support), zone(resistance), zone(structural_low), zone(structural_high), width, atr
 
 
 def build_report(item):
     context = json.loads(item.get("indicators_json", "{}"))
     day = context.get("_market", {})
-    support, resistance, width, atr = _zones(item, context)
+    support, resistance, structural_low, structural_high, width, atr = _zones(item, context)
     candles = [signal["label"] for values in context.get("_candles", {}).values() for signal in values]
     candle_text = "、".join(dict.fromkeys(candles)) if candles else "暂无有效形态"
     probs = (float(item["p_up"]), float(item["p_range"]), float(item["p_down"]))
@@ -48,8 +57,8 @@ def build_report(item):
     target = lambda midpoint: (round(midpoint - target_band, 2), round(midpoint + target_band, 2))
     long_entry = (s1 + s2) / 2
     short_entry = (r1 + r2) / 2
-    long_stop = (s1 - width, s1)
-    short_stop = (r2, r2 + width)
+    long_stop = structural_low
+    short_stop = structural_high
     long_tp1 = target(max((r1 + r2) / 2, long_entry + atr))
     long_tp2 = target(max((r1 + r2) / 2 + atr, long_entry + atr * 2))
     short_tp1 = target(min((s1 + s2) / 2, short_entry - atr))
@@ -86,7 +95,8 @@ def build_report(item):
         main_plan = (
             f"理想入场区：{s1:.2f}–{s2:.2f}；核心是支撑区不被 M5 收盘有效跌破。\n"
             "确认后再考虑：M5 出现止跌、形成更高低点、看涨吞没或长下影拒绝。\n"
-            f"止损/失效区：{long_stop[0]:.2f}–{long_stop[1]:.2f} 下方。\n"
+            f"入场确认失效：M5 收盘跌破 {s1:.2f}–{s2:.2f} 下沿后，下一根 M5 未收回，暂停入场。\n"
+            f"结构失效 / 计划取消：M15 收盘有效跌破 {long_stop[0]:.2f}–{long_stop[1]:.2f}。\n"
             f"目标：TP1 {long_tp1[0]:.2f}–{long_tp1[1]:.2f} → TP2 {long_tp2[0]:.2f}–{long_tp2[1]:.2f}。"
         )
     else:
@@ -94,7 +104,8 @@ def build_report(item):
         main_plan = (
             f"理想入场区：{r1:.2f}–{r2:.2f}；核心是阻力区不被 M5 收盘有效突破。\n"
             "确认后再考虑：M5 出现滞涨、形成更低高点、看跌吞没或长上影拒绝。\n"
-            f"止损/失效区：{short_stop[0]:.2f}–{short_stop[1]:.2f} 上方。\n"
+            f"入场确认失效：M5 收盘突破 {r1:.2f}–{r2:.2f} 上沿后，下一根 M5 未回落，暂停入场。\n"
+            f"结构失效 / 计划取消：M15 收盘有效突破 {short_stop[0]:.2f}–{short_stop[1]:.2f}。\n"
             f"目标：TP1 {short_tp1[0]:.2f}–{short_tp1[1]:.2f} → TP2 {short_tp2[0]:.2f}–{short_tp2[1]:.2f}。"
         )
 
