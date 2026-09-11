@@ -28,7 +28,6 @@ def snapshot(bars):
         for x in values[1:]:out.append((out[-1]*(n-1)+x)/n)
         return out
     atr=wilder(tr); pdm=wilder(plus_dm); mdm=wilder(minus_dm); pdi=[100*a/b if b else 0 for a,b in zip(pdm,atr)]; mdi=[100*a/b if b else 0 for a,b in zip(mdm,atr)]; dx=[100*abs(a-b)/(a+b) if a+b else 0 for a,b in zip(pdi,mdi)]; adx=wilder(dx)
-    return {'close':close[-1],'ma20':sma(close,20),'ma60':sma(close,60),'ma200':sma(close,200),'macd':macd[-1],'macd_signal':signal[-1],'macd_hist':macd[-1]-signal[-1],'stoch_k':slow_k[-1],'stoch_d':slow_d[-1],'adx':adx[-1],'+di':pdi[-1],'-di':mdi[-1]}
+    return {'close':close[-1],'ma20':sma(close,20),'ma60':sma(close,60),'ma200':sma(close,200),'macd':macd[-1],'macd_signal':signal[-1],'macd_hist':macd[-1]-signal[-1],'stoch_k':slow_k[-1],'stoch_d':slow_d[-1],'atr':atr[-1],'adx':adx[-1],'+di':pdi[-1],'-di':mdi[-1]}
 
 def multi_timeframe(candles):return {name:snapshot(candles[name]) for name in ('M5','M15','M30','H1')}
-

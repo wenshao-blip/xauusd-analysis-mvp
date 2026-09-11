@@ -12,7 +12,8 @@ def analyze(market,news,valid_until,run_type='scheduled'):
     if p_range<.10:
         excess=.10-p_range;p_up-=excess/2;p_down-=excess/2;p_range=.10
     direction=max({'up':p_up,'range':p_range,'down':p_down},key={'up':p_up,'range':p_range,'down':p_down}.get)
-    atr_proxy=sum(abs(x['high']-x['low']) for x in market['candles']['M15'][-14:])/14
+    # M15 ATR determines how far a valid target may reasonably extend in this report window.
+    atr_proxy=max(.8, float(ind['M15'].get('atr') or sum(abs(x['high']-x['low']) for x in market['candles']['M15'][-14:])/14))
     low,high=(price+atr_proxy*.6,price+atr_proxy*1.4) if direction=='up' else ((price-atr_proxy*1.4,price-atr_proxy*.6) if direction=='down' else (price-atr_proxy*.7,price+atr_proxy*.7))
     stale=not news.get('complete',False); conflicting=abs(edge)<.08; opposed=(direction=='up' and candle_edge<0) or (direction=='down' and candle_edge>0); decision='flat' if stale or conflicting or opposed else 'trade'
     m15=ind['M15']; level=round(m15['ma20'],2); execution=[f"M15收盘保持在MA20 {level} {'上方' if direction=='up' else '下方'}",f"M5出现{'看涨' if direction=='up' else '看跌'}吞没、影线拒绝或突破收盘确认",f"MACD柱与DI方向保持{'向上' if direction=='up' else '向下'}一致"]
