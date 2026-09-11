@@ -101,13 +101,13 @@ def build_report(item):
     body = (
         f"XAUUSD 黄金分析报告\n\n"
         f"【当前抓取价格】\n{price:.2f}\n\n"
+        f"【方向概率】\n上涨：{probs[0]:.0%}　震荡：{probs[1]:.0%}　下跌：{probs[2]:.0%}\n\n"
         f"【当前建议】\n{verdict}\n\n"
         f"【观察与操作方案】\n{main_plan}\n\n"
         "【统一入场条件】\n必须等待 M5 K线收盘确认，再观察下一根K线是否延续；只有价格位置、K线形态和指标方向同时支持时才考虑。\n\n"
         "【取消计划】\nM15/M5结构反向转弱；价格直接穿过失效区；高影响新闻前后30分钟；点差异常；价格已接近目标、剩余空间不足；报告即将失效。\n\n"
         "【禁止事项】\n禁止追涨追跌；禁止在K线尚未收盘时猜突破；禁止因为错过入场而提高价格追单；禁止同时执行多空两套方案。\n\n"
         f"【关键区间】\n支撑区：{s1:.2f}–{s2:.2f}\n阻力区：{r1:.2f}–{r2:.2f}\nM15 平均波动（ATR）：{atr:.2f}\n预测方向价区间：{float(item['target_low']):.2f}–{float(item['target_high']):.2f}\n当前K线形态：{candle_text}\n\n"
-        f"【方向概率】\n上涨：{probs[0]:.0%}　震荡：{probs[1]:.0%}　下跌：{probs[2]:.0%}\n\n"
         f"【今日行情】\n昨日收盘：{day.get('previous_close', '—')}\n今日开盘：{day.get('today_open', '—')}\n今日最高：{day.get('today_high', '—')}\n今日最低：{day.get('today_low', '—')}\n今日波动：{day.get('day_range', '—')}\n今日涨跌：{day.get('change', '—')}（{float(day.get('change_pct', 0)):+.2%}）\n今日振幅：{float(day.get('amplitude_pct', 0)):.2%}\n\n"
         f"【报告时间】\n生成：{bj(item['created_at'])}（北京时间）\n有效至：{bj(item['valid_until'])}（北京时间）\n报告编号：{item['id']}"
     )
