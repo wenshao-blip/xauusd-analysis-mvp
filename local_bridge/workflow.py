@@ -1,5 +1,5 @@
 """一次完整运行：结算旧预测 → 读取MT5/新闻 → 生成并冻结预测 → 导出网页数据 → 推送。"""
-import argparse,json,subprocess,uuid
+import argparse,json,os,subprocess,sys,uuid
 from datetime import datetime,timedelta,timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -29,11 +29,17 @@ def publish_dashboard(prediction_id):
         ['git','add','--',relative],
         ['git','diff','--cached','--quiet','--',relative],
     )
-    subprocess.run(commands[0],cwd=ROOT,check=True,capture_output=True,text=True)
-    unchanged=subprocess.run(commands[1],cwd=ROOT,capture_output=True,text=True).returncode==0
+    # The bundled Git stores its HTTPS helper outside the default PATH.
+    # Keep this local setup explicit so scheduled publishing uses the same Git.
+    env = os.environ.copy()
+    helper = Path(sys.executable).parents[1] / 'native' / 'git' / 'mingw64' / 'bin'
+    if helper.exists():
+        env['PATH'] = str(helper) + os.pathsep + env.get('PATH', '')
+    subprocess.run(commands[0],cwd=ROOT,check=True,capture_output=True,text=True,env=env)
+    unchanged=subprocess.run(commands[1],cwd=ROOT,capture_output=True,text=True,env=env).returncode==0
     if unchanged:return {'ok':True,'changed':False}
-    subprocess.run(['git','commit','-m',f'Update dashboard {prediction_id}'],cwd=ROOT,check=True,capture_output=True,text=True,encoding='utf-8',errors='replace')
-    result=subprocess.run(['git','push','origin','main'],cwd=ROOT,capture_output=True,text=True,timeout=60,encoding='utf-8',errors='replace')
+    subprocess.run(['git','commit','-m',f'Update dashboard {prediction_id}'],cwd=ROOT,check=True,capture_output=True,text=True,encoding='utf-8',errors='replace',env=env)
+    result=subprocess.run(['git','push','origin','main'],cwd=ROOT,capture_output=True,text=True,timeout=60,encoding='utf-8',errors='replace',env=env)
     return {'ok':result.returncode==0,'changed':True,'error':result.stderr.strip() if result.returncode else ''}
 
 def main():
