@@ -16,3 +16,9 @@
 - 调度失败在原有3分钟窗口内重试；长期停机仍会漏时点，应保持电脑、MT5和本地服务在线。影子异常会显示在dashboard的shadow_error和报告中，原有主流程继续。
 
 验证：在项目目录运行 `python -m unittest discover -s local_bridge -v`。测试使用临时账本，不连接MT5、不发送通知、不修改生产统计。上线当天不能声称已完成30个交易日验证。
+
+## 构建和自动验证
+
+项目通过package.json的devEngines.runtime和锁文件固定Node 22.23.2，GitHub使用同一.node-version。安装依赖后，pnpm run build会自动使用此运行时，避免本机Node 24构建完成后的Windows退出断言错误。
+
+GitHub Pages发布前运行Python 3.12单元及工作流测试；测试使用临时账本和模拟行情，不连接交易终端或通知服务。真实手动核验使用--manual --no-push --no-publish，排除正式统计；休市过期行情不会生成影子有效样本。
