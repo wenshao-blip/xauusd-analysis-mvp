@@ -10,9 +10,24 @@ def snapshot(symbol='XAUUSD',bars=240):
         mapping={'M5':mt5.TIMEFRAME_M5,'M15':mt5.TIMEFRAME_M15,'M30':mt5.TIMEFRAME_M30,'H1':mt5.TIMEFRAME_H1,'D1':mt5.TIMEFRAME_D1}
         candles={}
         for name,tf in mapping.items():
-            needed=3 if name=='D1' else bars
+            needed=65 if name=='D1' else bars
             rates=mt5.copy_rates_from_pos(symbol,tf,0,needed)
             if rates is None or len(rates)<needed:raise RuntimeError(f'{name} K线不足：需要{needed}根')
             candles[name]=[{field:(value.item() if hasattr(value,'item') else value) for field,value in zip(rates.dtype.names,row)} for row in rates]
         return {'symbol':symbol,'bid':info.bid,'ask':info.ask,'spread':info.ask-info.bid,'time_msc':info.time_msc,'candles':candles}
     finally: mt5.shutdown()
+
+
+def history(symbol, start, end):
+    """Read a prediction-specific UTC interval for independent shadow settlement."""
+    import MetaTrader5 as mt5
+    if not mt5.initialize():
+        raise RuntimeError(f'MT5连接失败: {mt5.last_error()}')
+    try:
+        rates = mt5.copy_rates_range(symbol, mt5.TIMEFRAME_M5, start, end)
+        if rates is None:
+            raise RuntimeError(f'M5历史读取失败: {mt5.last_error()}')
+        return [{field: (value.item() if hasattr(value, 'item') else value)
+                 for field, value in zip(rates.dtype.names, row)} for row in rates]
+    finally:
+        mt5.shutdown()

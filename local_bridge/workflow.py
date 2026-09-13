@@ -5,7 +5,8 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 from baseline_analyzer import analyze
 from indicators import multi_timeframe
-from mt5_reader import snapshot as mt5_snapshot
+from mt5_reader import snapshot as mt5_snapshot, history as mt5_history
+import intraday_shadow
 from market_context import daily_summary,multi_candle_signals,multi_structure_levels
 from news_sources import collect as news_collect
 from notifications import send_all
@@ -65,13 +66,30 @@ def main():
     run_type='manual' if a.manual else ('supplemental' if a.supplemental else 'scheduled_2h')
     result=analyze(raw,news,iso(valid),run_type); pid=f"{now:%Y%m%dT%H%M%SZ}-{uuid.uuid4().hex[:6]}"
     p=Prediction(pid,iso(now),result['valid_until'],iso(now),round((raw['bid']+raw['ask'])/2,5),result['decision'],result['direction'],result['p_up'],result['p_range'],result['p_down'],result['target_low'],result['target_high'],result['execution'],result['abandon'],raw['indicators'],news['articles'],result['model_version'],result['run_type'])
-    save(db,p);export_json(db,WEB);db.close(); day=raw['indicators']['_market']; candle_labels=[s['label'] for tf in ('H1','M30','M15','M5') for s in raw['indicators']['_candles'][tf]]; candle_text='、'.join(candle_labels) if candle_labels else '无明确确认形态'; body=f"XAUUSD 黄金分析报告\n判断：{'值得交易' if p.decision=='trade' else '空仓等待'} / {p.direction}\n昨日收盘 {day['previous_close']}｜今日开盘 {day['today_open']}\n当前 {p.price}｜最高 {day['today_high']}｜最低 {day['today_low']}\n今日波动 {day['day_range']}｜涨跌 {day['change']:+.2f} ({day['change_pct']:+.2%})｜振幅 {day['amplitude_pct']:.2%}\n上涨 {p.p_up:.0%}｜震荡 {p.p_range:.0%}｜下跌 {p.p_down:.0%}\nK线确认：{candle_text}\n目标区间 {p.target_low}–{p.target_high}\n执行条件："+'；'.join(p.execution)+"\n放弃条件："+'；'.join(p.abandon)+f"\n有效至 {p.valid_until}"
+    shadow = None
+    shadow_error = None
+    try:
+        shadow = intraday_shadow.run(db, raw, news, result, now,
+            lambda start, end: mt5_history(a.symbol, start, end),
+            scheduled=run_type == 'scheduled_2h')
+    except Exception as exc:
+        shadow_error = str(exc)
+    save(db,p)
+    export_json(db,WEB)
+    dashboard = json.loads(WEB.read_text('utf-8'))
+    if shadow:
+        shadow['report_text'] = intraday_shadow.report(shadow)
+    dashboard['shadow'] = shadow
+    dashboard['shadow_error'] = shadow_error
+    WEB.write_text(json.dumps(dashboard,ensure_ascii=False,indent=2),encoding='utf-8')
+    db.close(); day=raw['indicators']['_market']; candle_labels=[s['label'] for tf in ('H1','M30','M15','M5') for s in raw['indicators']['_candles'][tf]]; candle_text='、'.join(candle_labels) if candle_labels else '无明确确认形态'; body=f"XAUUSD 黄金分析报告\n判断：{'值得交易' if p.decision=='trade' else '空仓等待'} / {p.direction}\n昨日收盘 {day['previous_close']}｜今日开盘 {day['today_open']}\n当前 {p.price}｜最高 {day['today_high']}｜最低 {day['today_low']}\n今日波动 {day['day_range']}｜涨跌 {day['change']:+.2f} ({day['change_pct']:+.2%})｜振幅 {day['amplitude_pct']:.2%}\n上涨 {p.p_up:.0%}｜震荡 {p.p_range:.0%}｜下跌 {p.p_down:.0%}\nK线确认：{candle_text}\n目标区间 {p.target_low}–{p.target_high}\n执行条件："+'；'.join(p.execution)+"\n放弃条件："+'；'.join(p.abandon)+f"\n有效至 {p.valid_until}"
     subject,body=build_report(json.loads(WEB.read_text('utf-8'))['current'])
+    body += '\n\n' + (intraday_shadow.report(shadow) if shadow else '日内影子版本本轮失败：'+str(shadow_error))
     should_notify = a.manual or a.supplemental or full_report_time(now) or materially_changed(previous, result)
     pushed={} if a.no_push or not should_notify else send_all(subject,body)
     if not a.no_push and not should_notify:
         pushed={'skipped': '本轮观点无实质变化，仅更新网页与结算记录'}
     published={} if a.no_publish else publish_dashboard(pid)
-    print(json.dumps({'prediction_id':pid,'prediction':result,'news_errors':news['errors'],'push':pushed,'publish':published},ensure_ascii=False,indent=2))
+    print(json.dumps({'prediction_id':pid,'prediction':result,'news_errors':news['errors'],'push':pushed,'publish':published,'shadow':shadow,'shadow_error':shadow_error},ensure_ascii=False,indent=2))
 if __name__=='__main__':main()
 

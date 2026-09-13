@@ -19,6 +19,14 @@ def run_workflow(*args):
 def scheduled_loop():
     """The local bridge runs in the signed-in user's session, where MT5 and secrets exist."""
     completed=set()
+    def execute(key, args):
+        try:
+            result = run_workflow(*args)
+            if result is not None and result.returncode == 0:
+                completed.add(key)
+        except (subprocess.TimeoutExpired, OSError):
+            pass  # Retry on the next tick while the scheduling window is open.
+
     while True:
         now=datetime.now(BJ)
         key=f'{now:%Y%m%d%H}'
@@ -28,9 +36,8 @@ def scheduled_loop():
         elif now.minute < 3 and now.hour == 21:
             args=['--supplemental']
         if args is not None and key not in completed:
-            completed.add(key)
             completed={x for x in completed if x.startswith(f'{now:%Y%m%d}')}
-            threading.Thread(target=run_workflow,args=tuple(args),daemon=True).start()
+            threading.Thread(target=execute,args=(key,args),daemon=True).start()
         time.sleep(20)
 class Handler(BaseHTTPRequestHandler):
     def cors(self):
