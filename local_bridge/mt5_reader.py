@@ -3,7 +3,7 @@ TIMEFRAMES=('M5','M15','M30','H1')
 def snapshot(symbol='XAUUSD',bars=240):
     try: import MetaTrader5 as mt5
     except ImportError as exc: raise RuntimeError('请在安装了 MetaTrader5 Python 包的 Windows 环境运行') from exc
-    if not mt5.initialize(): raise RuntimeError(f'MT5连接失败: {mt5.last_error()}')
+    if not mt5.initialize(timeout=10000): raise RuntimeError(f'MT5连接失败: {mt5.last_error()}')
     try:
         info=mt5.symbol_info_tick(symbol)
         if info is None: raise RuntimeError(f'找不到品种 {symbol}，请检查经纪商后缀')
@@ -21,7 +21,7 @@ def snapshot(symbol='XAUUSD',bars=240):
 def history(symbol, start, end):
     """Read a prediction-specific UTC interval for independent shadow settlement."""
     import MetaTrader5 as mt5
-    if not mt5.initialize():
+    if not mt5.initialize(timeout=10000):
         raise RuntimeError(f'MT5连接失败: {mt5.last_error()}')
     try:
         rates = mt5.copy_rates_range(symbol, mt5.TIMEFRAME_M5, start, end)
@@ -29,5 +29,19 @@ def history(symbol, start, end):
             raise RuntimeError(f'M5历史读取失败: {mt5.last_error()}')
         return [{field: (value.item() if hasattr(value, 'item') else value)
                  for field, value in zip(rates.dtype.names, row)} for row in rates]
+    finally:
+        mt5.shutdown()
+
+
+def quote(symbol='XAUUSD'):
+    """Lightweight read-only health probe; no candle/news collection."""
+    import MetaTrader5 as mt5
+    if not mt5.initialize(timeout=10000):
+        raise RuntimeError('MT5 connection failed')
+    try:
+        tick=mt5.symbol_info_tick(symbol)
+        if tick is None:
+            raise RuntimeError('MT5 quote unavailable')
+        return {'time_msc':tick.time_msc,'bid':tick.bid,'ask':tick.ask}
     finally:
         mt5.shutdown()

@@ -1,6 +1,7 @@
 """XAUUSD 预测账本：只读行情、冻结预测、到期结算与校准统计。"""
 from __future__ import annotations
 import json, math, sqlite3
+import settlement_audit
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -51,6 +52,42 @@ def settle_due(db,now:str,close:float,high:float,low:float,flat_band=.0015):
         probs={'up':r['p_up'],'range':r['p_range'],'down':r['p_down']}; brier=sum((probs[k]-int(k==actual))**2 for k in probs)/3
         db.execute("UPDATE predictions SET status='settled',settled_at=?,actual_close=?,actual_high=?,actual_low=?,actual_direction=?,direction_hit=?,range_hit=?,range_touched=?,brier=? WHERE id=?",(now,close,high,low,actual,hit,range_hit,touched,brier,r['id']))
     db.commit(); return len(rows)
+
+def settle_history(db, now, history, flat_band=.0015):
+    """Keep v3 scoring/filtering unchanged; settle only open rows with verified history."""
+    settlement_audit.initialize(db)
+    rows=db.execute("""SELECT p.* FROM predictions p LEFT JOIN settlement_audit a
+        ON a.ledger='predictions' AND a.prediction_id=p.id
+        WHERE p.status='open' AND julianday(p.valid_until)<=julianday(?)
+        ORDER BY COALESCE(a.checked_at,''),p.valid_until LIMIT 20""",(now.isoformat(),)).fetchall()
+    settled=0
+    for r in rows:
+        start=datetime.fromisoformat(r['created_at'])
+        end=datetime.fromisoformat(r['valid_until'])
+        if end > now:
+            continue
+        try:
+            path,reason,count=settlement_audit.path_for(history,start,end)
+        except settlement_audit.BudgetDeferred:
+            break
+        settlement_audit.record(db,'predictions',r['id'],now,reason,count)
+        if path is None:
+            continue
+        close,high,low=path['close'],path['high'],path['low']
+        move=(close-r['price'])/r['price']
+        actual='range' if abs(move)<=flat_band else ('up' if move>0 else 'down')
+        probs={'up':r['p_up'],'range':r['p_range'],'down':r['p_down']}
+        brier=sum((probs[k]-int(k==actual))**2 for k in probs)/3
+        db.execute("""UPDATE predictions SET status='settled',settled_at=?,actual_close=?,
+            actual_high=?,actual_low=?,actual_direction=?,direction_hit=?,range_hit=?,range_touched=?,brier=?
+            WHERE id=? AND status='open'""",
+            (now.isoformat(timespec='seconds'),close,high,low,actual,int(actual==r['direction']),
+             int(r['target_low'] is not None and r['target_low']<=close<=r['target_high']),
+             int(r['target_low'] is not None and high>=r['target_low'] and low<=r['target_high']),brier,r['id']))
+        db.commit()
+        settled+=1
+    return settled
+
 
 def _wilson(hits,n,z=1.96):
     if not n:return (None,None)

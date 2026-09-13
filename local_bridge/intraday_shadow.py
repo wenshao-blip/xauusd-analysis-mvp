@@ -1,5 +1,6 @@
 """Independent, immutable intraday experiment. Never changes v3 predictions."""
 import copy
+import settlement_audit
 import json
 from datetime import datetime, timedelta, timezone
 
@@ -105,7 +106,7 @@ def m15_confirmed(market, direction, now):
 
 def short_forecast(market, news, baseline, daily, now):
     item = copy.deepcopy(baseline)
-    item.update(created_at=stamp(now), price=(market['bid']+market['ask'])/2,
+    item.update(model_version=VERSION, created_at=stamp(now), price=(market['bid']+market['ask'])/2,
                 id=f'{VERSION}-short-{stamp(now)}', daily_id=daily['id'] if daily else None,
                 flat_band=.0015)
     alignment = 'unavailable' if not daily else ('aligned' if daily['direction'] == item['direction'] else 'conflict')
@@ -127,25 +128,29 @@ def short_forecast(market, news, baseline, daily, now):
 
 def settle(db, now, history):
     """Each horizon gets its own M5 path. Missing endpoints stay pending, never use latest tick."""
-    rows = db.execute("SELECT * FROM shadow_forecasts WHERE kind!='draft' AND settlement IS NULL AND valid_until<=?",
-                      (stamp(now),)).fetchall()
+    settlement_audit.initialize(db)
+    rows = db.execute("""SELECT p.* FROM shadow_forecasts p LEFT JOIN settlement_audit a
+        ON a.ledger='shadow' AND a.prediction_id=p.id
+        WHERE p.kind!='draft' AND p.settlement IS NULL AND p.valid_until<=?
+        ORDER BY COALESCE(a.checked_at,''),p.valid_until LIMIT 20""", (stamp(now),)).fetchall()
     for row in rows:
         item = json.loads(row['payload'])
         start = datetime.fromisoformat(item['created_at'])
         end = datetime.fromisoformat(item['valid_until'])
-        bars = history(start, end)
-        # Exclude the partially observed entry bar and all bars after expiry.
-        bars = sorted([b for b in bars if float(b['time']) >= start.timestamp()
-                       and float(b['time'])+300 <= end.timestamp()], key=lambda b: b['time'])
-        if not bars or float(bars[0]['time'])-start.timestamp() > 300 or end.timestamp()-(float(bars[-1]['time'])+300) > 0:
+        try:
+            path, reason, count = settlement_audit.path_for(history, start, end)
+        except settlement_audit.BudgetDeferred:
+            break
+        settlement_audit.record(db, 'shadow', row['id'], now, reason, count)
+        if path is None:
             continue
-        close = float(bars[-1]['close'])
+        close = path['close']
         move = close/item['price']-1
         actual = 'range' if abs(move) <= item['flat_band'] else 'up' if move > 0 else 'down'
         probs = item.get('probabilities') or dict(zip(('up','range','down'), (item['p_up'],item['p_range'],item['p_down'])))
         result = {'settled_at': stamp(now), 'actual_close': close,
-                  'actual_high': max(float(b['high']) for b in bars),
-                  'actual_low': min(float(b['low']) for b in bars), 'actual_direction': actual,
+                  'actual_high': path['high'],
+                  'actual_low': path['low'], 'actual_direction': actual,
                   'direction_hit': int(item['direction'] == actual),
                   'brier': sum((probs[k]-int(k == actual))**2 for k in probs)/3}
         db.execute('UPDATE shadow_forecasts SET settlement=? WHERE id=? AND settlement IS NULL',
@@ -172,7 +177,6 @@ def export(db, now):
 
 def run(db, market, news, baseline, now, history, scheduled=True):
     initialize(db)
-    settle(db, now, history)
     local = now.astimezone(BJ)
     fresh = -60 <= now.timestamp()-market.get('time_msc', 0)/1000 <= 900
     # No late backfills: a missed 08:00 freeze remains missing for that day.

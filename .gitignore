@@ -43,3 +43,4 @@ __pycache__/
 *.pyc
 *.log
 .env
+/local_bridge/*.lock
