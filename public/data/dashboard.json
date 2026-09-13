@@ -869,7 +869,7 @@
     "probability_quality": null,
     "calibration": []
   },
-  "generated_at": "2026-09-13T16:09:20.109261+00:00",
+  "generated_at": "2026-09-13T18:00:08.310815+00:00",
   "shadow": {
     "model_version": "intraday-shadow-v1",
     "daily": null,
@@ -895,47 +895,51 @@
   },
   "shadow_error": null,
   "health": {
-    "checked_at": "2026-09-13T16:09:20+00:00",
+    "checked_at": "2026-09-13T18:00:08+00:00",
     "monitor_since": "2026-09-13T13:59:12+00:00",
-    "heartbeat": "2026-09-13T16:09:19+00:00",
+    "heartbeat": "2026-09-13T18:00:07+00:00",
     "market_time": "2026-09-11T23:54:58+00:00",
     "market_status": "stale_quote",
     "weekend": true,
-    "last_publish_at": "2026-09-13T16:08:24+00:00",
+    "last_publish_at": "2026-09-13T16:09:24+00:00",
     "last_run": {
-      "id": "scheduled_2h-2026-09-13T16:00:00+00:00",
+      "id": "scheduled_2h-2026-09-13T18:00:00+00:00",
       "kind": "scheduled_2h",
-      "started_at": "2026-09-13T16:09:19+00:00",
-      "finished_at": "2026-09-13T16:09:20+00:00",
+      "started_at": "2026-09-13T18:00:08+00:00",
+      "finished_at": "2026-09-13T18:00:08+00:00",
       "stage": "finished",
       "code": "stale_quote",
       "report_id": null,
-      "attempts": 10,
+      "attempts": 1,
       "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
     },
     "missed_count": 0,
-    "issues": [],
+    "issues": [
+      {
+        "key": "settlement_pending",
+        "message": "1条到期记录待核查，不计入已结算统计"
+      }
+    ],
     "settlements": {
-      "pending": 0,
-      "items": []
+      "pending": 1,
+      "items": [
+        {
+          "prediction_id": "20260913T103517Z-decf6f",
+          "valid_until": "2026-09-13T16:35:17+00:00",
+          "checked_at": "2026-09-13T18:00:08+00:00",
+          "reason": "missing_start",
+          "attempts": 18,
+          "ledger": "predictions",
+          "message": "缺少起始行情，等待补齐"
+        }
+      ]
     },
     "runs": [
       {
-        "id": "scheduled_2h-2026-09-13T16:00:00+00:00",
+        "id": "scheduled_2h-2026-09-13T18:00:00+00:00",
         "kind": "scheduled_2h",
-        "started_at": "2026-09-13T16:09:19+00:00",
-        "finished_at": "2026-09-13T16:09:20+00:00",
-        "stage": "finished",
-        "code": "stale_quote",
-        "report_id": null,
-        "attempts": 10,
-        "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
-      },
-      {
-        "id": "reconcile-15a0b0cb360443f5834a8071359a6e6f",
-        "kind": "reconcile",
-        "started_at": "2026-09-13T16:05:39+00:00",
-        "finished_at": "2026-09-13T16:05:39+00:00",
+        "started_at": "2026-09-13T18:00:08+00:00",
+        "finished_at": "2026-09-13T18:00:08+00:00",
         "stage": "finished",
         "code": "stale_quote",
         "report_id": null,
@@ -943,10 +947,10 @@
         "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
       },
       {
-        "id": "reconcile-07cf6f92bfaf4415bf55bcbdfe39e6d9",
+        "id": "reconcile-5083023bdfff4c66b8575b80c5e3fba8",
         "kind": "reconcile",
-        "started_at": "2026-09-13T16:00:39+00:00",
-        "finished_at": "2026-09-13T16:00:39+00:00",
+        "started_at": "2026-09-13T17:55:47+00:00",
+        "finished_at": "2026-09-13T17:55:48+00:00",
         "stage": "finished",
         "code": "stale_quote",
         "report_id": null,
@@ -954,10 +958,10 @@
         "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
       },
       {
-        "id": "reconcile-61f284c144584ea783a963ff5ce2f47a",
+        "id": "reconcile-459599ac987b453393c70c2123b9ec99",
         "kind": "reconcile",
-        "started_at": "2026-09-13T15:55:19+00:00",
-        "finished_at": "2026-09-13T15:55:19+00:00",
+        "started_at": "2026-09-13T17:50:47+00:00",
+        "finished_at": "2026-09-13T17:50:47+00:00",
         "stage": "finished",
         "code": "stale_quote",
         "report_id": null,
@@ -965,10 +969,10 @@
         "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
       },
       {
-        "id": "reconcile-6a1fbc64c2734e16a49379d9cde21b51",
+        "id": "reconcile-4d958f56219b4c0abe2a80cd4917cef8",
         "kind": "reconcile",
-        "started_at": "2026-09-13T15:50:18+00:00",
-        "finished_at": "2026-09-13T15:50:18+00:00",
+        "started_at": "2026-09-13T17:45:47+00:00",
+        "finished_at": "2026-09-13T17:45:47+00:00",
         "stage": "finished",
         "code": "stale_quote",
         "report_id": null,
@@ -976,10 +980,10 @@
         "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
       },
       {
-        "id": "reconcile-55bfbdd16d2849019098e73ed5b71351",
+        "id": "reconcile-e92ff034b8d54f86b8bea746e406a710",
         "kind": "reconcile",
-        "started_at": "2026-09-13T15:45:18+00:00",
-        "finished_at": "2026-09-13T15:45:18+00:00",
+        "started_at": "2026-09-13T17:40:46+00:00",
+        "finished_at": "2026-09-13T17:40:46+00:00",
         "stage": "finished",
         "code": "stale_quote",
         "report_id": null,
@@ -987,10 +991,10 @@
         "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
       },
       {
-        "id": "reconcile-6dccf8f1d2714ab3b58b18e1a071cc81",
+        "id": "reconcile-68e26e4f42b340b8aa0383921039fcb9",
         "kind": "reconcile",
-        "started_at": "2026-09-13T15:40:18+00:00",
-        "finished_at": "2026-09-13T15:40:18+00:00",
+        "started_at": "2026-09-13T17:35:46+00:00",
+        "finished_at": "2026-09-13T17:35:46+00:00",
         "stage": "finished",
         "code": "stale_quote",
         "report_id": null,
@@ -998,10 +1002,10 @@
         "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
       },
       {
-        "id": "reconcile-e126d8be5c2243f29deae7b66d5c794c",
+        "id": "reconcile-bad6ad4fd2514baf83a2c5384bc6b256",
         "kind": "reconcile",
-        "started_at": "2026-09-13T15:35:17+00:00",
-        "finished_at": "2026-09-13T15:35:17+00:00",
+        "started_at": "2026-09-13T17:30:46+00:00",
+        "finished_at": "2026-09-13T17:30:46+00:00",
         "stage": "finished",
         "code": "stale_quote",
         "report_id": null,
@@ -1009,10 +1013,10 @@
         "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
       },
       {
-        "id": "reconcile-1abf7ba235814cbaa82832c6888e3e7d",
+        "id": "reconcile-241bff2ed95e446caadc690627b63c8a",
         "kind": "reconcile",
-        "started_at": "2026-09-13T15:30:17+00:00",
-        "finished_at": "2026-09-13T15:30:17+00:00",
+        "started_at": "2026-09-13T17:25:45+00:00",
+        "finished_at": "2026-09-13T17:25:46+00:00",
         "stage": "finished",
         "code": "stale_quote",
         "report_id": null,
@@ -1020,10 +1024,10 @@
         "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
       },
       {
-        "id": "reconcile-fc18e8640e3c43129d5c7dda724b1819",
+        "id": "reconcile-e59fcc07e8c94c0684e65487cae8255f",
         "kind": "reconcile",
-        "started_at": "2026-09-13T15:25:17+00:00",
-        "finished_at": "2026-09-13T15:25:17+00:00",
+        "started_at": "2026-09-13T17:20:45+00:00",
+        "finished_at": "2026-09-13T17:20:45+00:00",
         "stage": "finished",
         "code": "stale_quote",
         "report_id": null,
@@ -1031,10 +1035,10 @@
         "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
       },
       {
-        "id": "reconcile-12deaf8113574aa8acf377f1fda606a1",
+        "id": "reconcile-c56668fadf974682ae6e6b832935af94",
         "kind": "reconcile",
-        "started_at": "2026-09-13T15:20:17+00:00",
-        "finished_at": "2026-09-13T15:20:17+00:00",
+        "started_at": "2026-09-13T17:15:45+00:00",
+        "finished_at": "2026-09-13T17:15:45+00:00",
         "stage": "finished",
         "code": "stale_quote",
         "report_id": null,
@@ -1042,10 +1046,21 @@
         "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
       },
       {
-        "id": "reconcile-a331d3c935f749e494a35d8dcc6be11f",
+        "id": "reconcile-fb1ec4f64c1e48f5bdd1eb39a057f06a",
         "kind": "reconcile",
-        "started_at": "2026-09-13T15:15:16+00:00",
-        "finished_at": "2026-09-13T15:15:16+00:00",
+        "started_at": "2026-09-13T17:10:45+00:00",
+        "finished_at": "2026-09-13T17:10:45+00:00",
+        "stage": "finished",
+        "code": "stale_quote",
+        "report_id": null,
+        "attempts": 1,
+        "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
+      },
+      {
+        "id": "reconcile-e6178d47bdba440198463d58f58ab398",
+        "kind": "reconcile",
+        "started_at": "2026-09-13T17:05:44+00:00",
+        "finished_at": "2026-09-13T17:05:44+00:00",
         "stage": "finished",
         "code": "stale_quote",
         "report_id": null,
