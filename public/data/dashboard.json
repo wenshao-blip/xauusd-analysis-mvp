@@ -869,558 +869,13 @@
     "probability_quality": null,
     "calibration": []
   },
-  "generated_at": "2026-09-13T10:35:31.722826+00:00",
+  "generated_at": "2026-09-13T14:00:06.009767+00:00",
   "shadow": {
     "model_version": "intraday-shadow-v1",
     "daily": null,
     "latest_daily": null,
     "draft": null,
-    "short": {
-      "valid_until": "2026-09-13T16:35:17+00:00",
-      "decision": "flat",
-      "direction": "down",
-      "p_up": 0.175,
-      "p_range": 0.2669,
-      "p_down": 0.5581,
-      "target_low": 4337.65,
-      "target_high": 4343.91,
-      "execution": [
-        "M15收盘保持在MA20 4353.6 下方",
-        "M5出现看跌吞没、影线拒绝或突破收盘确认",
-        "MACD柱与DI方向保持向下一致"
-      ],
-      "abandon": [
-        "M15收盘反向穿越MA20 4353.6",
-        "高影响事件前后30分钟",
-        "点差异常扩大",
-        "价格已经进入目标区间，剩余空间不足",
-        "预测有效期即将结束",
-        "当日振幅达到日ATR的80%：禁止追单，影子版本暂停新入场"
-      ],
-      "run_type": "manual",
-      "model_version": "technical-structure-v3",
-      "created_at": "2026-09-13T10:35:17+00:00",
-      "price": 4348.6,
-      "id": "intraday-shadow-v1-short-2026-09-13T10:35:17+00:00",
-      "daily_id": null,
-      "flat_band": 0.0015,
-      "alignment": "stale_market",
-      "m15_confirmed": false,
-      "volatility": {
-        "atr": 105.87357142857127,
-        "used": 109.76000000000022,
-        "used_ratio": 1.0367082031803467,
-        "remaining": 0,
-        "no_chase": true,
-        "basis": "MT5 broker D1 range / completed D1 ATR14 (simple true-range mean)"
-      },
-      "news_risk": {
-        "level": "caution",
-        "message": "高影响事件前后30分钟暂停；日历时区与事件时间需核实，不能视为安全窗口",
-        "events": [
-          {
-            "starts_at": "2026.03.02 23:00",
-            "title": "ISM制造业PMI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.03.04 21:15",
-            "title": "ADP就业人数",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.03.04 23:00",
-            "title": "ISM服务业PMI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.03.06 21:30",
-            "title": "美国非农就业报告",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.03.06 21:30",
-            "title": "美国零售销售",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.03.11 20:30",
-            "title": "美国CPI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.03.12 20:30",
-            "title": "美国贸易帐",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.03.13 20:30",
-            "title": "美国GDP与PCE",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.03.18 20:30",
-            "title": "美国PPI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.03.19 02:00",
-            "title": "FOMC利率决议",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.03.19 02:30",
-            "title": "FOMC新闻发布会",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.03.31 22:00",
-            "title": "JOLTS职位空缺",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.04.01 20:15",
-            "title": "ADP就业人数",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.04.01 20:30",
-            "title": "美国零售销售",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.04.01 22:00",
-            "title": "ISM制造业PMI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.04.02 20:30",
-            "title": "美国贸易帐",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.04.03 20:30",
-            "title": "美国非农就业报告",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.04.06 22:00",
-            "title": "ISM服务业PMI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.04.09 02:00",
-            "title": "FOMC会议纪要",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.04.09 20:30",
-            "title": "美国GDP与PCE",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.04.10 20:30",
-            "title": "美国CPI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.04.14 20:30",
-            "title": "美国PPI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.04.21 20:30",
-            "title": "美国零售销售",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.04.30 02:00",
-            "title": "FOMC利率决议",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.04.30 02:30",
-            "title": "FOMC新闻发布会",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.04.30 20:30",
-            "title": "美国GDP与PCE",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.05.01 22:00",
-            "title": "ISM制造业PMI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.05.05 20:30",
-            "title": "美国贸易帐",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.05.05 22:00",
-            "title": "JOLTS职位空缺及ISM服务业PMI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.05.06 20:15",
-            "title": "ADP就业人数",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.05.08 20:30",
-            "title": "美国非农就业报告",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.05.12 20:30",
-            "title": "美国CPI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.05.13 20:30",
-            "title": "美国PPI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.05.14 20:30",
-            "title": "美国零售销售",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.05.21 02:00",
-            "title": "FOMC会议纪要",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.05.28 20:30",
-            "title": "美国GDP与PCE",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.06.01 22:00",
-            "title": "ISM制造业PMI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.06.02 22:00",
-            "title": "JOLTS职位空缺",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.06.03 20:15",
-            "title": "ADP就业人数",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.06.03 22:00",
-            "title": "ISM服务业PMI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.06.05 20:30",
-            "title": "美国非农就业报告",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.06.10 20:30",
-            "title": "美国CPI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.06.11 20:30",
-            "title": "美国PPI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.06.17 20:30",
-            "title": "美国零售销售",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.06.18 02:00",
-            "title": "FOMC利率决议",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.06.18 02:30",
-            "title": "FOMC新闻发布会",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.06.25 20:30",
-            "title": "美国PCE与个人收入支出",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.06.30 22:00",
-            "title": "JOLTS职位空缺",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.07.01 20:15",
-            "title": "ADP就业人数",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.07.01 22:00",
-            "title": "ISM制造业PMI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.07.02 20:30",
-            "title": "美国非农就业报告",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.07.06 22:00",
-            "title": "ISM服务业PMI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.07.09 02:00",
-            "title": "FOMC会议纪要",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.07.14 20:30",
-            "title": "美国CPI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.07.15 20:30",
-            "title": "美国PPI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.07.16 20:30",
-            "title": "美国零售销售",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.07.30 02:00",
-            "title": "FOMC利率决议",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.07.30 02:30",
-            "title": "FOMC新闻发布会",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.07.30 20:30",
-            "title": "美国GDP与PCE",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.08.03 22:00",
-            "title": "ISM制造业PMI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.08.04 20:30",
-            "title": "美国贸易帐",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.08.04 22:00",
-            "title": "JOLTS职位空缺",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.08.05 20:15",
-            "title": "ADP就业人数",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.08.05 22:00",
-            "title": "ISM服务业PMI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.08.07 20:30",
-            "title": "美国非农就业报告",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.08.12 20:30",
-            "title": "美国CPI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.08.13 20:30",
-            "title": "美国PPI",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.08.14 20:30",
-            "title": "美国零售销售",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.08.20 02:00",
-            "title": "FOMC会议纪要",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          },
-          {
-            "starts_at": "2026.08.26 20:30",
-            "title": "美国GDP与PCE",
-            "currency": "USD",
-            "impact": "HIGH",
-            "provider": "local-frozen-calendar"
-          }
-        ],
-        "errors": [
-          {
-            "source": "gdelt",
-            "error": "HTTP Error 429: Too Many Requests"
-          },
-          {
-            "source": "bls",
-            "error": "HTTP Error 403: Forbidden"
-          }
-        ]
-      }
-    },
+    "short": null,
     "daily_stats": {
       "samples": 0,
       "direction_hit_rate": null,
@@ -1436,7 +891,58 @@
     "review_ready": false,
     "auto_promote": false,
     "pending": 0,
-    "report_text": "【日内影子版本｜独立统计】\n当前无有效08:00冻结定调，影子短线暂停考虑；06:00草稿不计统计。\n行情过期\n影子短线：空仓等待；上涨 18% / 震荡 27% / 下跌 56%\n日ATR 105.87｜已运行 104%｜剩余 0.00（经纪商D1口径）\n达到80%日ATR禁止追单；冲突已降低置信度，必须等待已收盘M15结构确认。\n已结算交易日 0/30；日内与两小时影子样本独立，满30日仅供复核，不自动替换v3。\n冻结日内：0个已结算样本｜方向命中率 —｜Brier —\n两小时影子：0个已结算样本｜方向命中率 —｜Brier —"
+    "report_text": "【日内影子版本｜独立统计】\n当前无有效08:00冻结定调，影子短线暂停考虑；06:00草稿不计统计。\n已结算交易日 0/30；日内与两小时影子样本独立，满30日仅供复核，不自动替换v3。\n冻结日内：0个已结算样本｜方向命中率 —｜Brier —\n两小时影子：0个已结算样本｜方向命中率 —｜Brier —"
   },
-  "shadow_error": null
+  "shadow_error": null,
+  "health": {
+    "checked_at": "2026-09-13T14:00:06+00:00",
+    "monitor_since": "2026-09-13T13:59:12+00:00",
+    "heartbeat": "2026-09-13T14:00:05+00:00",
+    "market_time": "2026-09-11T23:54:58+00:00",
+    "market_status": "stale_quote",
+    "weekend": true,
+    "last_publish_at": null,
+    "last_run": {
+      "id": "scheduled_2h-2026-09-13T14:00:00+00:00",
+      "kind": "scheduled_2h",
+      "started_at": "2026-09-13T14:00:05+00:00",
+      "finished_at": "2026-09-13T14:00:06+00:00",
+      "stage": "finished",
+      "code": "stale_quote",
+      "report_id": null,
+      "attempts": 1,
+      "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
+    },
+    "missed_count": 0,
+    "issues": [],
+    "settlements": {
+      "pending": 0,
+      "items": []
+    },
+    "runs": [
+      {
+        "id": "scheduled_2h-2026-09-13T14:00:00+00:00",
+        "kind": "scheduled_2h",
+        "started_at": "2026-09-13T14:00:05+00:00",
+        "finished_at": "2026-09-13T14:00:06+00:00",
+        "stage": "finished",
+        "code": "stale_quote",
+        "report_id": null,
+        "attempts": 1,
+        "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
+      },
+      {
+        "id": "reconcile-38ff45b683b948b39b92e80df9e422ee",
+        "kind": "reconcile",
+        "started_at": "2026-09-13T13:59:12+00:00",
+        "finished_at": "2026-09-13T13:59:15+00:00",
+        "stage": "finished",
+        "code": "stale_quote",
+        "report_id": null,
+        "attempts": 1,
+        "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
+      }
+    ],
+    "scope": "最近7日、仅监测启用后的时点；公共页面为上传快照"
+  }
 }
