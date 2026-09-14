@@ -1005,7 +1005,7 @@
       }
     }
   },
-  "generated_at": "2026-09-14T12:03:01.094071+00:00",
+  "generated_at": "2026-09-14T12:03:21.117583+00:00",
   "shadow": {
     "model_version": "intraday-shadow-v1",
     "daily": null,
@@ -1579,22 +1579,22 @@
   },
   "shadow_error": null,
   "health": {
-    "checked_at": "2026-09-14T12:03:01+00:00",
+    "checked_at": "2026-09-14T12:03:21+00:00",
     "monitor_since": "2026-09-13T13:59:12+00:00",
-    "heartbeat": "2026-09-14T12:03:00+00:00",
+    "heartbeat": "2026-09-14T12:03:20+00:00",
     "market_time": "2026-09-14T12:00:30+00:00",
     "market_status": "ok",
     "weekend": false,
-    "last_publish_at": "2026-09-14T12:02:45+00:00",
+    "last_publish_at": "2026-09-14T12:03:05+00:00",
     "last_run": {
       "id": "scheduled_session-us-2026-09-14T12:00:00+00:00",
       "kind": "scheduled_session",
-      "started_at": "2026-09-14T12:03:00+00:00",
-      "finished_at": "2026-09-14T12:03:01+00:00",
+      "started_at": "2026-09-14T12:03:20+00:00",
+      "finished_at": "2026-09-14T12:03:21+00:00",
       "stage": "finished",
       "code": "ok",
       "report_id": "scheduled_session-us-2026-09-14T12:00:00+00:00",
-      "attempts": 8,
+      "attempts": 9,
       "message": "完成"
     },
     "missed_count": 2,
@@ -1618,9 +1618,9 @@
         {
           "prediction_id": "20260913T103517Z-decf6f",
           "valid_until": "2026-09-13T16:35:17+00:00",
-          "checked_at": "2026-09-14T12:03:00+00:00",
+          "checked_at": "2026-09-14T12:03:21+00:00",
           "reason": "missing_start",
-          "attempts": 304,
+          "attempts": 305,
           "ledger": "predictions",
           "message": "缺少起始行情，等待补齐"
         }
@@ -1630,12 +1630,12 @@
       {
         "id": "scheduled_session-us-2026-09-14T12:00:00+00:00",
         "kind": "scheduled_session",
-        "started_at": "2026-09-14T12:03:00+00:00",
-        "finished_at": "2026-09-14T12:03:01+00:00",
+        "started_at": "2026-09-14T12:03:20+00:00",
+        "finished_at": "2026-09-14T12:03:21+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": "scheduled_session-us-2026-09-14T12:00:00+00:00",
-        "attempts": 8,
+        "attempts": 9,
         "message": "完成"
       },
       {
