@@ -869,7 +869,7 @@
     "probability_quality": null,
     "calibration": []
   },
-  "generated_at": "2026-09-14T04:06:16.614909+00:00",
+  "generated_at": "2026-09-14T04:07:16.637974+00:00",
   "shadow": {
     "model_version": "intraday-shadow-v1",
     "daily": null,
@@ -895,22 +895,22 @@
   },
   "shadow_error": null,
   "health": {
-    "checked_at": "2026-09-14T04:06:16+00:00",
+    "checked_at": "2026-09-14T04:07:16+00:00",
     "monitor_since": "2026-09-13T13:59:12+00:00",
-    "heartbeat": "2026-09-14T04:06:16+00:00",
-    "market_time": "2026-09-14T07:06:27+00:00",
+    "heartbeat": "2026-09-14T04:07:16+00:00",
+    "market_time": "2026-09-14T07:07:27+00:00",
     "market_status": "stale_quote",
     "weekend": false,
-    "last_publish_at": "2026-09-14T04:05:20+00:00",
+    "last_publish_at": "2026-09-14T04:06:21+00:00",
     "last_run": {
       "id": "scheduled_2h-2026-09-14T04:00:00+00:00",
       "kind": "scheduled_2h",
-      "started_at": "2026-09-14T04:06:16+00:00",
-      "finished_at": "2026-09-14T04:06:16+00:00",
+      "started_at": "2026-09-14T04:07:16+00:00",
+      "finished_at": "2026-09-14T04:07:16+00:00",
       "stage": "finished",
       "code": "stale_quote",
       "report_id": null,
-      "attempts": 6,
+      "attempts": 7,
       "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
     },
     "missed_count": 4,
@@ -942,9 +942,9 @@
         {
           "prediction_id": "20260913T103517Z-decf6f",
           "valid_until": "2026-09-13T16:35:17+00:00",
-          "checked_at": "2026-09-14T04:06:16+00:00",
+          "checked_at": "2026-09-14T04:07:16+00:00",
           "reason": "missing_start",
-          "attempts": 192,
+          "attempts": 193,
           "ledger": "predictions",
           "message": "缺少起始行情，等待补齐"
         }
@@ -954,12 +954,12 @@
       {
         "id": "scheduled_2h-2026-09-14T04:00:00+00:00",
         "kind": "scheduled_2h",
-        "started_at": "2026-09-14T04:06:16+00:00",
-        "finished_at": "2026-09-14T04:06:16+00:00",
+        "started_at": "2026-09-14T04:07:16+00:00",
+        "finished_at": "2026-09-14T04:07:16+00:00",
         "stage": "finished",
         "code": "stale_quote",
         "report_id": null,
-        "attempts": 6,
+        "attempts": 7,
         "message": "报价已过期，未生成新预测；检查休市状态或MT5连接"
       },
       {
