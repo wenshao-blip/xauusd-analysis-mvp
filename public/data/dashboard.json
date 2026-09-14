@@ -899,7 +899,7 @@
     "probability_quality": null,
     "calibration": []
   },
-  "generated_at": "2026-09-14T04:13:45.301519+00:00",
+  "generated_at": "2026-09-14T04:17:55.555493+00:00",
   "shadow": {
     "model_version": "intraday-shadow-v1",
     "daily": null,
@@ -925,9 +925,9 @@
   },
   "shadow_error": null,
   "health": {
-    "checked_at": "2026-09-14T04:13:45+00:00",
+    "checked_at": "2026-09-14T04:17:55+00:00",
     "monitor_since": "2026-09-13T13:59:12+00:00",
-    "heartbeat": "2026-09-14T04:13:44+00:00",
+    "heartbeat": "2026-09-14T04:17:45+00:00",
     "market_time": "2026-09-14T04:13:56+00:00",
     "market_status": "ok",
     "weekend": false,
@@ -985,6 +985,17 @@
       ]
     },
     "runs": [
+      {
+        "id": "reconcile-b9905d7f150b4fd2850f98fde654ed2d",
+        "kind": "reconcile",
+        "started_at": "2026-09-14T04:17:55+00:00",
+        "finished_at": "2026-09-14T04:17:55+00:00",
+        "stage": "finished",
+        "code": "ok",
+        "report_id": null,
+        "attempts": 1,
+        "message": "完成"
+      },
       {
         "id": "reconcile-c1aa5929bd114ac6867508761ff850e3",
         "kind": "reconcile",
@@ -1100,17 +1111,6 @@
         "kind": "reconcile",
         "started_at": "2026-09-14T03:37:14+00:00",
         "finished_at": "2026-09-14T03:37:14+00:00",
-        "stage": "finished",
-        "code": "stale_quote",
-        "report_id": null,
-        "attempts": 1,
-        "message": "报价时间异常或已过期，未生成新预测；检查经纪商时间设置、休市状态或MT5连接"
-      },
-      {
-        "id": "reconcile-60d8bc31734247a08be330c41736ebea",
-        "kind": "reconcile",
-        "started_at": "2026-09-14T03:32:13+00:00",
-        "finished_at": "2026-09-14T03:32:14+00:00",
         "stage": "finished",
         "code": "stale_quote",
         "report_id": null,
