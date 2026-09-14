@@ -6,7 +6,7 @@ import settlement_audit
 BJ = timezone(timedelta(hours=8))
 MESSAGES = {
     'ok': '完成', 'mt5_error': 'MT5读取失败，请检查终端登录和连接',
-    'stale_quote': '报价已过期，未生成新预测；检查休市状态或MT5连接',
+    'stale_quote': '报价时间异常或已过期，未生成新预测；检查经纪商时间设置、休市状态或MT5连接',
     'analysis_error': '分析失败，等待重试', 'shadow_error': '影子生成失败，请查看运行检查',
     'ledger_error': '账本处理失败，原记录保留', 'publish_error': 'GitHub上传失败，后台将重试',
     'notification_error': '报告通知未送达，请检查现有通知配置',
@@ -103,7 +103,7 @@ def health(db, now):
     weekend=local.weekday()==6 or (local.weekday()==5 and local.hour>=6) or (local.weekday()==0 and local.hour<6)
     if market_status=='mt5_error':
         issues.append({'key':'mt5_error','message':MESSAGES['mt5_error']})
-    elif not weekend and market_time and (now-datetime.fromisoformat(market_time)).total_seconds()>900:
+    elif not weekend and market_time and not -60 <= (now-datetime.fromisoformat(market_time)).total_seconds() <= 900:
         issues.append({'key':'stale_quote','message':MESSAGES['stale_quote']})
     tables={r[0] for r in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
     shadow_rows=db.execute('SELECT kind,session FROM shadow_forecasts').fetchall() if 'shadow_forecasts' in tables else []

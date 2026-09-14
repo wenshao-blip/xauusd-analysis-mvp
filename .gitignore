@@ -44,3 +44,4 @@ __pycache__/
 *.log
 .env
 /local_bridge/*.lock
+/local_bridge/broker_clock.json
