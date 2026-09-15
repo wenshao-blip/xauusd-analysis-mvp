@@ -1005,7 +1005,7 @@
       }
     }
   },
-  "generated_at": "2026-09-15T07:11:46.398128+00:00",
+  "generated_at": "2026-09-15T07:16:46.668323+00:00",
   "shadow": {
     "model_version": "intraday-shadow-v1",
     "daily": null,
@@ -1583,10 +1583,10 @@
   },
   "shadow_error": null,
   "health": {
-    "checked_at": "2026-09-15T07:11:46+00:00",
+    "checked_at": "2026-09-15T07:16:46+00:00",
     "monitor_since": "2026-09-13T13:59:12+00:00",
-    "heartbeat": "2026-09-15T07:11:45+00:00",
-    "market_time": "2026-09-15T07:12:23+00:00",
+    "heartbeat": "2026-09-15T07:16:45+00:00",
+    "market_time": "2026-09-15T07:17:23+00:00",
     "market_status": "ok",
     "weekend": false,
     "last_publish_at": "2026-09-14T13:00:29+00:00",
@@ -1634,9 +1634,9 @@
         {
           "prediction_id": "20260913T103517Z-decf6f",
           "valid_until": "2026-09-13T16:35:17+00:00",
-          "checked_at": "2026-09-15T07:11:46+00:00",
+          "checked_at": "2026-09-15T07:16:46+00:00",
           "reason": "missing_start",
-          "attempts": 396,
+          "attempts": 397,
           "ledger": "predictions",
           "message": "缺少起始行情，等待补齐"
         }
@@ -1644,15 +1644,37 @@
     },
     "runs": [
       {
-        "id": "reconcile-031023b1cf1e45c2af5cfe29e153576b",
+        "id": "reconcile-80dd0240f74c4a799754a0490088300c",
         "kind": "reconcile",
-        "started_at": "2026-09-15T07:11:46+00:00",
-        "finished_at": "2026-09-15T07:11:46+00:00",
+        "started_at": "2026-09-15T07:16:46+00:00",
+        "finished_at": "2026-09-15T07:16:46+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": null,
         "attempts": 1,
         "message": "完成"
+      },
+      {
+        "id": "reconcile-737fe1317a754b98b560ceb7e47870e4",
+        "kind": "reconcile",
+        "started_at": "2026-09-15T07:16:46+00:00",
+        "finished_at": "2026-09-15T07:16:46+00:00",
+        "stage": "finished",
+        "code": "ok",
+        "report_id": null,
+        "attempts": 1,
+        "message": "完成"
+      },
+      {
+        "id": "reconcile-031023b1cf1e45c2af5cfe29e153576b",
+        "kind": "reconcile",
+        "started_at": "2026-09-15T07:11:46+00:00",
+        "finished_at": "2026-09-15T07:11:48+00:00",
+        "stage": "finished",
+        "code": "publish_error",
+        "report_id": null,
+        "attempts": 1,
+        "message": "GitHub上传失败，后台将重试"
       },
       {
         "id": "reconcile-22bf29f781ab462a8bb72b1354f01ea4",
@@ -1747,28 +1769,6 @@
         "kind": "reconcile",
         "started_at": "2026-09-15T06:46:39+00:00",
         "finished_at": "2026-09-15T06:46:39+00:00",
-        "stage": "finished",
-        "code": "ok",
-        "report_id": null,
-        "attempts": 1,
-        "message": "完成"
-      },
-      {
-        "id": "reconcile-21410dcdbad74b4a919f71cc9ca1a559",
-        "kind": "reconcile",
-        "started_at": "2026-09-15T06:41:38+00:00",
-        "finished_at": "2026-09-15T06:41:50+00:00",
-        "stage": "finished",
-        "code": "stale_quote",
-        "report_id": null,
-        "attempts": 1,
-        "message": "报价时间异常或已过期，未生成新预测；检查经纪商时间设置、休市状态或MT5连接"
-      },
-      {
-        "id": "reconcile-4c903d6476dc4250b32c92b1acde7d7d",
-        "kind": "reconcile",
-        "started_at": "2026-09-14T17:40:26+00:00",
-        "finished_at": "2026-09-14T17:40:26+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": null,
