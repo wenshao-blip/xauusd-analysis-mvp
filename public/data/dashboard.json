@@ -1005,7 +1005,7 @@
       }
     }
   },
-  "generated_at": "2026-09-15T07:01:47.537890+00:00",
+  "generated_at": "2026-09-15T07:06:46.032284+00:00",
   "shadow": {
     "model_version": "intraday-shadow-v1",
     "daily": null,
@@ -1583,10 +1583,10 @@
   },
   "shadow_error": null,
   "health": {
-    "checked_at": "2026-09-15T07:01:47+00:00",
+    "checked_at": "2026-09-15T07:06:46+00:00",
     "monitor_since": "2026-09-13T13:59:12+00:00",
-    "heartbeat": "2026-09-15T07:01:44+00:00",
-    "market_time": "2026-09-15T07:02:25+00:00",
+    "heartbeat": "2026-09-15T07:06:45+00:00",
+    "market_time": "2026-09-15T07:07:23+00:00",
     "market_status": "ok",
     "weekend": false,
     "last_publish_at": "2026-09-14T13:00:29+00:00",
@@ -1634,9 +1634,9 @@
         {
           "prediction_id": "20260913T103517Z-decf6f",
           "valid_until": "2026-09-13T16:35:17+00:00",
-          "checked_at": "2026-09-15T07:01:47+00:00",
+          "checked_at": "2026-09-15T07:06:45+00:00",
           "reason": "missing_start",
-          "attempts": 394,
+          "attempts": 395,
           "ledger": "predictions",
           "message": "缺少起始行情，等待补齐"
         }
@@ -1644,15 +1644,37 @@
     },
     "runs": [
       {
-        "id": "reconcile-229413fdf62748678abdf423f8a258af",
+        "id": "reconcile-39ae4d01a97a45adae7b83a1b4d53ab5",
         "kind": "reconcile",
-        "started_at": "2026-09-15T07:01:47+00:00",
-        "finished_at": "2026-09-15T07:01:47+00:00",
+        "started_at": "2026-09-15T07:06:46+00:00",
+        "finished_at": "2026-09-15T07:06:46+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": null,
         "attempts": 1,
         "message": "完成"
+      },
+      {
+        "id": "reconcile-9df7184bff9d4c6683e97d26fe66e86d",
+        "kind": "reconcile",
+        "started_at": "2026-09-15T07:06:45+00:00",
+        "finished_at": "2026-09-15T07:06:45+00:00",
+        "stage": "finished",
+        "code": "ok",
+        "report_id": null,
+        "attempts": 1,
+        "message": "完成"
+      },
+      {
+        "id": "reconcile-229413fdf62748678abdf423f8a258af",
+        "kind": "reconcile",
+        "started_at": "2026-09-15T07:01:47+00:00",
+        "finished_at": "2026-09-15T07:01:57+00:00",
+        "stage": "finished",
+        "code": "publish_error",
+        "report_id": null,
+        "attempts": 1,
+        "message": "GitHub上传失败，后台将重试"
       },
       {
         "id": "reconcile-f8e534410eee448f86185a7e5fe801a9",
@@ -1747,28 +1769,6 @@
         "kind": "reconcile",
         "started_at": "2026-09-14T17:30:25+00:00",
         "finished_at": "2026-09-14T17:30:25+00:00",
-        "stage": "finished",
-        "code": "ok",
-        "report_id": null,
-        "attempts": 1,
-        "message": "完成"
-      },
-      {
-        "id": "reconcile-082fe0d9ee8f4e8ca29f4669f0310087",
-        "kind": "reconcile",
-        "started_at": "2026-09-14T17:25:25+00:00",
-        "finished_at": "2026-09-14T17:25:25+00:00",
-        "stage": "finished",
-        "code": "ok",
-        "report_id": null,
-        "attempts": 1,
-        "message": "完成"
-      },
-      {
-        "id": "reconcile-43155408a0eb47028f6090cd0a3c4fb1",
-        "kind": "reconcile",
-        "started_at": "2026-09-14T17:20:24+00:00",
-        "finished_at": "2026-09-14T17:20:25+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": null,
