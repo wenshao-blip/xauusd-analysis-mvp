@@ -1005,7 +1005,7 @@
       }
     }
   },
-  "generated_at": "2026-09-16T07:00:18.388250+00:00",
+  "generated_at": "2026-09-16T07:04:35.526009+00:00",
   "shadow": {
     "model_version": "intraday-shadow-v1",
     "daily": null,
@@ -1583,10 +1583,10 @@
   },
   "shadow_error": null,
   "health": {
-    "checked_at": "2026-09-16T07:00:18+00:00",
+    "checked_at": "2026-09-16T07:04:35+00:00",
     "monitor_since": "2026-09-13T13:59:12+00:00",
-    "heartbeat": "2026-09-16T07:00:11+00:00",
-    "market_time": "2026-09-16T07:00:50+00:00",
+    "heartbeat": "2026-09-16T07:04:34+00:00",
+    "market_time": "2026-09-16T07:05:12+00:00",
     "market_status": "ok",
     "weekend": false,
     "last_publish_at": "2026-09-15T12:00:32+00:00",
@@ -1594,15 +1594,19 @@
       "id": "scheduled_session-europe-2026-09-16T07:00:00+00:00",
       "kind": "scheduled_session",
       "started_at": "2026-09-16T07:00:11+00:00",
-      "finished_at": "2026-09-16T07:00:18+00:00",
+      "finished_at": "2026-09-16T07:00:24+00:00",
       "stage": "finished",
-      "code": "ok",
+      "code": "publish_error",
       "report_id": "scheduled_session-europe-2026-09-16T07:00:00+00:00",
       "attempts": 1,
-      "message": "完成"
+      "message": "GitHub上传失败，后台将重试"
     },
     "missed_count": 4,
     "issues": [
+      {
+        "key": "run_scheduled_session-europe-2026-09-16T07:00:00+00:00",
+        "message": "GitHub上传失败，后台将重试"
+      },
       {
         "key": "missing_scheduled_session-asia-2026-09-14T00:30:00+00:00",
         "message": "09-14 08:30固定报告未生成；不事后补造预测"
@@ -1620,6 +1624,10 @@
         "message": "09-16 08:30固定报告未生成；不事后补造预测"
       },
       {
+        "key": "publish_pending",
+        "message": "GitHub上传失败，后台将重试"
+      },
+      {
         "key": "settlement_pending",
         "message": "1条到期记录待核查，不计入已结算统计"
       }
@@ -1630,9 +1638,9 @@
         {
           "prediction_id": "20260913T103517Z-decf6f",
           "valid_until": "2026-09-13T16:35:17+00:00",
-          "checked_at": "2026-09-16T07:00:18+00:00",
+          "checked_at": "2026-09-16T07:04:35+00:00",
           "reason": "missing_start",
-          "attempts": 533,
+          "attempts": 534,
           "ledger": "predictions",
           "message": "缺少起始行情，等待补齐"
         }
@@ -1640,15 +1648,37 @@
     },
     "runs": [
       {
+        "id": "reconcile-252c27f9bbbb4eb49d0f822ddc286c8b",
+        "kind": "reconcile",
+        "started_at": "2026-09-16T07:04:35+00:00",
+        "finished_at": "2026-09-16T07:04:35+00:00",
+        "stage": "finished",
+        "code": "ok",
+        "report_id": null,
+        "attempts": 1,
+        "message": "完成"
+      },
+      {
+        "id": "reconcile-f0d3a01b38af4fb99667ce64161cd60b",
+        "kind": "reconcile",
+        "started_at": "2026-09-16T07:04:35+00:00",
+        "finished_at": "2026-09-16T07:04:35+00:00",
+        "stage": "finished",
+        "code": "ok",
+        "report_id": null,
+        "attempts": 1,
+        "message": "完成"
+      },
+      {
         "id": "scheduled_session-europe-2026-09-16T07:00:00+00:00",
         "kind": "scheduled_session",
         "started_at": "2026-09-16T07:00:11+00:00",
-        "finished_at": "2026-09-16T07:00:18+00:00",
+        "finished_at": "2026-09-16T07:00:24+00:00",
         "stage": "finished",
-        "code": "ok",
+        "code": "publish_error",
         "report_id": "scheduled_session-europe-2026-09-16T07:00:00+00:00",
         "attempts": 1,
-        "message": "完成"
+        "message": "GitHub上传失败，后台将重试"
       },
       {
         "id": "reconcile-8ed1f10c4c6a416daa6410aaec593dec",
@@ -1743,28 +1773,6 @@
         "kind": "reconcile",
         "started_at": "2026-09-15T17:42:36+00:00",
         "finished_at": "2026-09-15T17:42:36+00:00",
-        "stage": "finished",
-        "code": "ok",
-        "report_id": null,
-        "attempts": 1,
-        "message": "完成"
-      },
-      {
-        "id": "reconcile-1094acba24664268887d85b6ccc741fd",
-        "kind": "reconcile",
-        "started_at": "2026-09-15T17:37:35+00:00",
-        "finished_at": "2026-09-15T17:37:36+00:00",
-        "stage": "finished",
-        "code": "ok",
-        "report_id": null,
-        "attempts": 1,
-        "message": "完成"
-      },
-      {
-        "id": "reconcile-3299c3ca5e4448f48002130642d328d1",
-        "kind": "reconcile",
-        "started_at": "2026-09-15T17:32:35+00:00",
-        "finished_at": "2026-09-15T17:32:35+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": null,
