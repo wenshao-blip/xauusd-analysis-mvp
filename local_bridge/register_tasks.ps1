@@ -1,15 +1,13 @@
 $runner = Join-Path $PSScriptRoot 'run_scheduled.cmd'
-$supplementalRunner = Join-Path $PSScriptRoot 'run_supplemental.cmd'
 $scheduledAction = "cmd.exe /d /c `"`"$runner`"`""
-$supplementalAction = "cmd.exe /d /c `"`"$supplementalRunner`"`""
 
-# 00:00, 02:00 ... 22:00: 每两小时生成、结算和更新网页。
-schtasks.exe /Create /F /TN 'AurumSignal-Every2Hours' /TR $scheduledAction /SC HOURLY /MO 2 /ST 00:00 | Out-Host
+# 北京时间三个固定会话；程序内部仍会核验工作日、行情新鲜度与去重键。
+foreach ($slot in @('08:30','15:00','20:00')) {
+  $name = $slot.Replace(':','')
+  schtasks.exe /Create /F /TN "AurumSignal-$name" /TR $scheduledAction /SC WEEKLY /D MON,TUE,WED,THU,FRI /ST $slot | Out-Host
+}
 
-# 21:00 不在两小时序列内，保留为美盘完整报告时点。
-schtasks.exe /Create /F /TN 'AurumSignal-2100' /TR $supplementalAction /SC DAILY /ST 21:00 | Out-Host
-
-# 移除旧的三次固定任务，避免同一时点重复运行。
-foreach ($name in @('AurumSignal-0400','AurumSignal-1000','AurumSignal-1600')) {
+# 移除旧任务，避免重复生成。
+foreach ($name in @('AurumSignal-Every2Hours','AurumSignal-2100','AurumSignal-0400','AurumSignal-1000','AurumSignal-1600')) {
   schtasks.exe /Delete /F /TN $name 2>$null | Out-Null
 }

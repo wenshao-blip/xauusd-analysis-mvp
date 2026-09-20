@@ -94,11 +94,11 @@ def _wilson(hits,n,z=1.96):
     p=hits/n; den=1+z*z/n; mid=(p+z*z/(2*n))/den; margin=z*math.sqrt((p*(1-p)+z*z/(4*n))/n)/den
     return (max(0,mid-margin),min(1,mid+margin))
 
-ACTIVE_MODEL_VERSION='technical-structure-v3'
+ACTIVE_MODEL_VERSION='candidate-explain-v1'
 
 def summary(db,window=20):
     # Equal-duration forecasts under the current rule set are the only formal sample.
-    rows=db.execute("SELECT * FROM predictions WHERE status='settled' AND run_type='scheduled_2h' AND model_version=? ORDER BY settled_at DESC LIMIT ?",(ACTIVE_MODEL_VERSION,window)).fetchall(); n=len(rows)
+    rows=db.execute("SELECT * FROM predictions WHERE status='settled' AND run_type='scheduled_session' AND model_version=? ORDER BY settled_at DESC LIMIT ?",(ACTIVE_MODEL_VERSION,window)).fetchall(); n=len(rows)
     def avg(key): return sum(r[key] for r in rows if r[key] is not None)/n if n else None
     bins=[]
     if n>=50:
@@ -114,7 +114,46 @@ def summary(db,window=20):
     # A score is withheld until there are enough same-duration observations.
     probability_quality=None if n<100 or brier is None else round(max(0,min(100,100*(1-brier/(2/9)))),1)
     stage='样本积累中' if n<50 else ('初步校准' if n<100 else '正式校准')
-    return {'samples':n,'model_version':ACTIVE_MODEL_VERSION,'direction_hit_rate':avg('direction_hit'),'direction_ci_low':ci_low,'direction_ci_high':ci_high,'target_range_hit_rate':avg('range_hit'),'target_touched_rate':avg('range_touched'),'brier':brier,'calibration_ready':n>=100,'calibration_stage':stage,'probability_quality':probability_quality,'calibration':bins}
+    by_session={}
+    for key,label in (('asia','亚洲'),('europe','欧洲'),('us','美国')):
+        selected=[r for r in rows if f'scheduled_session-{key}-' in r['id']]
+        count=len(selected); hits=sum(r['direction_hit'] for r in selected if r['direction_hit'] is not None)
+        lo,hi=_wilson(hits,count)
+        by_session[key]={'label':label,'samples':count,
+                         'direction_hit_rate':hits/count if count else None,
+                         'direction_ci_low':lo,'direction_ci_high':hi}
+    # Strategy labels are advisory scenarios, not proof that a trade was filled.
+    # Keep their settled direction/target statistics separate and never call
+    # them trading win rates.
+    grouped={}
+    for row in rows:
+        try:
+            strategy=json.loads(row['indicators_json']).get('_strategy',{})
+        except (TypeError,ValueError,json.JSONDecodeError):
+            strategy={}
+        name=strategy.get('name','legacy')
+        label=strategy.get('label','旧版未分类')
+        grouped.setdefault(name,{'label':label,'rows':[]})['rows'].append(row)
+    by_strategy={}
+    for name,group in grouped.items():
+        selected=group['rows']; count=len(selected)
+        direction_values=[r['direction_hit'] for r in selected if r['direction_hit'] is not None]
+        target_values=[r['range_hit'] for r in selected if r['range_hit'] is not None]
+        brier_values=[r['brier'] for r in selected if r['brier'] is not None]
+        hits=sum(direction_values); lo,hi=_wilson(hits,len(direction_values))
+        sample_stage='insufficient' if count<30 else ('exploratory' if count<100 else 'stable_observation')
+        warnings=[]
+        if count<30:warnings.append('样本不足30，只展示记录，不作稳定性判断')
+        elif count<100:warnings.append('30–99个样本，仅作探索性观察')
+        if count<50:warnings.append('Brier样本不足50，不用于概率校准结论')
+        by_strategy[name]={'label':group['label'],'samples':count,
+                           'direction_hit_rate':hits/len(direction_values) if direction_values else None,
+                           'direction_ci_low':lo,'direction_ci_high':hi,
+                           'target_range_hit_rate':sum(target_values)/len(target_values) if target_values else None,
+                           'brier':sum(brier_values)/len(brier_values) if brier_values else None,
+                           'sample_stage':sample_stage,'warnings':warnings,
+                           'metric_scope':'advisory_forecast_not_trade_pnl'}
+    return {'samples':n,'model_version':ACTIVE_MODEL_VERSION,'direction_hit_rate':avg('direction_hit'),'direction_ci_low':ci_low,'direction_ci_high':ci_high,'target_range_hit_rate':avg('range_hit'),'target_touched_rate':avg('range_touched'),'brier':brier,'calibration_ready':n>=100,'calibration_stage':stage,'probability_quality':probability_quality,'calibration':bins,'by_session':by_session,'by_strategy':by_strategy}
 
 def export_json(db,path:Path):
     current=db.execute("SELECT * FROM predictions ORDER BY created_at DESC LIMIT 1").fetchone(); history=db.execute("SELECT * FROM predictions ORDER BY created_at DESC LIMIT 30").fetchall(); data={'current':dict(current) if current else None,'history':[dict(x) for x in history],'rolling20':summary(db,20),'rolling60':summary(db,60),'generated_at':datetime.now(timezone.utc).isoformat()}; path.parent.mkdir(parents=True,exist_ok=True); path.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')

@@ -5,7 +5,7 @@ import json
 import tempfile
 import types
 import unittest
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest.mock import patch
 
@@ -17,18 +17,23 @@ with patch.dict('sys.modules', {'notifications': notifications}):
 
 
 class WorkflowTest(unittest.TestCase):
-    def test_v3_export_and_shadow_are_separate(self):
-        now = datetime.now(timezone.utc)
+    def test_session_export_and_shadow_are_separate(self):
+        now = datetime(2026,9,14,8,30,tzinfo=timezone(timedelta(hours=8)))
+        class Clock(datetime):
+            @classmethod
+            def now(cls,tz=None): return now.astimezone(tz or timezone.utc)
         candles = {}
         for tf, seconds in [('D1',86400), ('H1',3600), ('M30',1800), ('M15',900), ('M5',300)]:
             candles[tf] = [dict(time=int(now.timestamp())-(240-i)*seconds,
                                 open=100+i*.01, close=100.1+i*.01,
                                 high=101+i*.01, low=99+i*.01) for i in range(240)]
-        raw = dict(candles=candles, bid=102.5, ask=102.6, time_msc=now.timestamp()*1000)
+        raw = dict(candles=candles, bid=102.5, ask=102.6, time_msc=now.timestamp()*1000,
+                   daily_entries={'available':True,'count':0,'tickets':[]})
         with tempfile.TemporaryDirectory() as temp, contextlib.ExitStack() as stack:
             dbpath, web = Path(temp)/'ledger.db', Path(temp)/'dashboard.json'
             stack.enter_context(patch.object(workflow, 'DB', dbpath))
             stack.enter_context(patch.object(workflow, 'WEB', web))
+            stack.enter_context(patch.object(workflow, 'datetime', Clock))
             stack.enter_context(patch.object(workflow, 'mt5_snapshot', return_value=raw))
             stack.enter_context(patch.object(workflow, 'news_collect', return_value={'complete':True,'articles':[],'events':[],'errors':[]}))
             send = stack.enter_context(patch.object(workflow, 'send_all'))
@@ -38,7 +43,7 @@ class WorkflowTest(unittest.TestCase):
             workflow.main()
             data = json.loads(web.read_text('utf-8'))
             self.assertIsNone(data['shadow_error'])
-            self.assertEqual(data['current']['model_version'], 'technical-structure-v3')
+            self.assertEqual(data['current']['model_version'], 'candidate-explain-v1')
             self.assertEqual(data['rolling20']['samples'], 0)
             self.assertIn('日内影子版本', data['shadow']['report_text'])
             self.assertEqual(data['shadow']['model_version'], 'intraday-shadow-v1')

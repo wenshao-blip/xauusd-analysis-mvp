@@ -9,6 +9,7 @@ from baseline_analyzer import analyze
 from indicators import multi_timeframe
 from mt5_reader import snapshot as mt5_snapshot, history as mt5_history, quote as mt5_quote
 import intraday_shadow
+import session_schedule
 from market_context import daily_summary,multi_candle_signals,multi_structure_levels
 from news_sources import collect as news_collect
 from notifications import send_all
@@ -26,8 +27,7 @@ def next_regular_time(now):
     return (local+timedelta(days=1)).replace(hour=0,minute=0,second=0,microsecond=0).astimezone(timezone.utc)
 
 def full_report_time(now):
-    local=now.astimezone(ZoneInfo('Asia/Shanghai'))
-    return local.hour in (10,16,21)
+    return session_schedule.due(now) is not None
 
 def materially_changed(previous, result):
     """Only alert between fixed reports when the decision meaningfully changes."""
@@ -87,8 +87,11 @@ def main():
     now=datetime.now(timezone.utc)
     maintenance=a.reconcile_only or a.retry_publish
     kind=('reconcile' if maintenance else 'manual' if a.manual else
-          'supplemental' if a.supplemental else 'custom' if a.hours else 'scheduled_2h')
-    key=operations.job_key(now,kind) if kind in ('scheduled_2h','supplemental') else f'{kind}-{uuid.uuid4().hex}'
+          'supplemental' if a.supplemental else 'custom' if a.hours else 'scheduled_session')
+    if kind=='scheduled_session' and session_schedule.due(now) is None:
+        print(json.dumps({'code':'not_due','message':'当前不在固定报告窗口，未生成预测'},ensure_ascii=False))
+        return 0
+    key=operations.job_key(now,kind) if kind in ('scheduled_session','supplemental') else f'{kind}-{uuid.uuid4().hex}'
     db=connect(DB)
     operations.initialize(db,now)
     intraday_shadow.initialize(db)
@@ -125,9 +128,20 @@ def main():
                 raw['indicators']['_structure']=multi_structure_levels(raw['candles'])
                 news=news_collect()
                 now=datetime.now(timezone.utc)
-                valid=now+timedelta(hours=a.hours or 6) if (a.hours or a.manual) else next_regular_time(now)
-                previous=db.execute("SELECT * FROM predictions WHERE run_type='scheduled_2h' ORDER BY created_at DESC LIMIT 1").fetchone()
+                valid=now+timedelta(hours=a.hours or (6 if a.manual else 4))
+                previous=db.execute("SELECT * FROM predictions WHERE run_type='scheduled_session' ORDER BY created_at DESC LIMIT 1").fetchone()
                 result=analyze(raw,news,iso(valid),kind)
+                risk=raw.get('daily_entries',{'available':False,'count':None,'tickets':[]})
+                risk.update(limit=2, remaining=max(0,2-risk['count']) if risk.get('count') is not None else None)
+                raw['indicators']['_risk']=risk
+                if not risk.get('available'):
+                    result['decision']='flat'
+                    result['abandon'].append('无法核验今日XAUUSD开仓次数：为防止超过每日2次限制，暂停新交易建议')
+                elif risk['count']>=2:
+                    result['decision']='flat'
+                    result['abandon'].append('今日XAUUSD已开仓2次：交易额度已用完')
+                else:
+                    result['execution'].insert(0,f"今日尚余 {risk['remaining']} 次XAUUSD开仓额度")
                 pid=key
                 p=Prediction(pid,iso(now),result['valid_until'],iso(now),round(price,5),
                     result['decision'],result['direction'],result['p_up'],result['p_range'],result['p_down'],
@@ -135,7 +149,7 @@ def main():
                     raw['indicators'],news['articles'],result['model_version'],kind)
                 # Generate/freeze before historical I/O so an old outage cannot block today's view.
                 try:
-                    shadow=intraday_shadow.run(db,raw,news,result,now,lambda *_:[],scheduled=kind=='scheduled_2h')
+                    shadow=intraday_shadow.run(db,raw,news,result,now,lambda *_:[],scheduled=kind=='scheduled_session')
                 except Exception:
                     code='shadow_error'
                 if not existing:

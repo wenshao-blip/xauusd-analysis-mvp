@@ -38,6 +38,13 @@ def _zones(item, context):
     return zone(support), zone(resistance), zone(structural_low), zone(structural_high), width, atr
 
 
+def _rr(entry, stop, target):
+    """Return an auditable first-target reward/risk ratio."""
+    risk = abs(float(entry) - float(stop))
+    reward = abs(float(target) - float(entry))
+    return reward / risk if risk > 0 else 0.0
+
+
 def build_report(item):
     context = json.loads(item.get("indicators_json", "{}"))
     day = context.get("_market", {})
@@ -64,33 +71,36 @@ def build_report(item):
     short_tp1 = target(min((s1 + s2) / 2, short_entry - atr))
     short_tp2 = target(min((s1 + s2) / 2 - atr, short_entry - atr * 2))
 
+    long_rr = _rr(long_entry, sum(long_stop) / 2, sum(long_tp1) / 2)
+    short_rr = _rr(short_entry, sum(short_stop) / 2, sum(short_tp1) / 2)
+    minimum_rr = 1.0
+
+    # A directional score is not enough to publish a trade plan.  If the next
+    # confirmed structure cannot offer at least 1R at TP1, the only valid main
+    # direction is flat.  This prevents a visually attractive report from
+    # recommending a trade whose nearby target has already consumed the edge.
+    insufficient_space = (
+        item["direction"] == "up" and long_rr < minimum_rr
+    ) or (
+        item["direction"] == "down" and short_rr < minimum_rr
+    )
+    no_edge = no_edge or insufficient_space
+
     if no_edge:
         if spread >= 0.08 and item["direction"] in ("up", "down"):
             bias = "上涨" if item["direction"] == "up" else "下跌"
             verdict = f"当前不操作。方向概率偏{bias}，但入场条件尚未满足；只观察关键区确认，不按现价追单。"
         else:
             verdict = "当前不操作。多空优势不明显，先观察上方阻力区和下方支撑区。"
-        breakout_long_stop = (r1 - width, r1)
-        breakout_short_stop = (s2, s2 + width)
-        breakout_long_entry = r2
-        breakout_short_entry = s1
-        breakout_long_tp1 = target(breakout_long_entry + atr)
-        breakout_long_tp2 = target(breakout_long_entry + atr * 2)
-        breakout_short_tp1 = target(breakout_short_entry - atr)
-        breakout_short_tp2 = target(breakout_short_entry - atr * 2)
-        long_plan = (
-            f"上方方案｜突破做多\n等 M5 收盘站稳 {r1:.2f}–{r2:.2f}，回踩不破后再考虑。\n"
-            f"多单失效区：{breakout_long_stop[0]:.2f}–{breakout_long_stop[1]:.2f}。\n"
-            f"多单目标：TP1 {breakout_long_tp1[0]:.2f}–{breakout_long_tp1[1]:.2f} → TP2 {breakout_long_tp2[0]:.2f}–{breakout_long_tp2[1]:.2f}。"
+        main_direction = "空仓等待"
+        if insufficient_space:
+            verdict = "当前不操作。最近结构目标不足以提供至少 1:1 的 TP1 风险收益比，等待新的价格结构。"
+        main_plan = (
+            "不预设多空挂单。等待下一根完整 M15 形成新的结构区，再重新计算入场、失效区和目标；"
+            "当前报告中的支撑阻力仅用于观察。"
         )
-        short_plan = (
-            f"下方方案｜突破做空\n等 M5 收盘跌破 {s1:.2f}–{s2:.2f}，反抽不过后再考虑。\n"
-            f"空单失效区：{breakout_short_stop[0]:.2f}–{breakout_short_stop[1]:.2f}。\n"
-            f"空单目标：TP1 {breakout_short_tp1[0]:.2f}–{breakout_short_tp1[1]:.2f} → TP2 {breakout_short_tp2[0]:.2f}–{breakout_short_tp2[1]:.2f}。"
-        )
-        # Put the stronger observed direction first while keeping both conditional plans.
-        main_plan = f"{short_plan}\n\n{long_plan}" if item["direction"] == "down" else f"{long_plan}\n\n{short_plan}"
     elif item["direction"] == "up":
+        main_direction = "回踩做多"
         verdict = f"偏多观察：等 {s1:.2f}–{s2:.2f} 回踩企稳做多；若不回踩，只观察 {r1:.2f}–{r2:.2f} 的有效突破。"
         main_plan = (
             f"理想入场区：{s1:.2f}–{s2:.2f}；核心是支撑区不被 M5 收盘有效跌破。\n"
@@ -100,6 +110,7 @@ def build_report(item):
             f"目标：TP1 {long_tp1[0]:.2f}–{long_tp1[1]:.2f} → TP2 {long_tp2[0]:.2f}–{long_tp2[1]:.2f}。"
         )
     else:
+        main_direction = "反弹做空"
         verdict = f"偏空观察：等 {r1:.2f}–{r2:.2f} 反弹受阻做空；若不反弹，只观察 {s1:.2f}–{s2:.2f} 的有效跌破。"
         main_plan = (
             f"理想入场区：{r1:.2f}–{r2:.2f}；核心是阻力区不被 M5 收盘有效突破。\n"
@@ -109,16 +120,42 @@ def build_report(item):
             f"目标：TP1 {short_tp1[0]:.2f}–{short_tp1[1]:.2f} → TP2 {short_tp2[0]:.2f}–{short_tp2[1]:.2f}。"
         )
 
+    # New reports carry the selected result of the multi-scenario candidate
+    # engine.  The fallback branches above keep old frozen ledger rows readable.
+    strategy = context.get("_strategy")
+    if strategy:
+        main_direction = strategy["label"]
+        if strategy["name"] == "flat":
+            reasons = "；".join(strategy.get("reasons", [])) or "没有候选通过门槛"
+            verdict = f"当前不操作。{reasons}。"
+            main_plan = "继续观察支撑、阻力和完整M5收盘；下一次报告重新比较突破、回踩、反弹和区间候选。"
+        else:
+            entry = strategy["entry"]; stop = strategy["stop"]
+            stp1 = strategy["tp1"]; stp2 = strategy["tp2"]
+            confirmations = "；".join(strategy.get("confirmation", []))
+            reasons = "；".join(strategy.get("reasons", []))
+            verdict = f"当前评分最高的场景是{strategy['label']}，仅在确认条件全部满足后考虑。"
+            main_plan = (
+                f"理想入场区：{entry[0]:.2f}–{entry[1]:.2f}。\n"
+                f"确认条件：{confirmations}。\n"
+                f"结构失效区：{stop[0]:.2f}–{stop[1]:.2f}。\n"
+                f"目标：TP1 {stp1[0]:.2f}–{stp1[1]:.2f} → TP2 {stp2[0]:.2f}–{stp2[1]:.2f}。\n"
+                f"候选得分：{strategy['score']:.1f}/100；TP1风险收益：{strategy['rr_tp1']:.2f}R。\n"
+                f"选择依据：{reasons}。"
+            )
+
     body = (
         f"XAUUSD 黄金分析报告\n\n"
         f"【当前抓取价格】\n{price:.2f}\n\n"
         f"【方向概率】\n上涨：{probs[0]:.0%}　震荡：{probs[1]:.0%}　下跌：{probs[2]:.0%}\n\n"
+        f"【唯一主方向】\n{main_direction}\n\n"
         f"【当前建议】\n{verdict}\n\n"
         f"【观察与操作方案】\n{main_plan}\n\n"
         "【统一入场条件】\n必须等待 M5 K线收盘确认，再观察下一根K线是否延续；只有价格位置、K线形态和指标方向同时支持时才考虑。\n\n"
         "【取消计划】\nM15/M5结构反向转弱；价格直接穿过失效区；高影响新闻前后30分钟；点差异常；价格已接近目标、剩余空间不足；报告即将失效。\n\n"
         "【禁止事项】\n禁止追涨追跌；禁止在K线尚未收盘时猜突破；禁止因为错过入场而提高价格追单；禁止同时执行多空两套方案。\n\n"
         f"【关键区间】\n支撑区：{s1:.2f}–{s2:.2f}\n阻力区：{r1:.2f}–{r2:.2f}\nM15 平均波动（ATR）：{atr:.2f}\n预测方向价区间：{float(item['target_low']):.2f}–{float(item['target_high']):.2f}\n当前K线形态：{candle_text}\n\n"
+        f"【计划质量】\nTP1最低风险收益门槛：1.00R\n做多候选：{long_rr:.2f}R　做空候选：{short_rr:.2f}R\n\n"
         f"【今日行情】\n昨日收盘：{day.get('previous_close', '—')}\n今日开盘：{day.get('today_open', '—')}\n今日最高：{day.get('today_high', '—')}\n今日最低：{day.get('today_low', '—')}\n今日波动：{day.get('day_range', '—')}\n今日涨跌：{day.get('change', '—')}（{float(day.get('change_pct', 0)):+.2%}）\n今日振幅：{float(day.get('amplitude_pct', 0)):.2%}\n\n"
         f"【报告时间】\n生成：{bj(item['created_at'])}（北京时间）\n有效至：{bj(item['valid_until'])}（北京时间）\n报告编号：{item['id']}"
     )

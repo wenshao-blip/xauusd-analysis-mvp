@@ -5,6 +5,7 @@ from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from pathlib import Path
 from zoneinfo import ZoneInfo
 import operations
+import session_schedule
 from prediction_ledger import connect
 
 HERE=Path(__file__).resolve().parent
@@ -49,10 +50,10 @@ def run_workflow(*args):
 
 
 def scheduled_due(db,now):
-    local=now.astimezone(BJ)
-    if local.minute>=10 or not (local.hour%2==0 or local.hour==21):
+    item=session_schedule.due(now)
+    if not item:
         return None
-    kind='supplemental' if local.hour==21 else 'scheduled_2h'
+    kind='scheduled_session'
     key=operations.job_key(now,kind)
     row=db.execute('SELECT * FROM operation_runs WHERE id=?',(key,)).fetchone()
     if row:

@@ -22,7 +22,7 @@ with patch.dict('sys.modules',{'notifications':notifications}):
     import workflow
 
 
-NOW=datetime(2026,9,14,8,tzinfo=shadow.BJ)
+NOW=datetime(2026,9,14,8,30,tzinfo=shadow.BJ)
 
 
 def path(start,end,close=108):
@@ -33,7 +33,7 @@ def path(start,end,close=108):
 
 def prediction(pid,start,end):
     return Prediction(pid,start.isoformat(),end.isoformat(),start.isoformat(),106,'trade','up',
-                      .6,.25,.15,107,110,[],[],{},[],model_version='technical-structure-v3',run_type='scheduled_2h')
+                      .6,.25,.15,107,110,[],[],{},[],model_version='candidate-explain-v1',run_type='scheduled_session')
 
 
 def market(now):
@@ -131,17 +131,17 @@ class ReliabilityTest(unittest.TestCase):
         sunday=NOW-timedelta(days=1)
         self.assertEqual(operations.health(self.db,sunday)['missed_count'],0)
         result=operations.health(self.db,NOW+timedelta(minutes=11))
-        self.assertEqual(result['missed_count'],3) # draft, daily, 08:00 short
+        self.assertEqual(result['missed_count'],1)
         self.db.close();self.db=connect(self.file)
-        self.assertEqual(operations.health(self.db,NOW+timedelta(minutes=11))['missed_count'],3)
+        self.assertEqual(operations.health(self.db,NOW+timedelta(minutes=11))['missed_count'],1)
 
     def test_no_backdated_misses_before_enablement(self):
         operations.set_value(self.db,'monitor_since',operations.stamp(NOW+timedelta(minutes=30)))
         self.assertEqual(operations.health(self.db,NOW+timedelta(hours=1))['missed_count'],0)
 
     def test_scheduled_retry_and_generated_report_deduplication(self):
-        key=operations.job_key(NOW,'scheduled_2h')
-        operations.start(self.db,key,'scheduled_2h',NOW)
+        key=operations.job_key(NOW,'scheduled_session')
+        operations.start(self.db,key,'scheduled_session',NOW)
         operations.update(self.db,key,'finished','mt5_error',now=NOW)
         self.assertIsNone(scheduled_due(self.db,NOW+timedelta(seconds=20)))
         self.assertEqual(scheduled_due(self.db,NOW+timedelta(minutes=2)),[])
@@ -165,8 +165,8 @@ class ReliabilityTest(unittest.TestCase):
         self.assertEqual(send.call_count,3)
 
     def test_upload_recovery_clears_alert(self):
-        key=operations.job_key(NOW,'scheduled_2h')
-        operations.start(self.db,key,'scheduled_2h',NOW)
+        key=operations.job_key(NOW,'scheduled_session')
+        operations.start(self.db,key,'scheduled_session',NOW)
         operations.update(self.db,key,'finished','publish_error','p',NOW)
         operations.set_value(self.db,'publish_pending','1')
         self.assertIn('publish_pending',[i['key'] for i in operations.health(self.db,NOW)['issues']])

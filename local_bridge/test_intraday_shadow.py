@@ -30,7 +30,7 @@ class ShadowTest(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.db = connect(Path(self.temp.name)/'test.db')
         shadow.initialize(self.db)
-        self.now = datetime(2026, 9, 14, 8, tzinfo=shadow.BJ)
+        self.now = datetime(2026, 9, 14, 8, 30, tzinfo=shadow.BJ)
         self.news = {'complete': True, 'events': [], 'errors': []}
 
     def tearDown(self):
@@ -49,9 +49,9 @@ class ShadowTest(unittest.TestCase):
         again = self.run_at(self.now+timedelta(minutes=2))['daily']
         self.assertEqual(frozen, again)
         self.assertEqual(frozen['valid_until'], '2026-09-14T22:00:00+00:00')
-        self.assertEqual(self.db.execute("SELECT COUNT(*) FROM shadow_forecasts WHERE kind='short'").fetchone()[0], 2)
-        self.assertIsNotNone(shadow.active_daily(self.db, self.now+timedelta(hours=21, minutes=59)))
-        self.assertIsNone(shadow.active_daily(self.db, self.now+timedelta(hours=22)))
+        self.assertEqual(self.db.execute("SELECT COUNT(*) FROM shadow_forecasts WHERE kind='short'").fetchone()[0], 1)
+        self.assertIsNotNone(shadow.active_daily(self.db, self.now+timedelta(hours=21, minutes=29)))
+        self.assertIsNone(shadow.active_daily(self.db, self.now+timedelta(hours=21, minutes=30)))
 
     def test_no_late_backfill_or_manual_freeze(self):
         self.assertIsNone(self.run_at(self.now, scheduled=False)['daily'])
@@ -125,7 +125,7 @@ class ShadowTest(unittest.TestCase):
         self.assertEqual(result['short_stats']['samples'], 1)
         self.assertEqual(result['settled_trading_days'], 1)
         self.assertEqual(summary(self.db)['samples'], 0)
-        self.assertEqual({(b-a).total_seconds()/3600 for a,b in ranges}, {2,22})
+        self.assertEqual({(b-a).total_seconds()/3600 for a,b in ranges}, {2,21.5})
         for row in self.db.execute('SELECT settlement FROM shadow_forecasts'):
             self.assertEqual(json.loads(row[0])['actual_close'], 108)
 
@@ -153,7 +153,7 @@ class ShadowTest(unittest.TestCase):
         text = shadow.report(result)
         self.assertIn('冻结定调', text)
         self.assertIn('未经校准', text)
-        self.assertIn('两小时影子', text)
+        self.assertIn('固定会话影子', text)
 
 
 if __name__ == '__main__':

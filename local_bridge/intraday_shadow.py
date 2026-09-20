@@ -3,6 +3,7 @@ import copy
 import settlement_audit
 import json
 from datetime import datetime, timedelta, timezone
+import session_schedule
 
 BJ = timezone(timedelta(hours=8))
 VERSION = 'intraday-shadow-v1'
@@ -179,18 +180,17 @@ def run(db, market, news, baseline, now, history, scheduled=True):
     initialize(db)
     local = now.astimezone(BJ)
     fresh = -60 <= now.timestamp()-market.get('time_msc', 0)/1000 <= 900
-    # No late backfills: a missed 08:00 freeze remains missing for that day.
-    if scheduled and fresh and local.weekday() < 5 and local.hour in (6, 8) and local.minute < 10:
-        kind = 'draft' if local.hour == 6 else 'daily'
-        put(db, daily_forecast(market, news, now, kind), kind, local.date().isoformat())
+    # The Asian fixed report freezes the daily context; missed slots are never backfilled.
+    slot_info=session_schedule.due(now)
+    if scheduled and fresh and slot_info and slot_info[0]=='asia':
+        put(db, daily_forecast(market, news, now, 'daily'), 'daily', local.date().isoformat())
     daily = active_daily(db, now)
     short = short_forecast(market, news, baseline, daily, now)
     if not fresh:
         short['decision'] = 'flat'
         short['alignment'] = 'stale_market'
-    if scheduled and fresh:
-        slot = local.replace(hour=local.hour//2*2, minute=0, second=0, microsecond=0)
-        short = put(db, short, 'short', stamp(slot))
+    if scheduled and fresh and slot_info:
+        short = put(db, short, 'short', f"{local.date().isoformat()}-{slot_info[0]}")
     result = export(db, now)
     result['short'] = short
     return result
@@ -200,11 +200,11 @@ def report(shadow):
     daily, short = shadow.get('daily'), shadow.get('short')
     lines = ['【日内影子版本｜独立统计】']
     if daily:
-        lines += [f"08:00冻结定调：{LABELS[daily['direction']]}，有效至北京时间 {datetime.fromisoformat(daily['valid_until']).astimezone(BJ):%m-%d %H:%M}",
+        lines += [f"08:30亚洲报告冻结定调：{LABELS[daily['direction']]}，有效至北京时间 {datetime.fromisoformat(daily['valid_until']).astimezone(BJ):%m-%d %H:%M}",
                   '日内概率（未经校准）：'+' / '.join(f'{LABELS[k]} {v:.0%}' for k,v in daily['probabilities'].items()),
                   f"支撑区 {daily['support']}｜阻力区 {daily['resistance']}", daily['news_risk']['message']]
     else:
-        lines.append('当前无有效08:00冻结定调，影子短线暂停考虑；06:00草稿不计统计。')
+        lines.append('当前无有效08:30亚洲定调，短线方案暂停考虑。')
         draft = shadow.get('draft')
         if draft:
             lines += [f"最近06:00草稿（{draft['session']}，不计统计）：{LABELS[draft['direction']]}",
@@ -219,8 +219,8 @@ def report(shadow):
                   f"影子短线：{'有条件评估' if short['decision']=='trade' else '空仓等待'}；上涨 {short['p_up']:.0%} / 震荡 {short['p_range']:.0%} / 下跌 {short['p_down']:.0%}",
                   f"日ATR {vol['atr']:.2f}｜已运行 {vol['used_ratio']:.0%}｜剩余 {vol['remaining']:.2f}（经纪商D1口径）",
                   '达到80%日ATR禁止追单；冲突已降低置信度，必须等待已收盘M15结构确认。']
-    lines.append(f"已结算交易日 {shadow['settled_trading_days']}/30；日内与两小时影子样本独立，满30日仅供复核，不自动替换v3。")
-    for key, label in [('daily_stats', '冻结日内'), ('short_stats', '两小时影子')]:
+    lines.append(f"已结算交易日 {shadow['settled_trading_days']}/30；日内与固定会话样本独立，满30日仅供复核，不自动替换正式模型。")
+    for key, label in [('daily_stats', '冻结日内'), ('short_stats', '固定会话影子')]:
         stats = shadow[key]
         rate = '—' if stats['direction_hit_rate'] is None else f"{stats['direction_hit_rate']:.1%}"
         brier = '—' if stats['brier'] is None else f"{stats['brier']:.4f}"

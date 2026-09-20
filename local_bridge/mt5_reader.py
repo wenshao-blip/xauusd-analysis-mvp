@@ -1,6 +1,27 @@
 """MT5 只读适配器。明确不包含 order_send 或任何交易操作。"""
 TIMEFRAMES=('M5','M15','M30','H1')
 import broker_clock
+from datetime import datetime, time, timezone
+from zoneinfo import ZoneInfo
+
+
+def _completed_rates(rates):
+    """MT5 position 0 is the forming bar; advisory indicators use closed bars."""
+    return rates[:-1]
+
+
+def _today_entries(mt5, symbol):
+    """Count today's opening deals for this symbol without placing or changing orders."""
+    now = datetime.now(timezone.utc)
+    local = now.astimezone(ZoneInfo('Asia/Shanghai'))
+    start = datetime.combine(local.date(), time.min, ZoneInfo('Asia/Shanghai')).astimezone(timezone.utc)
+    deals = mt5.history_deals_get(start, now)
+    if deals is None:
+        return {'available': False, 'count': None, 'tickets': []}
+    opening = {mt5.DEAL_ENTRY_IN, mt5.DEAL_ENTRY_INOUT}
+    matched = [d for d in deals if d.symbol == symbol and d.entry in opening]
+    return {'available': True, 'count': len(matched), 'tickets': [int(d.ticket) for d in matched]}
+
 def snapshot(symbol='XAUUSD',bars=240):
     try: import MetaTrader5 as mt5
     except ImportError as exc: raise RuntimeError('请在安装了 MetaTrader5 Python 包的 Windows 环境运行') from exc
@@ -13,10 +34,17 @@ def snapshot(symbol='XAUUSD',bars=240):
         candles={}
         for name,tf in mapping.items():
             needed=65 if name=='D1' else bars
-            rates=mt5.copy_rates_from_pos(symbol,tf,0,needed)
-            if rates is None or len(rates)<needed:raise RuntimeError(f'{name} K线不足：需要{needed}根')
+            # D1 retains the current broker day for today's OHLC summary.  All
+            # signal timeframes explicitly discard the still-forming bar.
+            requested=needed if name=='D1' else needed+1
+            rates=mt5.copy_rates_from_pos(symbol,tf,0,requested)
+            if rates is None or len(rates)<requested:raise RuntimeError(f'{name} K线不足：需要{requested}根')
+            if name!='D1':
+                rates=_completed_rates(rates)
             candles[name]=broker_clock.candles(rates, offset)
-        return {'symbol':symbol,'bid':info.bid,'ask':info.ask,'spread':info.ask-info.bid,'time_msc':info.time_msc-offset*1000,'candles':candles}
+        return {'symbol':symbol,'bid':info.bid,'ask':info.ask,'spread':info.ask-info.bid,
+                'time_msc':info.time_msc-offset*1000,'candles':candles,
+                'daily_entries':_today_entries(mt5,symbol)}
     finally: mt5.shutdown()
 
 

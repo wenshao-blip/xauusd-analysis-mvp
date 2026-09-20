@@ -6,15 +6,20 @@ class LedgerTest(unittest.TestCase):
     def test_freeze_settle_and_score(self):
         with tempfile.TemporaryDirectory() as folder:
             db=connect(Path(folder)/'ledger.db')
-            p=Prediction('p1','2026-09-10T04:00:00+08:00','2026-09-10T10:00:00+08:00','2026-09-10T03:59:59+08:00',4400,'trade','up',.6,.25,.15,4410,4420,['confirm'],['stale'],{},[],model_version='technical-structure-v3',run_type='scheduled_2h')
+            p=Prediction('p1','2026-09-10T08:30:00+08:00','2026-09-10T12:30:00+08:00','2026-09-10T08:29:59+08:00',4400,'trade','up',.6,.25,.15,4410,4420,['confirm'],['stale'],{'_strategy':{'name':'breakout_long','label':'突破做多'}},[],model_version='candidate-explain-v1',run_type='scheduled_session')
             save(db,p)
-            self.assertEqual(settle_due(db,'2026-09-10T10:00:01+08:00',4415,4422,4398),1)
+            self.assertEqual(settle_due(db,'2026-09-10T12:30:01+08:00',4415,4422,4398),1)
             result=summary(db)
             self.assertEqual(result['samples'],1)
             self.assertEqual(result['direction_hit_rate'],1)
             self.assertEqual(result['target_range_hit_rate'],1)
             self.assertEqual(result['target_touched_rate'],1)
             self.assertFalse(result['calibration_ready'])
+            self.assertEqual(result['by_strategy']['breakout_long']['samples'],1)
+            self.assertEqual(result['by_strategy']['breakout_long']['direction_hit_rate'],1)
+            self.assertEqual(result['by_strategy']['breakout_long']['metric_scope'],'advisory_forecast_not_trade_pnl')
+            self.assertEqual(result['by_strategy']['breakout_long']['sample_stage'],'insufficient')
+            self.assertTrue(result['by_strategy']['breakout_long']['warnings'])
             db.close()
 
     def test_probabilities_must_sum_to_one(self):

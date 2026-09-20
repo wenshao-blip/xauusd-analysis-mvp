@@ -2,6 +2,7 @@
 import json
 from datetime import datetime, timedelta, timezone
 import settlement_audit
+import session_schedule
 
 BJ = timezone(timedelta(hours=8))
 MESSAGES = {
@@ -42,6 +43,11 @@ def set_value(db, key, value):
 
 def job_key(now, kind):
     local = now.astimezone(BJ)
+    if kind == 'scheduled_session':
+        item=session_schedule.due(now)
+        if not item: raise ValueError('当前不在固定报告时段')
+        name,start=item
+        return f'scheduled_session-{name}-{stamp(start)}'
     hour = local.hour//2*2 if kind == 'scheduled_2h' else local.hour
     return kind+'-'+stamp(local.replace(hour=hour,minute=0,second=0,microsecond=0))
 
@@ -64,18 +70,11 @@ def expected(now, since):
     start = max(since.astimezone(BJ), local-timedelta(days=7))
     day = start.replace(hour=0,minute=0,second=0,microsecond=0)
     while day <= local:
-        # Weekend hours remain runnable, but do not create spurious missed-report alarms.
-        for hour in range(0,24,2):
-            at = day.replace(hour=hour)
-            market_slot = at.weekday() < 5 and (at.weekday()!=0 or hour>=8)
-            market_slot = market_slot or (at.weekday()==5 and hour<6)
-            if market_slot and since <= at and at+timedelta(minutes=10) <= now:
-                yield at, 'scheduled_2h'
         if day.weekday() < 5:
-            for hour,kind in ((6,'draft'),(8,'daily')):
-                at=day.replace(hour=hour)
+            for hour,minute,_ in session_schedule.SLOTS:
+                at=day.replace(hour=hour,minute=minute)
                 if since <= at and at+timedelta(minutes=10) <= now:
-                    yield at,kind
+                    yield at,'scheduled_session'
         day += timedelta(days=1)
 
 
@@ -108,13 +107,13 @@ def health(db, now):
     tables={r[0] for r in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
     shadow_rows=db.execute('SELECT kind,session FROM shadow_forecasts').fetchall() if 'shadow_forecasts' in tables else []
     frozen={(r['kind'],r['session']) for r in shadow_rows}
-    generated={r[0] for r in db.execute("SELECT id FROM predictions WHERE run_type='scheduled_2h'")}
+    generated={r[0] for r in db.execute("SELECT id FROM predictions WHERE run_type='scheduled_session'")}
     missed=[]
     for at,kind in expected(now,since):
         key=job_key(at,kind)
-        exists=(kind,at.date().isoformat()) in frozen if kind in ('daily','draft') else key in generated
+        exists=key in generated
         if not exists:
-            label={'draft':'06:00草稿','daily':'08:00冻结定调','scheduled_2h':f'{at:%H:%M}两小时报告'}[kind]
+            label={'draft':'06:00草稿','daily':'08:00冻结定调','scheduled_session':f'{at:%H:%M}固定报告'}[kind]
             item={'key':'missing_'+key,'message':f'{at:%m-%d} {label}未生成；不事后补造预测'}
             missed.append(item)
     issues += missed
