@@ -1,21 +1,21 @@
 {
   "current": {
-    "id": "scheduled_session-europe-2026-09-21T07:00:00+00:00",
-    "created_at": "2026-09-21T07:00:37+00:00",
-    "valid_until": "2026-09-21T11:00:37+00:00",
-    "cutoff_at": "2026-09-21T07:00:37+00:00",
-    "price": 4347.525,
-    "decision": "flat",
-    "direction": "down",
-    "p_up": 0.15,
-    "p_range": 0.2106,
-    "p_down": 0.6394,
-    "target_low": 4337.54,
-    "target_high": 4343.25,
-    "execution_json": "[\"今日尚余 2 次XAUUSD开仓额度\", \"M15收盘保持在MA20 4359.15 下方\", \"M5出现看跌吞没、影线拒绝或突破收盘确认\", \"MACD柱与DI方向保持向下一致\"]",
-    "abandon_json": "[\"M15收盘反向穿越MA20 4359.15\", \"高影响事件前后30分钟\", \"点差异常扩大\", \"价格已经进入目标区间，剩余空间不足\", \"预测有效期即将结束\"]",
-    "indicators_json": "{\"M5\": {\"close\": 4353.28, \"ma20\": 4352.7815, \"ma60\": 4359.695000000001, \"ma200\": 4368.84225, \"macd\": -1.839573468452727, \"macd_signal\": -2.455691560903788, \"macd_hist\": 0.6161180924510612, \"stoch_k\": 75.57573754823865, \"stoch_d\": 75.33664408552043, \"atr\": 3.868047347229362, \"adx\": 22.64085715558878, \"+di\": 16.564210425714556, \"-di\": 21.143600121146076}, \"M15\": {\"close\": 4353.28, \"ma20\": 4359.146, \"ma60\": 4370.472833333333, \"ma200\": 4356.2882, \"macd\": -5.355423960976623, \"macd_signal\": -4.89063555247899, \"macd_hist\": -0.4647884084976326, \"stoch_k\": 37.31925008408826, \"stoch_d\": 25.580911374408387, \"atr\": 7.1295155221940645, \"adx\": 21.923038015929226, \"+di\": 12.247817636098857, \"-di\": 21.126748706405817}, \"M30\": {\"close\": 4353.28, \"ma20\": 4366.1235, \"ma60\": 4369.553166666667, \"ma200\": 4329.88635, \"macd\": -5.597986551701069, \"macd_signal\": -3.456012120440758, \"macd_hist\": -2.1419744312603113, \"stoch_k\": 18.035891915249092, \"stoch_d\": 15.797910279132713, \"atr\": 10.267076101099965, \"adx\": 25.125049026100264, \"+di\": 9.582884385269288, \"-di\": 24.225419590226707}, \"H1\": {\"close\": 4353.28, \"ma20\": 4368.896, \"ma60\": 4345.605500000001, \"ma200\": 4344.34605, \"macd\": -0.7389287428832176, \"macd_signal\": 3.2714284620352188, \"macd_hist\": -4.010357204918437, \"stoch_k\": 9.864675044004834, \"stoch_d\": 7.8915977951276135, \"atr\": 14.879948127830504, \"adx\": 16.753608548115555, \"+di\": 18.197679117777337, \"-di\": 23.346644121043763}, \"_market\": {\"previous_close\": 4378.3, \"today_open\": 4374.65, \"today_high\": 4383.39, \"today_low\": 4346.35, \"day_range\": 37.04, \"change\": -30.775, \"change_pct\": -0.007029, \"amplitude_pct\": 0.00846, \"basis\": \"MT5 broker D1\"}, \"_candles\": {\"M5\": [], \"M15\": [], \"M30\": [{\"type\": \"bullish_engulfing\", \"bias\": \"up\", \"label\": \"看涨吞没\"}], \"H1\": []}, \"_structure\": {\"supports\": [{\"price\": 4342.66, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4374.93, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4369.56, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4370.96, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4358.43, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4361.23, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4356.12, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4346.35, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4339.71, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4334.4, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4373.33, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4353.76, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4342.66, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4374.93, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4369.56, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4358.43, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4324.18, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4235.15, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4305.12, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4351.29, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4339.71, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4334.4, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4342.66, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4358.43, \"timeframe\": \"H1\", \"weight\": 4}], \"resistances\": [{\"price\": 4375.57, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4361.82, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4397.01, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4383.33, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4376.24, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4383.39, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4368.2, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4362.06, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4379.96, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4372.5, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4350.68, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4365.64, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4399.61, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4388.52, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4397.01, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4383.39, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4367.75, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4318.21, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4335.31, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4381.33, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4365.64, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4399.61, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4397.01, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4383.39, \"timeframe\": \"H1\", \"weight\": 4}], \"method\": \"confirmed local swing highs/lows, M15/M30/H1\"}, \"_strategy\": {\"name\": \"flat\", \"label\": \"空仓等待\", \"score\": 0.0, \"entry\": null, \"stop\": null, \"tp1\": null, \"tp2\": null, \"rr_tp1\": 0.0, \"reasons\": [\"没有候选同时通过65分和TP1至少1R门槛\"], \"confirmation\": [], \"score_breakdown\": [], \"hard_rejections\": [\"NO_QUALIFIED_CANDIDATE\"], \"wait_for\": [\"等待下一根完整M5或M15形成新的确认条件\"], \"regime\": \"trend\", \"candidates\": [{\"name\": \"breakout_long\", \"label\": \"突破做多\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"breakout_short\", \"label\": \"突破做空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"false_breakout_long\", \"label\": \"假突破反转做多\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"false_breakout_short\", \"label\": \"假突破反转做空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"pullback_long\", \"label\": \"回踩做多\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"range_long\", \"label\": \"区间低吸\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"range_short\", \"label\": \"区间高空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"rebound_short\", \"label\": \"反弹做空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}]}, \"_risk\": {\"available\": true, \"count\": 0, \"tickets\": [], \"limit\": 2, \"remaining\": 2}}",
-    "news_json": "[{\"title\": \"Federal Reserve issues FOMC statement\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-09-16T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve Board and Federal Open Market Committee release economic projections from the September 15-16 FOMC meeting\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-09-16T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916b.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Board's discount rate meetings on July 20 and July 29, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-08-25T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260825a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Federal Open Market Committee, July 28–29, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-08-19T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260819a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve issues FOMC statement\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-29T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Board's discount rate meetings on June 8 and June 17, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-14T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260714a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve announces the leadership and objectives of its task forces to advance the conduct of monetary policy\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-09T19:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260709a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Federal Open Market Committee, June 16-17, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-08T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260708a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve issues FOMC statement\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-06-17T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve Board and Federal Open Market Committee release economic projections from the June 16-17 FOMC meeting\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-06-17T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617b.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}]",
+    "id": "scheduled_session-us-2026-09-21T12:00:00+00:00",
+    "created_at": "2026-09-21T12:00:35+00:00",
+    "valid_until": "2026-09-21T16:00:35+00:00",
+    "cutoff_at": "2026-09-21T12:00:35+00:00",
+    "price": 4366.685,
+    "decision": "trade",
+    "direction": "up",
+    "p_up": 0.6331,
+    "p_range": 0.2669,
+    "p_down": 0.1,
+    "target_low": 4371.23,
+    "target_high": 4377.28,
+    "execution_json": "[\"今日尚余 2 次XAUUSD开仓额度\", \"M15收盘保持在MA20 4351.76 上方\", \"M5出现看涨吞没、影线拒绝或突破收盘确认\", \"MACD柱与DI方向保持向上一致\"]",
+    "abandon_json": "[\"M15收盘反向穿越MA20 4351.76\", \"高影响事件前后30分钟\", \"点差异常扩大\", \"价格已经进入目标区间，剩余空间不足\", \"预测有效期即将结束\"]",
+    "indicators_json": "{\"M5\": {\"close\": 4369.15, \"ma20\": 4354.0785000000005, \"ma60\": 4351.768333333333, \"ma200\": 4364.2324499999995, \"macd\": 4.785525641240383, \"macd_signal\": 2.431724309677159, \"macd_hist\": 2.3538013315632242, \"stoch_k\": 93.65132928851683, \"stoch_d\": 94.68662030284911, \"atr\": 4.187327892837183, \"adx\": 29.42839126995394, \"+di\": 38.43092525889621, \"-di\": 10.656763527772675}, \"M15\": {\"close\": 4369.15, \"ma20\": 4351.760499999999, \"ma60\": 4361.928, \"ma200\": 4361.06885, \"macd\": 0.29072269465814315, \"macd_signal\": -2.2750915684487656, \"macd_hist\": 2.5658142631069087, \"stoch_k\": 90.00126098140369, \"stoch_d\": 68.07076348238122, \"atr\": 7.568750785582836, \"adx\": 22.765531935055225, \"+di\": 30.041706514992228, \"-di\": 17.68111310984401}, \"M30\": {\"close\": 4369.15, \"ma20\": 4354.4775, \"ma60\": 4369.0015, \"ma200\": 4332.41485, \"macd\": -3.7385728261824624, \"macd_signal\": -5.29225927895334, \"macd_hist\": 1.5536864527708776, \"stoch_k\": 63.53428204931139, \"stoch_d\": 50.80364021324791, \"atr\": 11.002308391184974, \"adx\": 30.187657086254173, \"+di\": 21.81437328993368, \"-di\": 18.665514563673323}, \"H1\": {\"close\": 4369.15, \"ma20\": 4364.913, \"ma60\": 4349.774833333333, \"ma200\": 4343.357, \"macd\": -2.996428542997819, \"macd_signal\": -1.145316320301435, \"macd_hist\": -1.851112222696384, \"stoch_k\": 44.71270408648084, \"stoch_d\": 33.852378397651115, \"atr\": 15.773658585976374, \"adx\": 15.773795722577328, \"+di\": 19.65656602646884, \"-di\": 18.02946188452966}, \"_market\": {\"previous_close\": 4378.3, \"today_open\": 4374.65, \"today_high\": 4383.39, \"today_low\": 4340.07, \"day_range\": 43.32, \"change\": -11.615, \"change_pct\": -0.002653, \"amplitude_pct\": 0.009894, \"basis\": \"MT5 broker D1\"}, \"_candles\": {\"M5\": [{\"type\": \"breakout_up\", \"bias\": \"up\", \"label\": \"向上突破收盘确认\", \"level\": 4367.83}], \"M15\": [{\"type\": \"breakout_up\", \"bias\": \"up\", \"label\": \"向上突破收盘确认\", \"level\": 4357.69}], \"M30\": [], \"H1\": [{\"type\": \"bullish_engulfing\", \"bias\": \"up\", \"label\": \"看涨吞没\"}]}, \"_structure\": {\"supports\": [{\"price\": 4370.96, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4358.43, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4361.23, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4356.12, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4346.35, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4341.96, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4340.07, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4341.94, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4373.33, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4353.76, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4342.66, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4374.93, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4369.56, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4358.43, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4341.96, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4340.07, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4235.15, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4305.12, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4351.29, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4339.71, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4334.4, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4342.66, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4358.43, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4340.07, \"timeframe\": \"H1\", \"weight\": 4}], \"resistances\": [{\"price\": 4383.33, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4376.24, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4383.39, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4368.2, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4362.06, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4356.14, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4357.69, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4356.81, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4365.64, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4399.61, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4388.52, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4397.01, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4383.39, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4356.14, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4357.69, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4356.81, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4318.21, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4335.31, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4381.33, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4365.64, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4399.61, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4397.01, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4383.39, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4357.69, \"timeframe\": \"H1\", \"weight\": 4}], \"method\": \"confirmed local swing highs/lows, M15/M30/H1\"}, \"_strategy\": {\"name\": \"breakout_long\", \"label\": \"突破做多\", \"score\": 82.0, \"entry\": [4366.31, 4370.09], \"stop\": [4360.25, 4364.04], \"tp1\": [4374.73, 4377.75], \"tp2\": [4382.3, 4385.32], \"rr_tp1\": 1.33, \"score_breakdown\": [{\"code\": \"base\", \"label\": \"基础分\", \"points\": 50, \"observed\": \"候选已触发\", \"rule\": \"所有候选从50分起算\", \"evidence\": \"规则基线\"}, {\"code\": \"confirm\", \"label\": \"M5突破确认\", \"points\": 14, \"observed\": \"向上突破\", \"rule\": \"实体收盘突破加14分\", \"evidence\": \"M5已收盘K线\"}, {\"code\": \"trend\", \"label\": \"多周期趋势\", \"points\": 12, \"observed\": 6, \"rule\": \"趋势分×2，最高16分\", \"evidence\": \"H1/M30指标\"}, {\"code\": \"adx\", \"label\": \"趋势强度\", \"points\": 6.0, \"observed\": 30.19, \"rule\": \"ADX/5，最高8分\", \"evidence\": \"H1/M30 ADX\"}], \"hard_rejections\": [], \"status\": \"qualified\", \"reasons\": [\"H1趋势分+2\", \"M30趋势分+2\", \"M5实体向上突破确认\"], \"confirmation\": [\"M5收盘站上突破区\", \"下一根M5不重新跌回突破区下方\", \"优先等待回踩不破\"], \"regime\": \"trend\", \"candidates\": [{\"name\": \"breakout_long\", \"label\": \"突破做多\", \"score\": 82.0, \"rr_tp1\": 1.33, \"status\": \"qualified\", \"score_breakdown\": [{\"code\": \"base\", \"label\": \"基础分\", \"points\": 50, \"observed\": \"候选已触发\", \"rule\": \"所有候选从50分起算\", \"evidence\": \"规则基线\"}, {\"code\": \"confirm\", \"label\": \"M5突破确认\", \"points\": 14, \"observed\": \"向上突破\", \"rule\": \"实体收盘突破加14分\", \"evidence\": \"M5已收盘K线\"}, {\"code\": \"trend\", \"label\": \"多周期趋势\", \"points\": 12, \"observed\": 6, \"rule\": \"趋势分×2，最高16分\", \"evidence\": \"H1/M30指标\"}, {\"code\": \"adx\", \"label\": \"趋势强度\", \"points\": 6.0, \"observed\": 30.19, \"rule\": \"ADX/5，最高8分\", \"evidence\": \"H1/M30 ADX\"}], \"hard_rejections\": []}, {\"name\": \"breakout_short\", \"label\": \"突破做空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"false_breakout_long\", \"label\": \"假突破反转做多\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"false_breakout_short\", \"label\": \"假突破反转做空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"pullback_long\", \"label\": \"回踩做多\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"range_long\", \"label\": \"区间低吸\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"range_short\", \"label\": \"区间高空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"rebound_short\", \"label\": \"反弹做空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}], \"selection_reason\": \"突破做多以82.0分通过全部硬门槛，且无其他合格候选\"}, \"_risk\": {\"available\": true, \"count\": 0, \"tickets\": [], \"limit\": 2, \"remaining\": 2}}",
+    "news_json": "[{\"title\": \"Federal Reserve issues FOMC statement\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-09-16T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve Board and Federal Open Market Committee release economic projections from the September 15-16 FOMC meeting\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-09-16T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916b.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Board's discount rate meetings on July 20 and July 29, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-08-25T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260825a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Federal Open Market Committee, July 28–29, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-08-19T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260819a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve issues FOMC statement\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-29T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Board's discount rate meetings on June 8 and June 17, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-14T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260714a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve announces the leadership and objectives of its task forces to advance the conduct of monetary policy\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-09T19:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260709a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Federal Open Market Committee, June 16-17, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-08T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260708a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve issues FOMC statement\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-06-17T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve Board and Federal Open Market Committee release economic projections from the June 16-17 FOMC meeting\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-06-17T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617b.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}]",
     "model_version": "candidate-explain-v1",
     "status": "open",
     "settled_at": null,
@@ -30,6 +30,36 @@
     "run_type": "scheduled_session"
   },
   "history": [
+    {
+      "id": "scheduled_session-us-2026-09-21T12:00:00+00:00",
+      "created_at": "2026-09-21T12:00:35+00:00",
+      "valid_until": "2026-09-21T16:00:35+00:00",
+      "cutoff_at": "2026-09-21T12:00:35+00:00",
+      "price": 4366.685,
+      "decision": "trade",
+      "direction": "up",
+      "p_up": 0.6331,
+      "p_range": 0.2669,
+      "p_down": 0.1,
+      "target_low": 4371.23,
+      "target_high": 4377.28,
+      "execution_json": "[\"今日尚余 2 次XAUUSD开仓额度\", \"M15收盘保持在MA20 4351.76 上方\", \"M5出现看涨吞没、影线拒绝或突破收盘确认\", \"MACD柱与DI方向保持向上一致\"]",
+      "abandon_json": "[\"M15收盘反向穿越MA20 4351.76\", \"高影响事件前后30分钟\", \"点差异常扩大\", \"价格已经进入目标区间，剩余空间不足\", \"预测有效期即将结束\"]",
+      "indicators_json": "{\"M5\": {\"close\": 4369.15, \"ma20\": 4354.0785000000005, \"ma60\": 4351.768333333333, \"ma200\": 4364.2324499999995, \"macd\": 4.785525641240383, \"macd_signal\": 2.431724309677159, \"macd_hist\": 2.3538013315632242, \"stoch_k\": 93.65132928851683, \"stoch_d\": 94.68662030284911, \"atr\": 4.187327892837183, \"adx\": 29.42839126995394, \"+di\": 38.43092525889621, \"-di\": 10.656763527772675}, \"M15\": {\"close\": 4369.15, \"ma20\": 4351.760499999999, \"ma60\": 4361.928, \"ma200\": 4361.06885, \"macd\": 0.29072269465814315, \"macd_signal\": -2.2750915684487656, \"macd_hist\": 2.5658142631069087, \"stoch_k\": 90.00126098140369, \"stoch_d\": 68.07076348238122, \"atr\": 7.568750785582836, \"adx\": 22.765531935055225, \"+di\": 30.041706514992228, \"-di\": 17.68111310984401}, \"M30\": {\"close\": 4369.15, \"ma20\": 4354.4775, \"ma60\": 4369.0015, \"ma200\": 4332.41485, \"macd\": -3.7385728261824624, \"macd_signal\": -5.29225927895334, \"macd_hist\": 1.5536864527708776, \"stoch_k\": 63.53428204931139, \"stoch_d\": 50.80364021324791, \"atr\": 11.002308391184974, \"adx\": 30.187657086254173, \"+di\": 21.81437328993368, \"-di\": 18.665514563673323}, \"H1\": {\"close\": 4369.15, \"ma20\": 4364.913, \"ma60\": 4349.774833333333, \"ma200\": 4343.357, \"macd\": -2.996428542997819, \"macd_signal\": -1.145316320301435, \"macd_hist\": -1.851112222696384, \"stoch_k\": 44.71270408648084, \"stoch_d\": 33.852378397651115, \"atr\": 15.773658585976374, \"adx\": 15.773795722577328, \"+di\": 19.65656602646884, \"-di\": 18.02946188452966}, \"_market\": {\"previous_close\": 4378.3, \"today_open\": 4374.65, \"today_high\": 4383.39, \"today_low\": 4340.07, \"day_range\": 43.32, \"change\": -11.615, \"change_pct\": -0.002653, \"amplitude_pct\": 0.009894, \"basis\": \"MT5 broker D1\"}, \"_candles\": {\"M5\": [{\"type\": \"breakout_up\", \"bias\": \"up\", \"label\": \"向上突破收盘确认\", \"level\": 4367.83}], \"M15\": [{\"type\": \"breakout_up\", \"bias\": \"up\", \"label\": \"向上突破收盘确认\", \"level\": 4357.69}], \"M30\": [], \"H1\": [{\"type\": \"bullish_engulfing\", \"bias\": \"up\", \"label\": \"看涨吞没\"}]}, \"_structure\": {\"supports\": [{\"price\": 4370.96, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4358.43, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4361.23, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4356.12, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4346.35, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4341.96, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4340.07, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4341.94, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4373.33, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4353.76, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4342.66, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4374.93, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4369.56, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4358.43, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4341.96, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4340.07, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4235.15, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4305.12, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4351.29, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4339.71, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4334.4, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4342.66, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4358.43, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4340.07, \"timeframe\": \"H1\", \"weight\": 4}], \"resistances\": [{\"price\": 4383.33, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4376.24, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4383.39, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4368.2, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4362.06, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4356.14, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4357.69, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4356.81, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4365.64, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4399.61, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4388.52, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4397.01, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4383.39, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4356.14, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4357.69, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4356.81, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4318.21, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4335.31, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4381.33, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4365.64, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4399.61, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4397.01, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4383.39, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4357.69, \"timeframe\": \"H1\", \"weight\": 4}], \"method\": \"confirmed local swing highs/lows, M15/M30/H1\"}, \"_strategy\": {\"name\": \"breakout_long\", \"label\": \"突破做多\", \"score\": 82.0, \"entry\": [4366.31, 4370.09], \"stop\": [4360.25, 4364.04], \"tp1\": [4374.73, 4377.75], \"tp2\": [4382.3, 4385.32], \"rr_tp1\": 1.33, \"score_breakdown\": [{\"code\": \"base\", \"label\": \"基础分\", \"points\": 50, \"observed\": \"候选已触发\", \"rule\": \"所有候选从50分起算\", \"evidence\": \"规则基线\"}, {\"code\": \"confirm\", \"label\": \"M5突破确认\", \"points\": 14, \"observed\": \"向上突破\", \"rule\": \"实体收盘突破加14分\", \"evidence\": \"M5已收盘K线\"}, {\"code\": \"trend\", \"label\": \"多周期趋势\", \"points\": 12, \"observed\": 6, \"rule\": \"趋势分×2，最高16分\", \"evidence\": \"H1/M30指标\"}, {\"code\": \"adx\", \"label\": \"趋势强度\", \"points\": 6.0, \"observed\": 30.19, \"rule\": \"ADX/5，最高8分\", \"evidence\": \"H1/M30 ADX\"}], \"hard_rejections\": [], \"status\": \"qualified\", \"reasons\": [\"H1趋势分+2\", \"M30趋势分+2\", \"M5实体向上突破确认\"], \"confirmation\": [\"M5收盘站上突破区\", \"下一根M5不重新跌回突破区下方\", \"优先等待回踩不破\"], \"regime\": \"trend\", \"candidates\": [{\"name\": \"breakout_long\", \"label\": \"突破做多\", \"score\": 82.0, \"rr_tp1\": 1.33, \"status\": \"qualified\", \"score_breakdown\": [{\"code\": \"base\", \"label\": \"基础分\", \"points\": 50, \"observed\": \"候选已触发\", \"rule\": \"所有候选从50分起算\", \"evidence\": \"规则基线\"}, {\"code\": \"confirm\", \"label\": \"M5突破确认\", \"points\": 14, \"observed\": \"向上突破\", \"rule\": \"实体收盘突破加14分\", \"evidence\": \"M5已收盘K线\"}, {\"code\": \"trend\", \"label\": \"多周期趋势\", \"points\": 12, \"observed\": 6, \"rule\": \"趋势分×2，最高16分\", \"evidence\": \"H1/M30指标\"}, {\"code\": \"adx\", \"label\": \"趋势强度\", \"points\": 6.0, \"observed\": 30.19, \"rule\": \"ADX/5，最高8分\", \"evidence\": \"H1/M30 ADX\"}], \"hard_rejections\": []}, {\"name\": \"breakout_short\", \"label\": \"突破做空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"false_breakout_long\", \"label\": \"假突破反转做多\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"false_breakout_short\", \"label\": \"假突破反转做空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"pullback_long\", \"label\": \"回踩做多\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"range_long\", \"label\": \"区间低吸\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"range_short\", \"label\": \"区间高空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"rebound_short\", \"label\": \"反弹做空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}], \"selection_reason\": \"突破做多以82.0分通过全部硬门槛，且无其他合格候选\"}, \"_risk\": {\"available\": true, \"count\": 0, \"tickets\": [], \"limit\": 2, \"remaining\": 2}}",
+      "news_json": "[{\"title\": \"Federal Reserve issues FOMC statement\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-09-16T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve Board and Federal Open Market Committee release economic projections from the September 15-16 FOMC meeting\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-09-16T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916b.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Board's discount rate meetings on July 20 and July 29, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-08-25T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260825a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Federal Open Market Committee, July 28–29, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-08-19T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260819a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve issues FOMC statement\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-29T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Board's discount rate meetings on June 8 and June 17, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-14T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260714a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve announces the leadership and objectives of its task forces to advance the conduct of monetary policy\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-09T19:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260709a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Federal Open Market Committee, June 16-17, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-08T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260708a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve issues FOMC statement\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-06-17T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve Board and Federal Open Market Committee release economic projections from the June 16-17 FOMC meeting\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-06-17T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T12:00:34.756844+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617b.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}]",
+      "model_version": "candidate-explain-v1",
+      "status": "open",
+      "settled_at": null,
+      "actual_close": null,
+      "actual_high": null,
+      "actual_low": null,
+      "actual_direction": null,
+      "direction_hit": null,
+      "range_hit": null,
+      "range_touched": null,
+      "brier": null,
+      "run_type": "scheduled_session"
+    },
     {
       "id": "scheduled_session-europe-2026-09-21T07:00:00+00:00",
       "created_at": "2026-09-21T07:00:37+00:00",
@@ -48,16 +78,16 @@
       "indicators_json": "{\"M5\": {\"close\": 4353.28, \"ma20\": 4352.7815, \"ma60\": 4359.695000000001, \"ma200\": 4368.84225, \"macd\": -1.839573468452727, \"macd_signal\": -2.455691560903788, \"macd_hist\": 0.6161180924510612, \"stoch_k\": 75.57573754823865, \"stoch_d\": 75.33664408552043, \"atr\": 3.868047347229362, \"adx\": 22.64085715558878, \"+di\": 16.564210425714556, \"-di\": 21.143600121146076}, \"M15\": {\"close\": 4353.28, \"ma20\": 4359.146, \"ma60\": 4370.472833333333, \"ma200\": 4356.2882, \"macd\": -5.355423960976623, \"macd_signal\": -4.89063555247899, \"macd_hist\": -0.4647884084976326, \"stoch_k\": 37.31925008408826, \"stoch_d\": 25.580911374408387, \"atr\": 7.1295155221940645, \"adx\": 21.923038015929226, \"+di\": 12.247817636098857, \"-di\": 21.126748706405817}, \"M30\": {\"close\": 4353.28, \"ma20\": 4366.1235, \"ma60\": 4369.553166666667, \"ma200\": 4329.88635, \"macd\": -5.597986551701069, \"macd_signal\": -3.456012120440758, \"macd_hist\": -2.1419744312603113, \"stoch_k\": 18.035891915249092, \"stoch_d\": 15.797910279132713, \"atr\": 10.267076101099965, \"adx\": 25.125049026100264, \"+di\": 9.582884385269288, \"-di\": 24.225419590226707}, \"H1\": {\"close\": 4353.28, \"ma20\": 4368.896, \"ma60\": 4345.605500000001, \"ma200\": 4344.34605, \"macd\": -0.7389287428832176, \"macd_signal\": 3.2714284620352188, \"macd_hist\": -4.010357204918437, \"stoch_k\": 9.864675044004834, \"stoch_d\": 7.8915977951276135, \"atr\": 14.879948127830504, \"adx\": 16.753608548115555, \"+di\": 18.197679117777337, \"-di\": 23.346644121043763}, \"_market\": {\"previous_close\": 4378.3, \"today_open\": 4374.65, \"today_high\": 4383.39, \"today_low\": 4346.35, \"day_range\": 37.04, \"change\": -30.775, \"change_pct\": -0.007029, \"amplitude_pct\": 0.00846, \"basis\": \"MT5 broker D1\"}, \"_candles\": {\"M5\": [], \"M15\": [], \"M30\": [{\"type\": \"bullish_engulfing\", \"bias\": \"up\", \"label\": \"看涨吞没\"}], \"H1\": []}, \"_structure\": {\"supports\": [{\"price\": 4342.66, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4374.93, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4369.56, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4370.96, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4358.43, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4361.23, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4356.12, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4346.35, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4339.71, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4334.4, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4373.33, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4353.76, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4342.66, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4374.93, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4369.56, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4358.43, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4324.18, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4235.15, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4305.12, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4351.29, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4339.71, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4334.4, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4342.66, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4358.43, \"timeframe\": \"H1\", \"weight\": 4}], \"resistances\": [{\"price\": 4375.57, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4361.82, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4397.01, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4383.33, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4376.24, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4383.39, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4368.2, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4362.06, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4379.96, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4372.5, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4350.68, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4365.64, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4399.61, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4388.52, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4397.01, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4383.39, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4367.75, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4318.21, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4335.31, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4381.33, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4365.64, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4399.61, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4397.01, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4383.39, \"timeframe\": \"H1\", \"weight\": 4}], \"method\": \"confirmed local swing highs/lows, M15/M30/H1\"}, \"_strategy\": {\"name\": \"flat\", \"label\": \"空仓等待\", \"score\": 0.0, \"entry\": null, \"stop\": null, \"tp1\": null, \"tp2\": null, \"rr_tp1\": 0.0, \"reasons\": [\"没有候选同时通过65分和TP1至少1R门槛\"], \"confirmation\": [], \"score_breakdown\": [], \"hard_rejections\": [\"NO_QUALIFIED_CANDIDATE\"], \"wait_for\": [\"等待下一根完整M5或M15形成新的确认条件\"], \"regime\": \"trend\", \"candidates\": [{\"name\": \"breakout_long\", \"label\": \"突破做多\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"breakout_short\", \"label\": \"突破做空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"false_breakout_long\", \"label\": \"假突破反转做多\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"false_breakout_short\", \"label\": \"假突破反转做空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"pullback_long\", \"label\": \"回踩做多\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"range_long\", \"label\": \"区间低吸\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"range_short\", \"label\": \"区间高空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"rebound_short\", \"label\": \"反弹做空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}]}, \"_risk\": {\"available\": true, \"count\": 0, \"tickets\": [], \"limit\": 2, \"remaining\": 2}}",
       "news_json": "[{\"title\": \"Federal Reserve issues FOMC statement\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-09-16T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve Board and Federal Open Market Committee release economic projections from the September 15-16 FOMC meeting\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-09-16T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916b.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Board's discount rate meetings on July 20 and July 29, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-08-25T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260825a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Federal Open Market Committee, July 28–29, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-08-19T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260819a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve issues FOMC statement\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-29T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Board's discount rate meetings on June 8 and June 17, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-14T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260714a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve announces the leadership and objectives of its task forces to advance the conduct of monetary policy\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-09T19:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260709a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Federal Open Market Committee, June 16-17, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-08T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260708a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve issues FOMC statement\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-06-17T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve Board and Federal Open Market Committee release economic projections from the June 16-17 FOMC meeting\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-06-17T18:00:00+00:00\", \"first_seen_at\": \"2026-09-21T07:00:35.893574+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617b.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}]",
       "model_version": "candidate-explain-v1",
-      "status": "open",
-      "settled_at": null,
-      "actual_close": null,
-      "actual_high": null,
-      "actual_low": null,
-      "actual_direction": null,
-      "direction_hit": null,
-      "range_hit": null,
-      "range_touched": null,
-      "brier": null,
+      "status": "settled",
+      "settled_at": "2026-09-21T11:01:16+00:00",
+      "actual_close": 4342.7,
+      "actual_high": 4357.69,
+      "actual_low": 4340.07,
+      "actual_direction": "range",
+      "direction_hit": 0,
+      "range_hit": 1,
+      "range_touched": 1,
+      "brier": 0.3514949066666666,
       "run_type": "scheduled_session"
     },
     {
@@ -78,16 +108,16 @@
       "indicators_json": "{\"M5\": {\"close\": 4361.3, \"ma20\": 4362.3615, \"ma60\": 4368.235333333333, \"ma200\": 4371.7515, \"macd\": -1.843939890271031, \"macd_signal\": -2.214231392967774, \"macd_hist\": 0.37029150269674327, \"stoch_k\": 50.704655956290345, \"stoch_d\": 65.51977330970685, \"atr\": 3.9003994796886365, \"adx\": 18.746822559065176, \"+di\": 21.5470757475675, \"-di\": 28.44654406400203}, \"M15\": {\"close\": 4361.58, \"ma20\": 4368.2595, \"ma60\": 4371.115666666667, \"ma200\": 4353.23935, \"macd\": -3.739584362729147, \"macd_signal\": -2.8002229077067384, \"macd_hist\": -0.9393614550224085, \"stoch_k\": 29.192716467003084, \"stoch_d\": 29.885517435741395, \"atr\": 7.568285874912805, \"adx\": 20.089551650172634, \"+di\": 17.673477623981192, \"-di\": 22.675840785642336}, \"M30\": {\"close\": 4361.58, \"ma20\": 4374.0245, \"ma60\": 4368.834833333333, \"ma200\": 4328.4139000000005, \"macd\": -2.6643815720781276, \"macd_signal\": -0.6382631851474337, \"macd_hist\": -2.026118386930694, \"stoch_k\": 11.294230377994317, \"stoch_d\": 12.903343869623518, \"atr\": 10.704756471442339, \"adx\": 18.715216884120565, \"+di\": 13.313420941530532, \"-di\": 25.575872418871516}, \"H1\": {\"close\": 4358.99, \"ma20\": 4374.0065, \"ma60\": 4345.378833333333, \"ma200\": 4345.11405, \"macd\": 3.1080972370009476, \"macd_signal\": 6.166966557165798, \"macd_hist\": -3.0588693201648507, \"stoch_k\": 34.25667672393545, \"stoch_d\": 39.08277855961742, \"atr\": 15.892147563691788, \"adx\": 18.816570155696212, \"+di\": 21.280845619889266, \"-di\": 21.309750722593265}, \"_market\": {\"previous_close\": 4378.3, \"today_open\": 4374.65, \"today_high\": 4383.39, \"today_low\": 4356.12, \"day_range\": 27.27, \"change\": -16.585, \"change_pct\": -0.003788, \"amplitude_pct\": 0.006228, \"basis\": \"MT5 broker D1\"}, \"_candles\": {\"M5\": [{\"type\": \"bearish_engulfing\", \"bias\": \"down\", \"label\": \"看跌吞没\"}, {\"type\": \"upper_rejection\", \"bias\": \"down\", \"label\": \"长上影拒绝\"}], \"M15\": [{\"type\": \"upper_rejection\", \"bias\": \"down\", \"label\": \"长上影拒绝\"}], \"M30\": [{\"type\": \"bullish_engulfing\", \"bias\": \"up\", \"label\": \"看涨吞没\"}], \"H1\": []}, \"_structure\": {\"supports\": [{\"price\": 4376.3, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4353.76, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4342.66, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4374.93, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4369.56, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4370.96, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4358.43, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4361.23, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4339.71, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4334.4, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4373.33, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4353.76, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4342.66, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4374.93, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4369.56, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4358.43, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4324.18, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4235.15, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4305.12, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4351.29, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4339.71, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4334.4, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4342.66, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4358.43, \"timeframe\": \"H1\", \"weight\": 4}], \"resistances\": [{\"price\": 4382.92, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4375.57, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4361.82, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4397.01, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4383.33, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4376.24, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4383.39, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4368.2, \"timeframe\": \"M15\", \"weight\": 2}, {\"price\": 4379.96, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4372.5, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4350.68, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4365.64, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4399.61, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4388.52, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4397.01, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4383.39, \"timeframe\": \"M30\", \"weight\": 3}, {\"price\": 4367.75, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4318.21, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4335.31, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4381.33, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4365.64, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4399.61, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4397.01, \"timeframe\": \"H1\", \"weight\": 4}, {\"price\": 4383.39, \"timeframe\": \"H1\", \"weight\": 4}], \"method\": \"confirmed local swing highs/lows, M15/M30/H1\"}, \"_strategy\": {\"name\": \"flat\", \"label\": \"空仓等待\", \"score\": 0.0, \"entry\": null, \"stop\": null, \"tp1\": null, \"tp2\": null, \"rr_tp1\": 0.0, \"reasons\": [\"基础方向、形态或数据质量门槛未通过\", \"新闻数据不完整\"], \"confirmation\": [], \"score_breakdown\": [], \"hard_rejections\": [\"BASE_GATE_FAILED\", \"NEWS_INCOMPLETE\"], \"wait_for\": [\"等待下一根完整M5或M15形成新的确认条件\"], \"regime\": \"range\", \"candidates\": [{\"name\": \"rebound_short\", \"label\": \"反弹做空\", \"score\": 70, \"rr_tp1\": 0.15, \"status\": \"rejected\", \"score_breakdown\": [{\"code\": \"base\", \"label\": \"基础分\", \"points\": 50, \"observed\": \"候选已触发\", \"rule\": \"所有候选从50分起算\", \"evidence\": \"规则基线\"}, {\"code\": \"location\", \"label\": \"接近阻力\", \"points\": 8, \"observed\": 0.1, \"rule\": \"距离阻力不超过0.8 ATR\", \"evidence\": \"结构与现价\"}, {\"code\": \"trend\", \"label\": \"多周期趋势\", \"points\": 12, \"observed\": -6, \"rule\": \"趋势绝对分×2，最高20分\", \"evidence\": \"H1/M30指标\"}, {\"code\": \"regime\", \"label\": \"趋势环境\", \"points\": 0, \"observed\": \"range\", \"rule\": \"趋势环境加8分\", \"evidence\": \"ADX状态\"}], \"hard_rejections\": [{\"code\": \"BASE_GATE_FAILED\", \"message\": \"基础方向、形态或数据质量门槛未通过\"}, {\"code\": \"NEWS_INCOMPLETE\", \"message\": \"新闻数据不完整\"}, {\"code\": \"RR_BELOW_1\", \"message\": \"TP1风险收益低于1R\"}]}, {\"name\": \"range_short\", \"label\": \"区间高空\", \"score\": 68, \"rr_tp1\": 0.15, \"status\": \"rejected\", \"score_breakdown\": [{\"code\": \"base\", \"label\": \"基础分\", \"points\": 50, \"observed\": \"候选已触发\", \"rule\": \"所有候选从50分起算\", \"evidence\": \"规则基线\"}, {\"code\": \"range_location\", \"label\": \"区间上沿确认\", \"points\": 10, \"observed\": \"阻力附近\", \"rule\": \"低ADX且M5看跌拒绝加10分\", \"evidence\": \"ADX/结构/M5\"}, {\"code\": \"bias\", \"label\": \"方向不冲突\", \"points\": 8, \"observed\": \"down\", \"rule\": \"非偏多加8分\", \"evidence\": \"方向概率\"}], \"hard_rejections\": [{\"code\": \"BASE_GATE_FAILED\", \"message\": \"基础方向、形态或数据质量门槛未通过\"}, {\"code\": \"NEWS_INCOMPLETE\", \"message\": \"新闻数据不完整\"}, {\"code\": \"RR_BELOW_1\", \"message\": \"TP1风险收益低于1R\"}]}, {\"name\": \"breakout_long\", \"label\": \"突破做多\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"breakout_short\", \"label\": \"突破做空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"false_breakout_long\", \"label\": \"假突破反转做多\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"false_breakout_short\", \"label\": \"假突破反转做空\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"pullback_long\", \"label\": \"回踩做多\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}, {\"name\": \"range_long\", \"label\": \"区间低吸\", \"score\": null, \"rr_tp1\": null, \"status\": \"not_triggered\", \"score_breakdown\": [], \"hard_rejections\": [{\"code\": \"NOT_TRIGGERED\", \"message\": \"本轮没有形成必要确认\"}]}]}, \"_risk\": {\"available\": true, \"count\": 0, \"tickets\": [], \"limit\": 2, \"remaining\": 2}}",
       "news_json": "[]",
       "model_version": "candidate-explain-v1-manual",
-      "status": "open",
-      "settled_at": null,
-      "actual_close": null,
-      "actual_high": null,
-      "actual_low": null,
-      "actual_direction": null,
-      "direction_hit": null,
-      "range_hit": null,
-      "range_touched": null,
-      "brier": null,
+      "status": "settled",
+      "settled_at": "2026-09-21T10:41:15+00:00",
+      "actual_close": 4348.56,
+      "actual_high": 4362.37,
+      "actual_low": 4340.07,
+      "actual_direction": "down",
+      "direction_hit": 1,
+      "range_hit": 0,
+      "range_touched": 1,
+      "brier": 0.06056512666666666,
       "run_type": "manual"
     },
     {
@@ -899,47 +929,17 @@
       "range_touched": 1,
       "brier": 0.21779999999999997,
       "run_type": "manual"
-    },
-    {
-      "id": "20260911T045129Z-f73ab9",
-      "created_at": "2026-09-11T04:51:29+00:00",
-      "valid_until": "2026-09-11T10:51:29+00:00",
-      "cutoff_at": "2026-09-11T04:51:29+00:00",
-      "price": 4333.715,
-      "decision": "flat",
-      "direction": "down",
-      "p_up": 0.2706,
-      "p_range": 0.34,
-      "p_down": 0.3894,
-      "target_low": 4319.22,
-      "target_high": 4327.5,
-      "execution_json": "[\"M15收盘保持在MA20 4323.69 下方\", \"M5出现看跌吞没、影线拒绝或突破收盘确认\", \"MACD柱与DI方向保持向下一致\"]",
-      "abandon_json": "[\"M15收盘反向穿越MA20 4323.69\", \"高影响事件前后30分钟\", \"点差异常扩大\", \"价格已经进入目标区间，剩余空间不足\", \"预测有效期即将结束\"]",
-      "indicators_json": "{\"M5\": {\"close\": 4333.66, \"ma20\": 4317.1675000000005, \"ma60\": 4323.1033333333335, \"ma200\": 4339.3935, \"macd\": 3.2044850879074147, \"macd_signal\": 0.6464442389291455, \"macd_hist\": 2.558040848978269, \"stoch_k\": 80.11318764528316, \"stoch_d\": 78.71188518602447, \"adx\": 29.16741032343035, \"+di\": 34.65441019740093, \"-di\": 14.989648067410767}, \"M15\": {\"close\": 4333.66, \"ma20\": 4323.694, \"ma60\": 4335.839166666667, \"ma200\": 4380.5353000000005, \"macd\": -1.4616621819259308, \"macd_signal\": -3.517963067917894, \"macd_hist\": 2.056300885991963, \"stoch_k\": 95.7187142215392, \"stoch_d\": 83.22523542165293, \"adx\": 25.37400452230875, \"+di\": 23.834323021234862, \"-di\": 20.591391962779838}, \"M30\": {\"close\": 4333.66, \"ma20\": 4323.425499999999, \"ma60\": 4368.633, \"ma200\": 4392.18625, \"macd\": -10.134150627498457, \"macd_signal\": -12.932584506143007, \"macd_hist\": 2.79843387864455, \"stoch_k\": 62.656154495539596, \"stoch_d\": 38.370691012287864, \"adx\": 32.34914696584591, \"+di\": 21.171772004005245, \"-di\": 24.136255081243043}, \"H1\": {\"close\": 4333.66, \"ma20\": 4345.991, \"ma60\": 4379.1825, \"ma200\": 4400.9051, \"macd\": -19.438845234272776, \"macd_signal\": -18.52311082320303, \"macd_hist\": -0.9157344110697458, \"stoch_k\": 43.43368730875823, \"stoch_d\": 48.23134853242147, \"adx\": 36.82237658883488, \"+di\": 12.843036075841452, \"-di\": 26.99188534686722}, \"_market\": {\"previous_close\": 4316.58, \"today_open\": 4320.38, \"today_high\": 4340.55, \"today_low\": 4300.75, \"day_range\": 39.8, \"change\": 17.135, \"change_pct\": 0.00397, \"amplitude_pct\": 0.00922, \"basis\": \"MT5 broker D1\"}, \"_candles\": {\"M5\": [{\"type\": \"breakout_up\", \"bias\": \"up\", \"label\": \"向上突破收盘确认\", \"level\": 4332.83}], \"M15\": [], \"M30\": [], \"H1\": [{\"type\": \"bullish_engulfing\", \"bias\": \"up\", \"label\": \"看涨吞没\"}]}}",
-      "news_json": "[{\"title\": \"Minutes of the Board's discount rate meetings on July 20 and July 29, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-08-25T18:00:00+00:00\", \"first_seen_at\": \"2026-09-11T04:51:43.394374+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260825a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Federal Open Market Committee, July 28–29, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-08-19T18:00:00+00:00\", \"first_seen_at\": \"2026-09-11T04:51:43.394374+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260819a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve issues FOMC statement\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-29T18:00:00+00:00\", \"first_seen_at\": \"2026-09-11T04:51:43.394374+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Board's discount rate meetings on June 8 and June 17, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-14T18:00:00+00:00\", \"first_seen_at\": \"2026-09-11T04:51:43.394374+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260714a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve announces the leadership and objectives of its task forces to advance the conduct of monetary policy\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-09T19:00:00+00:00\", \"first_seen_at\": \"2026-09-11T04:51:43.394374+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260709a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Federal Open Market Committee, June 16-17, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-07-08T18:00:00+00:00\", \"first_seen_at\": \"2026-09-11T04:51:43.394374+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260708a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve issues FOMC statement\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-06-17T18:00:00+00:00\", \"first_seen_at\": \"2026-09-11T04:51:43.394374+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Federal Reserve Board and Federal Open Market Committee release economic projections from the June 16-17 FOMC meeting\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-06-17T18:00:00+00:00\", \"first_seen_at\": \"2026-09-11T04:51:43.394374+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617b.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Board's discount rate meeting on April 20 and 29, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-05-26T18:00:00+00:00\", \"first_seen_at\": \"2026-09-11T04:51:43.394374+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260526a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}, {\"title\": \"Minutes of the Federal Open Market Committee, April 28-29, 2026\", \"source\": \"Federal Reserve\", \"published_at\": \"2026-05-20T18:00:00+00:00\", \"first_seen_at\": \"2026-09-11T04:51:43.394374+00:00\", \"url\": \"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260520a.htm\", \"impact\": \"high\", \"gold_bias\": \"unknown\", \"provider\": \"Federal Reserve RSS\"}]",
-      "model_version": "technical-candle-v2",
-      "status": "settled",
-      "settled_at": "2026-09-11T12:00:05+00:00",
-      "actual_close": 4333.64,
-      "actual_high": 4350.01,
-      "actual_low": 4330.14,
-      "actual_direction": "range",
-      "direction_hit": 0,
-      "range_hit": 0,
-      "range_touched": 0,
-      "brier": 0.22015223999999997,
-      "run_type": "manual"
     }
   ],
   "rolling20": {
-    "samples": 0,
+    "samples": 1,
     "model_version": "candidate-explain-v1",
-    "direction_hit_rate": null,
-    "direction_ci_low": null,
-    "direction_ci_high": null,
-    "target_range_hit_rate": null,
-    "target_touched_rate": null,
-    "brier": null,
+    "direction_hit_rate": 0.0,
+    "direction_ci_low": 0,
+    "direction_ci_high": 0.7934567085261071,
+    "target_range_hit_rate": 1.0,
+    "target_touched_rate": 1.0,
+    "brier": 0.3514949066666666,
     "calibration_ready": false,
     "calibration_stage": "样本积累中",
     "probability_quality": null,
@@ -954,10 +954,10 @@
       },
       "europe": {
         "label": "欧洲",
-        "samples": 0,
-        "direction_hit_rate": null,
-        "direction_ci_low": null,
-        "direction_ci_high": null
+        "samples": 1,
+        "direction_hit_rate": 0.0,
+        "direction_ci_low": 0,
+        "direction_ci_high": 0.7934567085261071
       },
       "us": {
         "label": "美国",
@@ -967,17 +967,33 @@
         "direction_ci_high": null
       }
     },
-    "by_strategy": {}
+    "by_strategy": {
+      "flat": {
+        "label": "空仓等待",
+        "samples": 1,
+        "direction_hit_rate": 0.0,
+        "direction_ci_low": 0,
+        "direction_ci_high": 0.7934567085261071,
+        "target_range_hit_rate": 1.0,
+        "brier": 0.3514949066666666,
+        "sample_stage": "insufficient",
+        "warnings": [
+          "样本不足30，只展示记录，不作稳定性判断",
+          "Brier样本不足50，不用于概率校准结论"
+        ],
+        "metric_scope": "advisory_forecast_not_trade_pnl"
+      }
+    }
   },
   "rolling60": {
-    "samples": 0,
+    "samples": 1,
     "model_version": "candidate-explain-v1",
-    "direction_hit_rate": null,
-    "direction_ci_low": null,
-    "direction_ci_high": null,
-    "target_range_hit_rate": null,
-    "target_touched_rate": null,
-    "brier": null,
+    "direction_hit_rate": 0.0,
+    "direction_ci_low": 0,
+    "direction_ci_high": 0.7934567085261071,
+    "target_range_hit_rate": 1.0,
+    "target_touched_rate": 1.0,
+    "brier": 0.3514949066666666,
     "calibration_ready": false,
     "calibration_stage": "样本积累中",
     "probability_quality": null,
@@ -992,10 +1008,10 @@
       },
       "europe": {
         "label": "欧洲",
-        "samples": 0,
-        "direction_hit_rate": null,
-        "direction_ci_low": null,
-        "direction_ci_high": null
+        "samples": 1,
+        "direction_hit_rate": 0.0,
+        "direction_ci_low": 0,
+        "direction_ci_high": 0.7934567085261071
       },
       "us": {
         "label": "美国",
@@ -1005,9 +1021,25 @@
         "direction_ci_high": null
       }
     },
-    "by_strategy": {}
+    "by_strategy": {
+      "flat": {
+        "label": "空仓等待",
+        "samples": 1,
+        "direction_hit_rate": 0.0,
+        "direction_ci_low": 0,
+        "direction_ci_high": 0.7934567085261071,
+        "target_range_hit_rate": 1.0,
+        "brier": 0.3514949066666666,
+        "sample_stage": "insufficient",
+        "warnings": [
+          "样本不足30，只展示记录，不作稳定性判断",
+          "Brier样本不足50，不用于概率校准结论"
+        ],
+        "metric_scope": "advisory_forecast_not_trade_pnl"
+      }
+    }
   },
-  "generated_at": "2026-09-21T07:00:37.356908+00:00",
+  "generated_at": "2026-09-21T12:00:35.815299+00:00",
   "shadow": {
     "model_version": "intraday-shadow-v1",
     "daily": null,
@@ -1685,22 +1717,22 @@
     },
     "draft": null,
     "short": {
-      "valid_until": "2026-09-21T11:00:37+00:00",
+      "valid_until": "2026-09-21T16:00:35+00:00",
       "decision": "flat",
-      "direction": "down",
-      "p_up": 0.15,
-      "p_range": 0.2106,
-      "p_down": 0.6394,
-      "target_low": 4337.54,
-      "target_high": 4343.25,
+      "direction": "up",
+      "p_up": 0.6331,
+      "p_range": 0.2669,
+      "p_down": 0.1,
+      "target_low": 4371.23,
+      "target_high": 4377.28,
       "execution": [
         "今日尚余 2 次XAUUSD开仓额度",
-        "M15收盘保持在MA20 4359.15 下方",
-        "M5出现看跌吞没、影线拒绝或突破收盘确认",
-        "MACD柱与DI方向保持向下一致"
+        "M15收盘保持在MA20 4351.76 上方",
+        "M5出现看涨吞没、影线拒绝或突破收盘确认",
+        "MACD柱与DI方向保持向上一致"
       ],
       "abandon": [
-        "M15收盘反向穿越MA20 4359.15",
+        "M15收盘反向穿越MA20 4351.76",
         "高影响事件前后30分钟",
         "点差异常扩大",
         "价格已经进入目标区间，剩余空间不足",
@@ -1708,40 +1740,115 @@
         "当日振幅达到日ATR的80%：禁止追单，影子版本暂停新入场"
       ],
       "strategy": {
-        "name": "flat",
-        "label": "空仓等待",
-        "score": 0.0,
-        "entry": null,
-        "stop": null,
-        "tp1": null,
-        "tp2": null,
-        "rr_tp1": 0.0,
+        "name": "breakout_long",
+        "label": "突破做多",
+        "score": 82.0,
+        "entry": [
+          4366.31,
+          4370.09
+        ],
+        "stop": [
+          4360.25,
+          4364.04
+        ],
+        "tp1": [
+          4374.73,
+          4377.75
+        ],
+        "tp2": [
+          4382.3,
+          4385.32
+        ],
+        "rr_tp1": 1.33,
+        "score_breakdown": [
+          {
+            "code": "base",
+            "label": "基础分",
+            "points": 50,
+            "observed": "候选已触发",
+            "rule": "所有候选从50分起算",
+            "evidence": "规则基线"
+          },
+          {
+            "code": "confirm",
+            "label": "M5突破确认",
+            "points": 14,
+            "observed": "向上突破",
+            "rule": "实体收盘突破加14分",
+            "evidence": "M5已收盘K线"
+          },
+          {
+            "code": "trend",
+            "label": "多周期趋势",
+            "points": 12,
+            "observed": 6,
+            "rule": "趋势分×2，最高16分",
+            "evidence": "H1/M30指标"
+          },
+          {
+            "code": "adx",
+            "label": "趋势强度",
+            "points": 6.0,
+            "observed": 30.19,
+            "rule": "ADX/5，最高8分",
+            "evidence": "H1/M30 ADX"
+          }
+        ],
+        "hard_rejections": [],
+        "status": "qualified",
         "reasons": [
-          "没有候选同时通过65分和TP1至少1R门槛"
+          "H1趋势分+2",
+          "M30趋势分+2",
+          "M5实体向上突破确认"
         ],
-        "confirmation": [],
-        "score_breakdown": [],
-        "hard_rejections": [
-          "NO_QUALIFIED_CANDIDATE"
-        ],
-        "wait_for": [
-          "等待下一根完整M5或M15形成新的确认条件"
+        "confirmation": [
+          "M5收盘站上突破区",
+          "下一根M5不重新跌回突破区下方",
+          "优先等待回踩不破"
         ],
         "regime": "trend",
         "candidates": [
           {
             "name": "breakout_long",
             "label": "突破做多",
-            "score": null,
-            "rr_tp1": null,
-            "status": "not_triggered",
-            "score_breakdown": [],
-            "hard_rejections": [
+            "score": 82.0,
+            "rr_tp1": 1.33,
+            "status": "qualified",
+            "score_breakdown": [
               {
-                "code": "NOT_TRIGGERED",
-                "message": "本轮没有形成必要确认"
+                "code": "base",
+                "label": "基础分",
+                "points": 50,
+                "observed": "候选已触发",
+                "rule": "所有候选从50分起算",
+                "evidence": "规则基线"
+              },
+              {
+                "code": "confirm",
+                "label": "M5突破确认",
+                "points": 14,
+                "observed": "向上突破",
+                "rule": "实体收盘突破加14分",
+                "evidence": "M5已收盘K线"
+              },
+              {
+                "code": "trend",
+                "label": "多周期趋势",
+                "points": 12,
+                "observed": 6,
+                "rule": "趋势分×2，最高16分",
+                "evidence": "H1/M30指标"
+              },
+              {
+                "code": "adx",
+                "label": "趋势强度",
+                "points": 6.0,
+                "observed": 30.19,
+                "rule": "ADX/5，最高8分",
+                "evidence": "H1/M30 ADX"
               }
-            ]
+            ],
+            "hard_rejections": []
           },
           {
             "name": "breakout_short",
@@ -1841,22 +1948,23 @@
               }
             ]
           }
-        ]
+        ],
+        "selection_reason": "突破做多以82.0分通过全部硬门槛，且无其他合格候选"
       },
       "run_type": "scheduled_session",
       "model_version": "intraday-shadow-v1",
-      "created_at": "2026-09-21T07:00:37+00:00",
-      "price": 4347.525,
-      "id": "intraday-shadow-v1-short-2026-09-21T07:00:37+00:00",
+      "created_at": "2026-09-21T12:00:35+00:00",
+      "price": 4366.6849999999995,
+      "id": "intraday-shadow-v1-short-2026-09-21T12:00:35+00:00",
       "daily_id": null,
       "flat_band": 0.0015,
       "alignment": "unavailable",
-      "m15_confirmed": false,
+      "m15_confirmed": true,
       "volatility": {
         "atr": 104.50214285714284,
-        "used": 37.039999999999964,
-        "used_ratio": 0.3544424926351473,
-        "remaining": 67.46214285714288,
+        "used": 43.32000000000062,
+        "used_ratio": 0.4145369541294497,
+        "remaining": 61.182142857142225,
         "no_chase": false,
         "basis": "MT5 broker D1 range / completed D1 ATR14 (simple true-range mean)"
       },
@@ -2491,7 +2599,7 @@
         "errors": [
           {
             "source": "gdelt",
-            "error": "<urlopen error _ssl.c:993: The handshake operation timed out>"
+            "error": "HTTP Error 429: Too Many Requests"
           },
           {
             "source": "bls",
@@ -2500,7 +2608,7 @@
         ]
       },
       "kind": "short",
-      "session": "2026-09-21-europe"
+      "session": "2026-09-21-us"
     },
     "daily_stats": {
       "samples": 0,
@@ -2508,34 +2616,34 @@
       "brier": null
     },
     "short_stats": {
-      "samples": 10,
-      "direction_hit_rate": 0.6,
-      "brier": 0.17253475192666665
+      "samples": 11,
+      "direction_hit_rate": 0.5454545454545454,
+      "brier": 0.18880385690303028
     },
     "settled_trading_days": 0,
     "minimum_trading_days": 30,
     "review_ready": false,
     "auto_promote": false,
     "pending": 2,
-    "report_text": "【日内影子版本｜独立统计】\n当前无有效08:30亚洲定调，短线方案暂停考虑。\n日内定调缺失/已过期\n影子短线：空仓等待；上涨 15% / 震荡 21% / 下跌 64%\n日ATR 104.50｜已运行 35%｜剩余 67.46（经纪商D1口径）\n达到80%日ATR禁止追单；冲突已降低置信度，必须等待已收盘M15结构确认。\n已结算交易日 0/30；日内与固定会话样本独立，满30日仅供复核，不自动替换正式模型。\n冻结日内：0个已结算样本｜方向命中率 —｜Brier —\n固定会话影子：10个已结算样本｜方向命中率 60.0%｜Brier 0.1725"
+    "report_text": "【日内影子版本｜独立统计】\n当前无有效08:30亚洲定调，短线方案暂停考虑。\n日内定调缺失/已过期\n影子短线：空仓等待；上涨 63% / 震荡 27% / 下跌 10%\n日ATR 104.50｜已运行 41%｜剩余 61.18（经纪商D1口径）\n达到80%日ATR禁止追单；冲突已降低置信度，必须等待已收盘M15结构确认。\n已结算交易日 0/30；日内与固定会话样本独立，满30日仅供复核，不自动替换正式模型。\n冻结日内：0个已结算样本｜方向命中率 —｜Brier —\n固定会话影子：11个已结算样本｜方向命中率 54.5%｜Brier 0.1888"
   },
   "shadow_error": null,
   "health": {
-    "checked_at": "2026-09-21T07:00:37+00:00",
+    "checked_at": "2026-09-21T12:00:35+00:00",
     "monitor_since": "2026-09-13T13:59:12+00:00",
-    "heartbeat": "2026-09-21T07:00:19+00:00",
-    "market_time": "2026-09-21T07:01:04+00:00",
+    "heartbeat": "2026-09-21T12:00:18+00:00",
+    "market_time": "2026-09-21T12:01:04+00:00",
     "market_status": "ok",
     "weekend": false,
-    "last_publish_at": "2026-09-17T07:00:35+00:00",
+    "last_publish_at": "2026-09-21T07:00:46+00:00",
     "last_run": {
-      "id": "scheduled_session-europe-2026-09-21T07:00:00+00:00",
+      "id": "scheduled_session-us-2026-09-21T12:00:00+00:00",
       "kind": "scheduled_session",
-      "started_at": "2026-09-21T07:00:19+00:00",
-      "finished_at": "2026-09-21T07:00:37+00:00",
+      "started_at": "2026-09-21T12:00:18+00:00",
+      "finished_at": "2026-09-21T12:00:35+00:00",
       "stage": "finished",
       "code": "ok",
-      "report_id": "scheduled_session-europe-2026-09-21T07:00:00+00:00",
+      "report_id": "scheduled_session-us-2026-09-21T12:00:00+00:00",
       "attempts": 1,
       "message": "完成"
     },
@@ -2592,18 +2700,18 @@
         {
           "prediction_id": "20260913T103517Z-decf6f",
           "valid_until": "2026-09-13T16:35:17+00:00",
-          "checked_at": "2026-09-21T07:00:37+00:00",
+          "checked_at": "2026-09-21T12:00:35+00:00",
           "reason": "missing_start",
-          "attempts": 882,
+          "attempts": 943,
           "ledger": "predictions",
           "message": "缺少起始行情，等待补齐"
         },
         {
           "prediction_id": "intraday-shadow-v1-20260917-daily",
           "valid_until": "2026-09-17T22:00:00+00:00",
-          "checked_at": "2026-09-21T07:00:37+00:00",
+          "checked_at": "2026-09-21T12:00:35+00:00",
           "reason": "missing_end",
-          "attempts": 33,
+          "attempts": 94,
           "ledger": "shadow",
           "message": "缺少到期行情，可能休市或数据未同步"
         }
@@ -2611,32 +2719,21 @@
     },
     "runs": [
       {
-        "id": "scheduled_session-europe-2026-09-21T07:00:00+00:00",
+        "id": "scheduled_session-us-2026-09-21T12:00:00+00:00",
         "kind": "scheduled_session",
-        "started_at": "2026-09-21T07:00:19+00:00",
-        "finished_at": "2026-09-21T07:00:37+00:00",
+        "started_at": "2026-09-21T12:00:18+00:00",
+        "finished_at": "2026-09-21T12:00:35+00:00",
         "stage": "finished",
         "code": "ok",
-        "report_id": "scheduled_session-europe-2026-09-21T07:00:00+00:00",
+        "report_id": "scheduled_session-us-2026-09-21T12:00:00+00:00",
         "attempts": 1,
         "message": "完成"
       },
       {
-        "id": "reconcile-44c4619f41464a318a8b44f743cc1221",
+        "id": "reconcile-ec1557a2171445888ead1177b4c7c044",
         "kind": "reconcile",
-        "started_at": "2026-09-21T06:55:39+00:00",
-        "finished_at": "2026-09-21T06:55:39+00:00",
-        "stage": "finished",
-        "code": "ok",
-        "report_id": null,
-        "attempts": 1,
-        "message": "完成"
-      },
-      {
-        "id": "reconcile-1ada9cab2e3148c881df6527ac717ed0",
-        "kind": "reconcile",
-        "started_at": "2026-09-21T06:50:38+00:00",
-        "finished_at": "2026-09-21T06:50:38+00:00",
+        "started_at": "2026-09-21T11:56:18+00:00",
+        "finished_at": "2026-09-21T11:56:18+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": null,
@@ -2644,10 +2741,10 @@
         "message": "完成"
       },
       {
-        "id": "reconcile-0c9d03eaf11d467babb6cadcd5149559",
+        "id": "reconcile-5679bce67f4c4290b5e9d8c3fc316608",
         "kind": "reconcile",
-        "started_at": "2026-09-21T06:45:38+00:00",
-        "finished_at": "2026-09-21T06:45:38+00:00",
+        "started_at": "2026-09-21T11:51:18+00:00",
+        "finished_at": "2026-09-21T11:51:18+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": null,
@@ -2655,10 +2752,10 @@
         "message": "完成"
       },
       {
-        "id": "reconcile-e1716659cf454ee3855ec100b9c06d5a",
+        "id": "reconcile-4ef1daa8d92945239da7c424a5576b3d",
         "kind": "reconcile",
-        "started_at": "2026-09-21T06:40:38+00:00",
-        "finished_at": "2026-09-21T06:40:38+00:00",
+        "started_at": "2026-09-21T11:46:18+00:00",
+        "finished_at": "2026-09-21T11:46:18+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": null,
@@ -2666,10 +2763,10 @@
         "message": "完成"
       },
       {
-        "id": "reconcile-9e879ebbb2b7417f8c7fdc02b3a621a1",
+        "id": "reconcile-be4dd9eea2ef4c63be7e93f281e5c524",
         "kind": "reconcile",
-        "started_at": "2026-09-21T06:35:37+00:00",
-        "finished_at": "2026-09-21T06:35:38+00:00",
+        "started_at": "2026-09-21T11:41:17+00:00",
+        "finished_at": "2026-09-21T11:41:18+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": null,
@@ -2677,10 +2774,10 @@
         "message": "完成"
       },
       {
-        "id": "reconcile-3cbed8d8b8284b068e8b5d2fb131b8f8",
+        "id": "reconcile-228a36faed57482f8d42535dda353cac",
         "kind": "reconcile",
-        "started_at": "2026-09-21T06:30:37+00:00",
-        "finished_at": "2026-09-21T06:30:37+00:00",
+        "started_at": "2026-09-21T11:36:17+00:00",
+        "finished_at": "2026-09-21T11:36:17+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": null,
@@ -2688,10 +2785,10 @@
         "message": "完成"
       },
       {
-        "id": "reconcile-d13f808b271749db80c886a5ba4dbc25",
+        "id": "reconcile-632f8f34af2d40e1be32db2d817d7cf8",
         "kind": "reconcile",
-        "started_at": "2026-09-21T06:25:37+00:00",
-        "finished_at": "2026-09-21T06:25:37+00:00",
+        "started_at": "2026-09-21T11:31:17+00:00",
+        "finished_at": "2026-09-21T11:31:17+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": null,
@@ -2699,10 +2796,10 @@
         "message": "完成"
       },
       {
-        "id": "reconcile-4de9e6f7ffb444d281770bd65fb33c0d",
+        "id": "reconcile-17ec8e43bfa14dc189fcca4e94480651",
         "kind": "reconcile",
-        "started_at": "2026-09-21T06:20:37+00:00",
-        "finished_at": "2026-09-21T06:20:37+00:00",
+        "started_at": "2026-09-21T11:26:17+00:00",
+        "finished_at": "2026-09-21T11:26:17+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": null,
@@ -2710,10 +2807,10 @@
         "message": "完成"
       },
       {
-        "id": "reconcile-5d1ae6017b8e418a93f00051c69ab57d",
+        "id": "reconcile-510ef2ccf13244cf8f00531cafc9d682",
         "kind": "reconcile",
-        "started_at": "2026-09-21T06:15:36+00:00",
-        "finished_at": "2026-09-21T06:15:37+00:00",
+        "started_at": "2026-09-21T11:21:16+00:00",
+        "finished_at": "2026-09-21T11:21:17+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": null,
@@ -2721,10 +2818,10 @@
         "message": "完成"
       },
       {
-        "id": "reconcile-253351d464ec45eeb84850011e52d2de",
+        "id": "reconcile-b93674f84ade49ac9459a9627744bab6",
         "kind": "reconcile",
-        "started_at": "2026-09-21T06:10:36+00:00",
-        "finished_at": "2026-09-21T06:10:36+00:00",
+        "started_at": "2026-09-21T11:16:16+00:00",
+        "finished_at": "2026-09-21T11:16:16+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": null,
@@ -2732,10 +2829,21 @@
         "message": "完成"
       },
       {
-        "id": "reconcile-596f32ea4515417bb6d51c0bbeb138e7",
+        "id": "reconcile-c5991a6692b8464c802569de24be3e85",
         "kind": "reconcile",
-        "started_at": "2026-09-21T06:05:36+00:00",
-        "finished_at": "2026-09-21T06:05:36+00:00",
+        "started_at": "2026-09-21T11:11:16+00:00",
+        "finished_at": "2026-09-21T11:11:16+00:00",
+        "stage": "finished",
+        "code": "ok",
+        "report_id": null,
+        "attempts": 1,
+        "message": "完成"
+      },
+      {
+        "id": "reconcile-59ebbd3530c943158c22b38cf34f6a8f",
+        "kind": "reconcile",
+        "started_at": "2026-09-21T11:06:16+00:00",
+        "finished_at": "2026-09-21T11:06:16+00:00",
         "stage": "finished",
         "code": "ok",
         "report_id": null,
