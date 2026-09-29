@@ -1069,7 +1069,7 @@
       }
     }
   },
-  "generated_at": "2026-09-29T07:04:27.512157+00:00",
+  "generated_at": "2026-09-29T07:05:27.594898+00:00",
   "shadow": {
     "model_version": "intraday-shadow-v1",
     "daily": null,
@@ -2584,9 +2584,9 @@
   },
   "shadow_error": null,
   "health": {
-    "checked_at": "2026-09-29T07:04:27+00:00",
+    "checked_at": "2026-09-29T07:05:27+00:00",
     "monitor_since": "2026-09-13T13:59:12+00:00",
-    "heartbeat": "2026-09-29T07:04:27+00:00",
+    "heartbeat": "2026-09-29T07:05:27+00:00",
     "market_time": "2026-09-24T09:24:40+00:00",
     "market_status": "mt5_error",
     "weekend": false,
@@ -2594,12 +2594,12 @@
     "last_run": {
       "id": "scheduled_session-europe-2026-09-29T07:00:00+00:00",
       "kind": "scheduled_session",
-      "started_at": "2026-09-29T07:04:27+00:00",
-      "finished_at": "2026-09-29T07:04:27+00:00",
+      "started_at": "2026-09-29T07:05:27+00:00",
+      "finished_at": "2026-09-29T07:05:27+00:00",
       "stage": "finished",
       "code": "mt5_error",
       "report_id": null,
-      "attempts": 5,
+      "attempts": 6,
       "message": "MT5读取失败，请检查终端登录和连接"
     },
     "missed_count": 10,
@@ -2671,36 +2671,36 @@
         {
           "prediction_id": "20260913T103517Z-decf6f",
           "valid_until": "2026-09-13T16:35:17+00:00",
-          "checked_at": "2026-09-29T07:04:27+00:00",
+          "checked_at": "2026-09-29T07:05:27+00:00",
           "reason": "history_error",
-          "attempts": 1756,
+          "attempts": 1757,
           "ledger": "predictions",
           "message": "历史行情读取失败，等待重试"
         },
         {
           "prediction_id": "intraday-shadow-v1-20260917-daily",
           "valid_until": "2026-09-17T22:00:00+00:00",
-          "checked_at": "2026-09-29T07:04:27+00:00",
+          "checked_at": "2026-09-29T07:05:27+00:00",
           "reason": "history_error",
-          "attempts": 907,
+          "attempts": 908,
           "ledger": "shadow",
           "message": "历史行情读取失败，等待重试"
         },
         {
           "prediction_id": "intraday-shadow-v1-20260922-daily",
           "valid_until": "2026-09-22T22:00:00+00:00",
-          "checked_at": "2026-09-29T07:04:27+00:00",
+          "checked_at": "2026-09-29T07:05:27+00:00",
           "reason": "history_error",
-          "attempts": 402,
+          "attempts": 403,
           "ledger": "shadow",
           "message": "历史行情读取失败，等待重试"
         },
         {
           "prediction_id": "intraday-shadow-v1-20260923-daily",
           "valid_until": "2026-09-23T22:00:00+00:00",
-          "checked_at": "2026-09-29T07:04:27+00:00",
+          "checked_at": "2026-09-29T07:05:27+00:00",
           "reason": "history_error",
-          "attempts": 169,
+          "attempts": 170,
           "ledger": "shadow",
           "message": "历史行情读取失败，等待重试"
         }
@@ -2710,12 +2710,12 @@
       {
         "id": "scheduled_session-europe-2026-09-29T07:00:00+00:00",
         "kind": "scheduled_session",
-        "started_at": "2026-09-29T07:04:27+00:00",
-        "finished_at": "2026-09-29T07:04:27+00:00",
+        "started_at": "2026-09-29T07:05:27+00:00",
+        "finished_at": "2026-09-29T07:05:27+00:00",
         "stage": "finished",
         "code": "mt5_error",
         "report_id": null,
-        "attempts": 5,
+        "attempts": 6,
         "message": "MT5读取失败，请检查终端登录和连接"
       },
       {
