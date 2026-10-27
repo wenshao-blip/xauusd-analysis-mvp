@@ -1069,7 +1069,7 @@
       }
     }
   },
-  "generated_at": "2026-10-27T12:08:38.934903+00:00",
+  "generated_at": "2026-10-27T12:09:19.236242+00:00",
   "shadow": {
     "model_version": "intraday-shadow-v1",
     "daily": null,
@@ -2584,9 +2584,9 @@
   },
   "shadow_error": null,
   "health": {
-    "checked_at": "2026-10-27T12:08:38+00:00",
+    "checked_at": "2026-10-27T12:09:19+00:00",
     "monitor_since": "2026-09-13T13:59:12+00:00",
-    "heartbeat": "2026-10-27T12:08:38+00:00",
+    "heartbeat": "2026-10-27T12:09:18+00:00",
     "market_time": "2026-09-24T09:24:40+00:00",
     "market_status": "mt5_error",
     "weekend": false,
@@ -2595,7 +2595,7 @@
       "id": "scheduled_session-us-2026-10-27T12:00:00+00:00",
       "kind": "scheduled_session",
       "started_at": "2026-10-27T12:08:38+00:00",
-      "finished_at": "2026-10-27T12:08:38+00:00",
+      "finished_at": "2026-10-27T12:08:41+00:00",
       "stage": "finished",
       "code": "mt5_error",
       "report_id": null,
@@ -2699,36 +2699,36 @@
         {
           "prediction_id": "20260913T103517Z-decf6f",
           "valid_until": "2026-09-13T16:35:17+00:00",
-          "checked_at": "2026-10-27T12:08:38+00:00",
+          "checked_at": "2026-10-27T12:09:18+00:00",
           "reason": "history_error",
-          "attempts": 4531,
+          "attempts": 4532,
           "ledger": "predictions",
           "message": "历史行情读取失败，等待重试"
         },
         {
           "prediction_id": "intraday-shadow-v1-20260917-daily",
           "valid_until": "2026-09-17T22:00:00+00:00",
-          "checked_at": "2026-10-27T12:08:38+00:00",
+          "checked_at": "2026-10-27T12:09:18+00:00",
           "reason": "history_error",
-          "attempts": 3682,
+          "attempts": 3683,
           "ledger": "shadow",
           "message": "历史行情读取失败，等待重试"
         },
         {
           "prediction_id": "intraday-shadow-v1-20260922-daily",
           "valid_until": "2026-09-22T22:00:00+00:00",
-          "checked_at": "2026-10-27T12:08:38+00:00",
+          "checked_at": "2026-10-27T12:09:18+00:00",
           "reason": "history_error",
-          "attempts": 3177,
+          "attempts": 3178,
           "ledger": "shadow",
           "message": "历史行情读取失败，等待重试"
         },
         {
           "prediction_id": "intraday-shadow-v1-20260923-daily",
           "valid_until": "2026-09-23T22:00:00+00:00",
-          "checked_at": "2026-10-27T12:08:38+00:00",
+          "checked_at": "2026-10-27T12:09:18+00:00",
           "reason": "history_error",
-          "attempts": 2944,
+          "attempts": 2945,
           "ledger": "shadow",
           "message": "历史行情读取失败，等待重试"
         }
@@ -2736,10 +2736,32 @@
     },
     "runs": [
       {
+        "id": "reconcile-f7f2109a187f49778acb86dd637b20aa",
+        "kind": "reconcile",
+        "started_at": "2026-10-27T12:09:19+00:00",
+        "finished_at": "2026-10-27T12:09:19+00:00",
+        "stage": "finished",
+        "code": "ok",
+        "report_id": null,
+        "attempts": 1,
+        "message": "完成"
+      },
+      {
+        "id": "reconcile-13cbcbdfe74c400ebb74287016ce06c1",
+        "kind": "reconcile",
+        "started_at": "2026-10-27T12:09:18+00:00",
+        "finished_at": "2026-10-27T12:09:19+00:00",
+        "stage": "finished",
+        "code": "mt5_error",
+        "report_id": null,
+        "attempts": 1,
+        "message": "MT5读取失败，请检查终端登录和连接"
+      },
+      {
         "id": "scheduled_session-us-2026-10-27T12:00:00+00:00",
         "kind": "scheduled_session",
         "started_at": "2026-10-27T12:08:38+00:00",
-        "finished_at": "2026-10-27T12:08:38+00:00",
+        "finished_at": "2026-10-27T12:08:41+00:00",
         "stage": "finished",
         "code": "mt5_error",
         "report_id": null,
@@ -2839,28 +2861,6 @@
         "kind": "reconcile",
         "started_at": "2026-10-27T11:10:48+00:00",
         "finished_at": "2026-10-27T11:10:48+00:00",
-        "stage": "finished",
-        "code": "mt5_error",
-        "report_id": null,
-        "attempts": 1,
-        "message": "MT5读取失败，请检查终端登录和连接"
-      },
-      {
-        "id": "reconcile-6b4e90967020474aafaab7ff67dc00a0",
-        "kind": "reconcile",
-        "started_at": "2026-10-27T11:05:48+00:00",
-        "finished_at": "2026-10-27T11:05:48+00:00",
-        "stage": "finished",
-        "code": "mt5_error",
-        "report_id": null,
-        "attempts": 1,
-        "message": "MT5读取失败，请检查终端登录和连接"
-      },
-      {
-        "id": "reconcile-0d7f36c67225462a90895862aa5bab60",
-        "kind": "reconcile",
-        "started_at": "2026-10-27T11:01:17+00:00",
-        "finished_at": "2026-10-27T11:01:17+00:00",
         "stage": "finished",
         "code": "mt5_error",
         "report_id": null,
